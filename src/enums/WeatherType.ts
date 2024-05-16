@@ -1,0 +1,17 @@
+export enum WeatherType {
+  CLEARSKIES = 1,
+  FAIRSKIES = 2,
+  CLOUDS = 3,
+  FOG = 4,
+  WIND = 5,
+  GALES = 6,
+  RAIN = 7,
+  SHOWERS = 8,
+  THUNDER = 9,
+  THUNDERSTORMS = 10,
+  DUSTSTORMS = 11,
+  HEATWAVES = 14,
+  SNOW = 15,
+  BLIZZARDS = 16,
+  GLOOM = 17,
+}
