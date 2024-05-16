@@ -3,6 +3,7 @@ import { BaitType } from '../enums/BaitType.ts';
 import { BigFishType } from '../enums/BigFishType.ts';
 import { Bait } from '../types/Bait.ts';
 import { BigFish } from '../types/BigFish.ts';
+import { CarbunclePlushySettings } from '../components/Import/CarbunclePlushySettings.ts';
 
 export interface ConfigurationContextModel {
   patches: Set<string>;
@@ -13,6 +14,7 @@ export interface ConfigurationContextModel {
   onSelectPatch: (patchNames: string[], selected: boolean) => void;
   onSelectBait: (baitIds: Bait[], selected: boolean) => void;
   onSelectFish: (fishIds: BigFish[], selected: boolean) => void;
+  loadCarbunclePlushySettings: (settings: CarbunclePlushySettings) => boolean;
 }
 
 /**

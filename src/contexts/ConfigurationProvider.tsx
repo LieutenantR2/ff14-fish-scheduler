@@ -8,6 +8,8 @@ import { Bait } from '../types/Bait.ts';
 import { AllBaits, BaitData } from '../data/BaitData.ts';
 import { AllFishes } from '../data/BigFishData.ts';
 import { PatchData } from '../data/PatchData.ts';
+import { CarbunclePlushySettings } from '../components/Import/CarbunclePlushySettings.ts';
+import { getCarbunclePlushyPatches } from '../components/Import/parser.ts';
 
 type ConfigurationProviderProps = {
   children?: React.ReactNode;
@@ -17,6 +19,7 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
   const [patches, setPatches] = useState(new Set<string>(PatchData));
   const [baitTypes, setBaitTypes] = useState(new Set<BaitType>(AllBaits.map((b) => b.id)));
   const [fishTypes, setFishTypes] = useState(new Set<BigFishType>(AllFishes.map((f) => f.id)));
+  const [completedFishes, setCompletedFishes] = useState(new Set<BigFishType>());
 
   const onSelectPatch = useCallback(
     (patchNames: string[], isSelected: boolean) => {
@@ -45,7 +48,7 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
         ).map((f) => f.id);
 
         if (baitFishes.length) {
-          setFishTypes(setUnion(fishTypes, baitFishes));
+          setFishTypes(setDifference(setUnion(fishTypes, baitFishes), completedFishes));
         }
       } else {
         // Remove fishes from the removed patches
@@ -53,10 +56,10 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
           (f) => patchNamesSet.has(f.patch) || setIntersect(patchBaits, f.baits).size > 0
         ).map((f) => f.id);
 
-        setFishTypes(setDifference(fishTypes, baitFishes));
+        setFishTypes(setDifference(fishTypes, setUnion(baitFishes, completedFishes)));
       }
     },
-    [fishTypes, baitTypes, patches]
+    [patches, baitTypes, fishTypes, completedFishes]
   );
 
   const onSelectBait = useCallback(
@@ -74,24 +77,45 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
       setBaitTypes(updatedBaitIds);
 
       if (isSelected) {
-        setFishTypes(setUnion(baitFishes, fishTypes));
+        setFishTypes(setDifference(setUnion(baitFishes, fishTypes), completedFishes));
       } else {
-        setFishTypes(setIntersect(baitFishes, fishTypes));
+        setFishTypes(setDifference(setIntersect(baitFishes, fishTypes), completedFishes));
       }
     },
-    [baitTypes, fishTypes, patches]
+    [baitTypes, completedFishes, fishTypes, patches]
   );
 
   const onSelectFish = useCallback(
     (fishes: BigFish[], isSelected: boolean) => {
       const fishIds = fishes.map((f) => f.id);
       if (isSelected) {
-        setFishTypes(setUnion(fishTypes, fishIds));
+        setFishTypes(setDifference(setUnion(fishTypes, fishIds), completedFishes));
       } else {
-        setFishTypes(setDifference(fishTypes, fishIds));
+        setFishTypes(setDifference(fishTypes, setUnion(fishIds, completedFishes)));
       }
     },
-    [fishTypes]
+    [completedFishes, fishTypes]
+  );
+
+  const loadCarbunclePlushySettings = useCallback(
+    (settings: CarbunclePlushySettings): boolean => {
+      setCompletedFishes(new Set(settings.completed));
+
+      const carbunclePlushyPatches = getCarbunclePlushyPatches(settings);
+      const patchesToRemove = setDifference(patches, carbunclePlushyPatches);
+      const patchesToAdd = setDifference(carbunclePlushyPatches, patches);
+      if (patchesToAdd.size) {
+        onSelectPatch([...patchesToAdd], true);
+      }
+      if (patchesToRemove.size) {
+        onSelectPatch([...patchesToRemove], false);
+      }
+
+      setFishTypes(setDifference(fishTypes, settings.completed));
+
+      return true;
+    },
+    [fishTypes, onSelectPatch, patches]
   );
 
   const contextValue = useMemo<ConfigurationContextModel>(
@@ -99,13 +123,23 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
       patches,
       baits: baitTypes,
       fishes: fishTypes,
-      completed: new Set(),
+      completed: completedFishes,
 
       onSelectPatch,
       onSelectFish,
       onSelectBait,
+      loadCarbunclePlushySettings,
     }),
-    [patches, baitTypes, fishTypes, onSelectPatch, onSelectFish, onSelectBait]
+    [
+      patches,
+      baitTypes,
+      fishTypes,
+      completedFishes,
+      onSelectPatch,
+      onSelectFish,
+      onSelectBait,
+      loadCarbunclePlushySettings,
+    ]
   );
 
   return (

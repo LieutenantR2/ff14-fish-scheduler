@@ -54,6 +54,7 @@ const Styles = css({
     '.section-label': {
       display: 'flex',
       userSelect: 'none',
+      alignItems: 'center',
 
       '.clickable': {
         flexGrow: 1,
@@ -172,10 +173,12 @@ const FishExpansionFilter = ({
   useEffect(() => {
     const fishes = allFishes.filter(
       (f) =>
-        configPatches.has(f.patch) && setIntersect(configBaits, f.baits).size === f.baits.length
+        configPatches.has(f.patch) &&
+        setIntersect(configBaits, f.baits).size === f.baits.length &&
+        !completedFishes.has(f.id)
     );
     setAvailableFishes(fishes);
-  }, [allFishes, configBaits, configPatches]);
+  }, [allFishes, completedFishes, configBaits, configPatches]);
 
   return (
     <div css={Styles} className={expansionCollapsed ? 'collapsed' : ''}>
