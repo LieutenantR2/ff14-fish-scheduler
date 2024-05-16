@@ -7,6 +7,7 @@ import { LARGE_SCREEN_SIZE } from './constants/UI.ts';
 import reactLogo from './assets/react.svg';
 import FishFilterPage from './components/FishFilterPage.tsx';
 import ConfigurationProvider from './contexts/ConfigurationProvider.tsx';
+import ImportConfigurationPage from './components/ImportConfigurationPage.tsx';
 
 const Styles = css({
   boxSizing: 'border-box',
@@ -56,6 +57,7 @@ function App() {
         <div className="content-container" css={Styles}>
           <div className={'overlay ' + (!activeOverlay ? 'hidden' : '')}>
             {activeOverlay === 'filter' && <FishFilterPage />}
+            {activeOverlay === 'import' && <ImportConfigurationPage />}
           </div>
           <div>
             <img src={reactLogo} className="logo react" alt="React logo" />
