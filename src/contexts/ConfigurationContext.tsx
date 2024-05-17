@@ -15,6 +15,18 @@ export interface ConfigurationContextModel {
   onSelectBait: (baitIds: Bait[], selected: boolean) => void;
   onSelectFish: (fishIds: BigFish[], selected: boolean) => void;
   loadCarbunclePlushySettings: (settings: CarbunclePlushySettings) => boolean;
+
+  scheduleLookaheadMonths: number;
+  scheduleDurationHours: number;
+  travelTimeSeconds: number;
+  stacksPrepTimeSeconds: number;
+  moochPrepTimeSeconds: number;
+  customFishOrdering?: BigFishType[];
+
+  setTravelTimeSeconds: (seconds: number) => void;
+  setStacksPrepTimeSeconds: (seconds: number) => void;
+  setMoochPrepTimeSeconds: (seconds: number) => void;
+  setCustomFishOrdering: (fishOrder: BigFishType[] | undefined) => void;
 }
 
 /**

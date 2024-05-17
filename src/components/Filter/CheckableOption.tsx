@@ -5,6 +5,7 @@ const Styles = css({
   display: 'flex',
   flexDirection: 'row',
   minWidth: '170px',
+  maxWidth: '240px',
   width: '40%',
   alignItems: 'center',
   padding: '3px',

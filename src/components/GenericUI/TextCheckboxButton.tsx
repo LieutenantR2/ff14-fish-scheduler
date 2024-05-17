@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 
 const Styles = css({
-  padding: '6px 14px',
+  padding: '10px 14px',
   border: '1px solid #9DB2BF',
   cursor: 'pointer',
   userSelect: 'none',

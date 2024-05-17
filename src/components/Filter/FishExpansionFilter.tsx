@@ -19,12 +19,14 @@ const Styles = css({
   boxShadow: '0 0 3px 3px rgba(0, 0, 0, 0.1)',
   display: 'flex',
 
-  '&.collapsed': {
-    maxWidth: 'unset',
-    minWidth: 'unset',
-    flexGrow: 'unset',
-    flexBasis: 'unset',
-    width: 'unset',
+  [`@media (min-width: 800px)`]: {
+    '&.collapsed': {
+      maxWidth: 'unset',
+      minWidth: 'unset',
+      flexGrow: 'unset',
+      flexBasis: 'unset',
+      width: 'unset',
+    },
   },
 
   '.heading': {
@@ -210,7 +212,7 @@ const FishExpansionFilter = ({
           <div className="clickable" onClick={() => setBaitCollapsed(!baitCollapsed)}>
             <PhishingIcon fontSize="small" />
             <span>Baits - {baitCount} selected</span>
-            <span className="hint-text">(click to toggle {baitCollapsed ? 'show' : 'hide'})</span>
+            <span className="hint-text">(click to {baitCollapsed ? 'show' : 'hide'})</span>
           </div>
           <span
             className={'link-button ' + (!availableBaits.length ? 'disabled' : '')}
@@ -242,7 +244,7 @@ const FishExpansionFilter = ({
           <div className="clickable" onClick={() => setFishCollapsed(!fishCollapsed)}>
             <SetMealIcon fontSize="small" />
             <span>Fishes - {fishCount} selected</span>
-            <span className="hint-text">(click to toggle {fishCollapsed ? 'show' : 'hide'})</span>
+            <span className="hint-text">(click to {fishCollapsed ? 'show' : 'hide'})</span>
           </div>
           <span
             className={'link-button ' + (!availableFishes.length ? 'disabled' : '')}
