@@ -21,6 +21,15 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
   const [fishTypes, setFishTypes] = useState(new Set<BigFishType>(AllFishes.map((f) => f.id)));
   const [completedFishes, setCompletedFishes] = useState(new Set<BigFishType>());
 
+  const [scheduleLookaheadMonths, setScheduleLookaheadMonths] = useState(12);
+  const [scheduleDurationHours, setScheduleDurationHours] = useState(12);
+  const [travelTimeSeconds, setTravelTimeSeconds] = useState(60);
+  const [stacksPrepTimeSeconds, setStacksPrepTimeSeconds] = useState(300);
+  const [moochPrepTimeSeconds, setMoochPrepTimeSeconds] = useState(120);
+  const [customFishOrdering, setCustomFishOrdering] = useState<BigFishType[] | undefined>(
+    undefined
+  );
+
   const onSelectPatch = useCallback(
     (patchNames: string[], isSelected: boolean) => {
       const patchNamesSet = new Set(patchNames);
@@ -118,6 +127,30 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
     [fishTypes, onSelectPatch, patches]
   );
 
+  const updateScheduleLookaheadMonths = useCallback((months: number) => {
+    setScheduleLookaheadMonths(months);
+  }, []);
+
+  const updateScheduleDurationHours = useCallback((hours: number) => {
+    setScheduleDurationHours(hours);
+  }, []);
+
+  const updateTravelTimeSeconds = useCallback((seconds: number) => {
+    setTravelTimeSeconds(seconds);
+  }, []);
+
+  const updateStacksPrepTimeSeconds = useCallback((seconds: number) => {
+    setStacksPrepTimeSeconds(seconds);
+  }, []);
+
+  const updateMoochPrepTimeSeconds = useCallback((seconds: number) => {
+    setMoochPrepTimeSeconds(seconds);
+  }, []);
+
+  const updateCustomFishOrdering = useCallback((fishOrder: BigFishType[] | undefined) => {
+    setCustomFishOrdering(fishOrder);
+  }, []);
+
   const contextValue = useMemo<ConfigurationContextModel>(
     () => ({
       patches,
@@ -129,6 +162,20 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
       onSelectFish,
       onSelectBait,
       loadCarbunclePlushySettings,
+
+      scheduleLookaheadMonths,
+      scheduleDurationHours,
+      travelTimeSeconds,
+      stacksPrepTimeSeconds,
+      moochPrepTimeSeconds,
+      customFishOrdering,
+
+      setScheduleLookaheadMonths: updateScheduleLookaheadMonths,
+      setScheduleDurationHours: updateScheduleDurationHours,
+      setTravelTimeSeconds: updateTravelTimeSeconds,
+      setStacksPrepTimeSeconds: updateStacksPrepTimeSeconds,
+      setMoochPrepTimeSeconds: updateMoochPrepTimeSeconds,
+      setCustomFishOrdering: updateCustomFishOrdering,
     }),
     [
       patches,
@@ -139,6 +186,18 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
       onSelectFish,
       onSelectBait,
       loadCarbunclePlushySettings,
+      scheduleLookaheadMonths,
+      scheduleDurationHours,
+      travelTimeSeconds,
+      stacksPrepTimeSeconds,
+      moochPrepTimeSeconds,
+      customFishOrdering,
+      updateScheduleLookaheadMonths,
+      updateScheduleDurationHours,
+      updateTravelTimeSeconds,
+      updateStacksPrepTimeSeconds,
+      updateMoochPrepTimeSeconds,
+      updateCustomFishOrdering,
     ]
   );
 
