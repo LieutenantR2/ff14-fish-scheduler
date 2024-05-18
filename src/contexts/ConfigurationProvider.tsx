@@ -23,6 +23,7 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
 
   const [scheduleLookaheadMonths, setScheduleLookaheadMonths] = useState(12);
   const [scheduleDurationHours, setScheduleDurationHours] = useState(12);
+  const [minimumRemainingWindowSeconds, setMinimumRemainingWindowSeconds] = useState(300);
   const [travelTimeSeconds, setTravelTimeSeconds] = useState(60);
   const [stacksPrepTimeSeconds, setStacksPrepTimeSeconds] = useState(300);
   const [moochPrepTimeSeconds, setMoochPrepTimeSeconds] = useState(120);
@@ -135,6 +136,10 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
     setScheduleDurationHours(hours);
   }, []);
 
+  const updateMinimumRemainingWindowSeconds = useCallback((seconds: number) => {
+    setMinimumRemainingWindowSeconds(seconds);
+  }, []);
+
   const updateTravelTimeSeconds = useCallback((seconds: number) => {
     setTravelTimeSeconds(seconds);
   }, []);
@@ -165,6 +170,7 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
 
       scheduleLookaheadMonths,
       scheduleDurationHours,
+      minimumRemainingWindowSeconds,
       travelTimeSeconds,
       stacksPrepTimeSeconds,
       moochPrepTimeSeconds,
@@ -172,6 +178,7 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
 
       setScheduleLookaheadMonths: updateScheduleLookaheadMonths,
       setScheduleDurationHours: updateScheduleDurationHours,
+      setMinimumRemainingWindowSeconds: updateMinimumRemainingWindowSeconds,
       setTravelTimeSeconds: updateTravelTimeSeconds,
       setStacksPrepTimeSeconds: updateStacksPrepTimeSeconds,
       setMoochPrepTimeSeconds: updateMoochPrepTimeSeconds,
@@ -188,12 +195,14 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
       loadCarbunclePlushySettings,
       scheduleLookaheadMonths,
       scheduleDurationHours,
+      minimumRemainingWindowSeconds,
       travelTimeSeconds,
       stacksPrepTimeSeconds,
       moochPrepTimeSeconds,
       customFishOrdering,
       updateScheduleLookaheadMonths,
       updateScheduleDurationHours,
+      updateMinimumRemainingWindowSeconds,
       updateTravelTimeSeconds,
       updateStacksPrepTimeSeconds,
       updateMoochPrepTimeSeconds,
