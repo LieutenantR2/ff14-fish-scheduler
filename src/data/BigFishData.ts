@@ -2417,6 +2417,11 @@ export const BigFishData: Record<string, BigFish[]> = {
       location: FishingHoleType.PRISM_LAKE,
       difficulty: 8,
       prepType: ['stay', 'stacks'],
+      times: [{ start: 0, end: 16 }],
+      weatherTransitions: {
+        from: [WeatherType.FAIRSKIES],
+        to: [WeatherType.FAIRSKIES, WeatherType.CLEARSKIES],
+      },
       intuition: [
         { fish: NormalFishType.INDIGO_PRISMFISH, quantity: 3 },
         { fish: NormalFishType.FIRELIGHT_GOLDFISH, quantity: 3 },
@@ -2538,3 +2543,12 @@ export const StbFishTypes: BigFishType[] = Object.values(StbFishes)
   .map((f) => f.id);
 
 export const AllFishes = Object.values(BigFishData).reduce((a, b) => [...a, ...b]);
+export const BigFishesById = Object.values(BigFishData).reduce(
+  (r, fishes) => {
+    fishes.forEach((f) => {
+      r[f.id] = f;
+    });
+    return r;
+  },
+  {} as Record<BigFishType, BigFish>
+);

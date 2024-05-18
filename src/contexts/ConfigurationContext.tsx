@@ -18,6 +18,7 @@ export interface ConfigurationContextModel {
 
   scheduleLookaheadMonths: number;
   scheduleDurationHours: number;
+  minimumRemainingWindowSeconds: number;
   travelTimeSeconds: number;
   stacksPrepTimeSeconds: number;
   moochPrepTimeSeconds: number;

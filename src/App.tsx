@@ -1,14 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useCallback, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import './App.css';
 import NavigationMenu from './components/NavigationMenu.tsx';
 import FishFilterPage from './components/FishFilterPage.tsx';
-import ConfigurationProvider from './contexts/ConfigurationProvider.tsx';
 import ImportConfigurationPage from './components/ImportConfigurationPage.tsx';
 import TextButton from './components/GenericUI/TextButton.tsx';
 import { createIntervals, weightedIntervalScheduling } from './components/Schedule/scheduler.ts';
 import { Interval } from './components/Schedule/Interval.ts';
+import ScheduleTimeline from './components/Schedule/ScheduleTimeline.tsx';
+import { ConfigurationContext } from './contexts/ConfigurationContext.tsx';
+import { BigFishesById } from './data/BigFishData.ts';
+import TextCheckboxButton from './components/GenericUI/TextCheckboxButton.tsx';
 
 const Styles = css({
   boxSizing: 'border-box',
@@ -62,12 +65,41 @@ const Styles = css({
       textAlign: 'center',
     },
   },
+
+  '.schedule-page': {
+    padding: '20px',
+
+    '.header-section': {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'baseline',
+      justifyContent: 'start',
+
+      '> .text-button, span': {
+        marginLeft: '24px',
+        flexGrow: 0,
+      },
+    },
+
+    '.timeline-timeframe': {
+      display: 'flex',
+      justifyContent: 'end',
+
+      '.text-button': {
+        flexGrow: 0,
+      },
+    },
+  },
 });
 
 function App() {
+  const { scheduleLookaheadMonths, scheduleDurationHours, fishes } =
+    useContext(ConfigurationContext);
+
   const [schedule, setSchedule] = useState<Interval[] | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [activeOverlay, setActiveOverlay] = useState<string | null>(null);
+  const [timelineDurationMinutes, setTimelineDurationMinutes] = useState(60);
 
   const handleOverlayChange = useCallback((page: string) => {
     setActiveOverlay(page === 'schedule' ? null : page);
@@ -75,36 +107,99 @@ function App() {
 
   const handleGenerateSchedule = useCallback(async () => {
     setIsGenerating(true);
-    const intervals = await createIntervals();
+    const intervals = await createIntervals({
+      lookaheadMonths: scheduleLookaheadMonths,
+      scheduledHours: scheduleDurationHours,
+      includedFishes: fishes,
+    });
     const schedule = await weightedIntervalScheduling(intervals);
     setSchedule(schedule);
     setIsGenerating(false);
+  }, [fishes, scheduleDurationHours, scheduleLookaheadMonths]);
+
+  const handleTimeframeChange = useCallback((timeframe: number) => {
+    setTimelineDurationMinutes(timeframe);
   }, []);
 
   return (
     <>
       <NavigationMenu onPageChange={handleOverlayChange} />
-      <ConfigurationProvider>
-        <div className="content-container" css={Styles}>
-          <div className={'overlay ' + (!activeOverlay ? 'hidden' : '')}>
-            {activeOverlay === 'filter' && <FishFilterPage />}
-            {activeOverlay === 'import' && <ImportConfigurationPage />}
+      <div className="content-container" css={Styles}>
+        <div className={'overlay ' + (!activeOverlay ? 'hidden' : '')}>
+          {activeOverlay === 'filter' && <FishFilterPage />}
+          {activeOverlay === 'import' && <ImportConfigurationPage />}
+        </div>
+        {!schedule && (
+          <div className="landing-page">
+            <h2>Welcome to the</h2>
+            <h1>FF14 Big Fish Scheduler (Beta)</h1>
+            <span>Click Generate to begin your Big Fishing journey!</span>
+            <TextButton
+              isDisabled={isGenerating}
+              buttonText="Generate"
+              onSubmit={handleGenerateSchedule}
+            />
+            {isGenerating && <span>Generating schedule...</span>}
           </div>
-          {!schedule && (
-            <div className="landing-page">
-              <h2>Welcome to the</h2>
+        )}
+        {!!schedule && (
+          <div className="schedule-page">
+            <div className="header-section">
               <h1>FF14 Big Fish Scheduler (Beta)</h1>
-              <span>Click Generate to begin your Big Fishing journey!</span>
               <TextButton
                 isDisabled={isGenerating}
-                buttonText="Generate"
+                buttonText="Generate Schedule"
                 onSubmit={handleGenerateSchedule}
               />
               {isGenerating && <span>Generating schedule...</span>}
             </div>
-          )}
-        </div>
-      </ConfigurationProvider>
+            <div className="timeline-timeframe">
+              <TextCheckboxButton
+                buttonText="15m"
+                buttonValue="15"
+                isSelected={timelineDurationMinutes === 15}
+                onClick={() => handleTimeframeChange(15)}
+              />
+              <TextCheckboxButton
+                buttonText="30m"
+                buttonValue="30"
+                isSelected={timelineDurationMinutes === 30}
+                onClick={() => handleTimeframeChange(30)}
+              />
+              <TextCheckboxButton
+                buttonText="1h"
+                buttonValue="60"
+                isSelected={timelineDurationMinutes === 60}
+                onClick={() => handleTimeframeChange(60)}
+              />
+              <TextCheckboxButton
+                buttonText="2h"
+                buttonValue="120"
+                isSelected={timelineDurationMinutes === 120}
+                onClick={() => handleTimeframeChange(120)}
+              />
+              <TextCheckboxButton
+                buttonText="3h"
+                buttonValue="180"
+                isSelected={timelineDurationMinutes === 180}
+                onClick={() => handleTimeframeChange(180)}
+              />
+            </div>
+            <ScheduleTimeline
+              schedule={schedule}
+              timelineDurationMs={timelineDurationMinutes * 60 * 1000}
+            />
+            {schedule.slice(0, 10).map((s, i) => (
+              <div key={`${s.fish}-${i}`}>
+                <span>
+                  {BigFishesById[s.fish].name}: {new Date(s.startTimestamp).toLocaleTimeString()} to{' '}
+                  {new Date(s.endTimestamp).toLocaleTimeString()}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </>
   );
 }
