@@ -1165,7 +1165,7 @@ export const BigFishData: Record<string, BigFish[]> = {
     // Northern Thanalan
     {
       id: BigFishType.WOOTZ_KNIFEFISH_ZENITH,
-      name: 'Hannibal',
+      name: 'Wootz Knifefish Zenith',
       patch: '2.4',
       baits: [BaitType.HONEY_WORM],
       fishSequence: [BaitType.HONEY_WORM, NormalFishType.SILVERFISH],

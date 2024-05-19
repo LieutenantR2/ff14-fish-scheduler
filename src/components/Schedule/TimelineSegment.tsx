@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Interval } from './Interval.ts';
 
 const Styles = css({
@@ -24,6 +24,13 @@ const Styles = css({
     border: '1px solid #777',
     color: '#777',
     textShadow: 'none',
+  },
+
+  [`@media (max-width: 600px)`]: {
+    '.fish-icon': {
+      transform: 'scale(0.85)',
+      transformOrigin: 'center',
+    },
   },
 });
 
@@ -65,6 +72,8 @@ const TimelineSegment = ({
   timelineBufferMs,
   interval,
 }: TimelineSegmentProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+
   const [offset, setOffset] = useState<React.CSSProperties>(
     calculateOffset(interval.startTimestamp, timelineDurationMs, timelineBufferMs)
   );
@@ -80,6 +89,12 @@ const TimelineSegment = ({
     interval.startTimestamp <= new Date().getTime() && interval.endTimestamp > new Date().getTime()
   );
   const [isDisabled, setisDisabled] = useState(interval.endTimestamp <= new Date().getTime());
+
+  useEffect(() => {
+    if (isActive && ref.current) {
+      ref.current.scrollIntoView(true);
+    }
+  }, [isActive, ref]);
 
   useEffect(() => {
     setOffset(calculateOffset(interval.startTimestamp, timelineDurationMs, timelineBufferMs));
@@ -116,14 +131,18 @@ const TimelineSegment = ({
       style={{ ...offset, ...segmentWidth }}
       className={(isActive ? 'active' : '') + (isDisabled ? ' disabled' : '')}
     >
-      <div>
+      <div ref={ref}>
         <div className={`icon fish-icon fish-icon-${interval.fish}`} />
         <span>
-          {new Date(interval.startTimestamp).toLocaleTimeString(navigator.language, {
-            hour: 'numeric',
-            minute: '2-digit',
-            second: '2-digit',
-          })}
+          {new Date(interval.startTimestamp)
+            .toLocaleTimeString(navigator.language, {
+              hour: 'numeric',
+              minute: '2-digit',
+              second: '2-digit',
+            })
+
+            .replace(/[ap]\.?m\.?/i, '')
+            .trim()}
         </span>
       </div>
     </div>

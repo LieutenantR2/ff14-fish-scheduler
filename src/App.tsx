@@ -10,8 +10,8 @@ import { createIntervals, weightedIntervalScheduling } from './components/Schedu
 import { Interval } from './components/Schedule/Interval.ts';
 import ScheduleTimeline from './components/Schedule/ScheduleTimeline.tsx';
 import { ConfigurationContext } from './contexts/ConfigurationContext.tsx';
-import { BigFishesById } from './data/BigFishData.ts';
 import TextCheckboxButton from './components/GenericUI/TextCheckboxButton.tsx';
+import ScheduleTable from './components/Schedule/ScheduleTable.tsx';
 
 const Styles = css({
   boxSizing: 'border-box',
@@ -19,6 +19,8 @@ const Styles = css({
   padding: '8px',
   height: '100%',
   position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
 
   '.overlay': {
     zIndex: 5,
@@ -68,15 +70,44 @@ const Styles = css({
 
   '.schedule-page': {
     padding: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'hidden',
 
     '.header-section': {
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'baseline',
       justifyContent: 'start',
+      flexGrow: 0,
+
+      [`@media (max-width: 600px)`]: {
+        h1: {
+          fontSize: '1.3rem',
+        },
+      },
+
+      [`@media (max-width: 360px)`]: {
+        h1: {
+          display: 'block',
+          whiteSpace: 'nowrap',
+          margin: 0,
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        },
+      },
+
+      '.header-buttons': {
+        paddingLeft: '24px',
+        display: 'flex',
+        alignItems: 'baseline',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        flexGrow: 0,
+      },
 
       '> .text-button, span': {
-        marginLeft: '24px',
+        margin: '4px 12px',
         flexGrow: 0,
       },
     },
@@ -84,6 +115,7 @@ const Styles = css({
     '.timeline-timeframe': {
       display: 'flex',
       justifyContent: 'end',
+      flexGrow: 0,
 
       '.text-button': {
         flexGrow: 0,
@@ -146,12 +178,16 @@ function App() {
           <div className="schedule-page">
             <div className="header-section">
               <h1>FF14 Big Fish Scheduler (Beta)</h1>
-              <TextButton
-                isDisabled={isGenerating}
-                buttonText="Generate Schedule"
-                onSubmit={handleGenerateSchedule}
-              />
-              {isGenerating && <span>Generating schedule...</span>}
+              <div className="header-buttons">
+                <TextButton
+                  isDisabled={isGenerating}
+                  buttonText="Generate"
+                  onSubmit={handleGenerateSchedule}
+                />
+                <span css={isGenerating ? { visibility: 'visible' } : { visibility: 'hidden' }}>
+                  Generating...
+                </span>
+              </div>
             </div>
             <div className="timeline-timeframe">
               <TextCheckboxButton
@@ -189,14 +225,7 @@ function App() {
               schedule={schedule}
               timelineDurationMs={timelineDurationMinutes * 60 * 1000}
             />
-            {schedule.slice(0, 10).map((s, i) => (
-              <div key={`${s.fish}-${i}`}>
-                <span>
-                  {BigFishesById[s.fish].name}: {new Date(s.startTimestamp).toLocaleTimeString()} to{' '}
-                  {new Date(s.endTimestamp).toLocaleTimeString()}
-                </span>
-              </div>
-            ))}
+            <ScheduleTable schedule={schedule} />
           </div>
         )}
       </div>

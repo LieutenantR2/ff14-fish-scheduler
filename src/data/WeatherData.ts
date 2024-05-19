@@ -18,3 +18,11 @@ export const WeatherData: Weather[] = [
   { id: WeatherType.BLIZZARDS, name: 'Blizzards' },
   { id: WeatherType.GLOOM, name: 'Gloom' },
 ];
+
+export const WeathersById = WeatherData.reduce(
+  (r, w) => {
+    r[w.id] = w.name;
+    return r;
+  },
+  {} as Record<WeatherType, string>
+);
