@@ -131,6 +131,7 @@ const FishExpansionFilter = ({
     onSelectPatch,
     onSelectBait,
     onSelectFish,
+    onCompleteFish,
   } = useContext(ConfigurationContext);
 
   const allBaits = useMemo<Bait[]>(
@@ -268,7 +269,9 @@ const FishExpansionFilter = ({
               isCompleted={completedFishes.has(f.id)}
               label={f.name}
               iconClass={`fish-icon fish-icon-${f.id}`}
+              showCheckbox={true}
               handleClick={(checked) => onSelectFish([f], checked)}
+              handleChecked={(checked) => onCompleteFish([f.id], checked)}
             />
           ))}
         </div>
