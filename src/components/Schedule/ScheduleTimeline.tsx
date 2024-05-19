@@ -9,7 +9,7 @@ const Styles = css({
   width: '100%',
   position: 'relative',
   minHeight: '300px',
-  maxHeight: '40%',
+  maxHeight: '420px',
   display: 'flex',
 
   '.segment-window': {
@@ -20,6 +20,8 @@ const Styles = css({
     border: '1px solid white',
     padding: '5px',
     overflowX: 'hidden',
+    overflowY: 'scroll',
+    scrollbarWidth: 'none',
   },
 
   '&::before': {
@@ -27,9 +29,19 @@ const Styles = css({
     position: 'absolute',
     top: 0,
     bottom: 0,
-    left: '50%',
+    right: '50%',
     width: '2px',
     backgroundColor: 'rgb(89,155,71)',
+  },
+
+  [`@media (max-height: 800px)`]: {
+    minHeight: '240px',
+    maxHeight: '400px',
+  },
+
+  [`@media (min-height: 1080px)`]: {
+    minHeight: '420px',
+    maxHeight: '560px',
   },
 });
 

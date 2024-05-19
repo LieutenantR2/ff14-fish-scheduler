@@ -1,4 +1,6 @@
+import { WeatherType } from '../enums/WeatherType.ts';
+
 export type Weather = {
-  id: number;
+  id: WeatherType;
   name: string;
 };
