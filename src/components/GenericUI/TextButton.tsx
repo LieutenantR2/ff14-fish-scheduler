@@ -27,12 +27,15 @@ type TextButtonProps = {
   isDisabled: boolean;
   buttonText: string;
   onSubmit: () => void;
+  classNames?: string;
 };
 
-const TextButton = ({ isDisabled, buttonText, onSubmit }: TextButtonProps) => {
+const TextButton = ({ isDisabled, buttonText, onSubmit, classNames }: TextButtonProps) => {
   return (
     <div
-      className={'text-button ' + (isDisabled ? 'disabled' : '')}
+      className={
+        'text-button ' + (isDisabled ? 'disabled' : '') + (!!classNames ? `${classNames}` : '')
+      }
       css={Styles}
       onClick={() => onSubmit()}
     >

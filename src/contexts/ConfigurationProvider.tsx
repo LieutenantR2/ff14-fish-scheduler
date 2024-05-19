@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useState } from 'react';
+import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { ConfigurationContext, ConfigurationContextModel } from './ConfigurationContext.tsx';
 import { setDifference, setIntersect, setUnion } from '../utils.ts';
 import { BigFish } from '../types/BigFish.ts';
@@ -31,68 +31,45 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
     undefined
   );
 
+  useEffect(() => {
+    const patchBaits = [...patches]
+      .map((p) => BaitData[p] ?? [])
+      .reduce((a, b) => [...a, ...b])
+      .map((b) => b.id);
+
+    setBaitTypes(new Set(patchBaits));
+  }, [patches]);
+
+  useEffect(() => {
+    const baitFishes = AllFishes.filter(
+      (f) =>
+        patches.has(f.patch) &&
+        setIntersect(baitTypes, f.baits).size === f.baits.length &&
+        !completedFishes.has(f.id)
+    ).map((f) => f.id);
+
+    setFishTypes(new Set(baitFishes));
+  }, [patches, baitTypes]);
+
   const onSelectPatch = useCallback(
     (patchNames: string[], isSelected: boolean) => {
-      const patchNamesSet = new Set(patchNames);
-      const patchBaits = [...patchNames]
-        .map((p) => BaitData[p] ?? [])
-        .reduce((a, b) => [...a, ...b])
-        .map((b) => b.id);
-
       const updatedPatches = isSelected
         ? setUnion(patches, patchNames)
         : setDifference(patches, patchNames);
       setPatches(updatedPatches);
-
-      const updatedBaitIds = isSelected
-        ? setUnion(baitTypes, patchBaits)
-        : setDifference(baitTypes, patchBaits);
-      setBaitTypes(updatedBaitIds);
-
-      if (isSelected) {
-        // Add fishes from the added patches
-        const baitFishes = AllFishes.filter(
-          (f) =>
-            updatedPatches.has(f.patch) &&
-            setIntersect(updatedBaitIds, f.baits).size === f.baits.length
-        ).map((f) => f.id);
-
-        if (baitFishes.length) {
-          setFishTypes(setDifference(setUnion(fishTypes, baitFishes), completedFishes));
-        }
-      } else {
-        // Remove fishes from the removed patches
-        const baitFishes = AllFishes.filter(
-          (f) => patchNamesSet.has(f.patch) || setIntersect(patchBaits, f.baits).size > 0
-        ).map((f) => f.id);
-
-        setFishTypes(setDifference(fishTypes, setUnion(baitFishes, completedFishes)));
-      }
     },
-    [patches, baitTypes, fishTypes, completedFishes]
+    [patches]
   );
 
   const onSelectBait = useCallback(
     (baits: Bait[], isSelected: boolean) => {
       const baitIds = new Set(baits.map((b) => b.id));
-
       const updatedBaitIds = isSelected
         ? setUnion(baitTypes, baitIds)
         : setDifference(baitTypes, baitIds);
-
-      const baitFishes = AllFishes.filter(
-        (f) => patches.has(f.patch) && setIntersect(updatedBaitIds, f.baits).size === f.baits.length
-      ).map((f) => f.id);
-
       setBaitTypes(updatedBaitIds);
-
-      if (isSelected) {
-        setFishTypes(setDifference(setUnion(baitFishes, fishTypes), completedFishes));
-      } else {
-        setFishTypes(setDifference(setIntersect(baitFishes, fishTypes), completedFishes));
-      }
     },
-    [baitTypes, completedFishes, fishTypes, patches]
+    [baitTypes]
   );
 
   const onSelectFish = useCallback(
@@ -107,22 +84,24 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
     [completedFishes, fishTypes]
   );
 
+  const onCompleteFish = useCallback(
+    (fishIds: BigFishType[], isSelected: boolean) => {
+      if (isSelected) {
+        setCompletedFishes(setUnion(completedFishes, fishIds));
+        setFishTypes(setDifference(fishTypes, fishIds));
+      } else {
+        setCompletedFishes(setDifference(completedFishes, fishIds));
+        setFishTypes(setUnion(fishTypes, fishIds));
+      }
+    },
+    [completedFishes, fishTypes]
+  );
+
   const loadCarbunclePlushySettings = useCallback(
     (settings: CarbunclePlushySettings): boolean => {
       setCompletedFishes(new Set(settings.completed));
-
-      const carbunclePlushyPatches = getCarbunclePlushyPatches(settings);
-      const patchesToRemove = setDifference(patches, carbunclePlushyPatches);
-      const patchesToAdd = setDifference(carbunclePlushyPatches, patches);
-      if (patchesToAdd.size) {
-        onSelectPatch([...patchesToAdd], true);
-      }
-      if (patchesToRemove.size) {
-        onSelectPatch([...patchesToRemove], false);
-      }
-
+      setPatches(getCarbunclePlushyPatches(settings));
       setFishTypes(setDifference(fishTypes, settings.completed));
-
       return true;
     },
     [fishTypes, onSelectPatch, patches]
@@ -166,6 +145,7 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
       onSelectPatch,
       onSelectFish,
       onSelectBait,
+      onCompleteFish,
       loadCarbunclePlushySettings,
 
       scheduleLookaheadMonths,

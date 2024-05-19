@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const Styles = css({
   display: 'flex',
@@ -46,6 +47,26 @@ const Styles = css({
 
   '.checkbox': {
     flexShrink: 0,
+    flexBasis: '32px',
+    margin: '-3px',
+    padding: '3px',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+
+    '&:hover': {
+      color: 'rgba(255, 255, 255, 0.87)',
+    },
+
+    '&:not(.completed):hover': {
+      backgroundColor: '#6a8f63',
+    },
+
+    '&.completed:hover': {
+      backgroundColor: '#8d3030',
+    },
   },
 
   '.icon': {
@@ -56,7 +77,7 @@ const Styles = css({
   '.label': {
     flexShrink: 1,
     fontSize: '0.9rem',
-    margin: 'auto 8px',
+    margin: 'auto 4px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   },
@@ -68,7 +89,9 @@ type CheckableOptionProps = {
   isDisabled: boolean;
   label: string;
   iconClass?: string;
+  showCheckbox?: boolean;
   handleClick: (checked: boolean) => void;
+  handleChecked?: (checked: boolean) => void;
 };
 
 const CheckableOption = ({
@@ -77,7 +100,9 @@ const CheckableOption = ({
   isDisabled,
   label,
   iconClass,
+  showCheckbox,
   handleClick,
+  handleChecked,
 }: CheckableOptionProps) => {
   return (
     <div
@@ -96,13 +121,21 @@ const CheckableOption = ({
       }}
       title={label}
     >
-      <input
-        className="checkbox"
-        type="checkbox"
-        disabled={isCompleted || isDisabled}
-        checked={!isCompleted && !isDisabled && isIncluded}
-        onChange={() => handleClick(!isIncluded)}
-      />
+      {!!showCheckbox && (
+        <div
+          className={'checkbox' + (isCompleted ? ' completed' : '')}
+          onClick={(e) => {
+            if (!!handleChecked) {
+              handleChecked(!isCompleted);
+            }
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          title={isCompleted ? 'Remove Completion' : 'Mark Completed'}
+        >
+          <CheckCircleIcon />
+        </div>
+      )}
       {!!iconClass && <div className={'icon ' + iconClass} />}
       <span className="label">{label}</span>
     </div>

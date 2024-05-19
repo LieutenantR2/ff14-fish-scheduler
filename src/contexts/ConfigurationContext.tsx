@@ -14,6 +14,7 @@ export interface ConfigurationContextModel {
   onSelectPatch: (patchNames: string[], selected: boolean) => void;
   onSelectBait: (baitIds: Bait[], selected: boolean) => void;
   onSelectFish: (fishIds: BigFish[], selected: boolean) => void;
+  onCompleteFish: (fishIds: BigFishType[], selected: boolean) => void;
   loadCarbunclePlushySettings: (settings: CarbunclePlushySettings) => boolean;
 
   scheduleLookaheadMonths: number;
