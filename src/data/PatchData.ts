@@ -1,4 +1,4 @@
-export const PatchData = [
+export const PATCH_DATA = [
   '2.0',
   '2.1',
   '2.2',
@@ -32,6 +32,6 @@ export const PatchData = [
   '6.55',
 ];
 
-export const ArrPatches = PatchData.filter((p) => p.startsWith('2.')).sort();
-export const HwPatches = PatchData.filter((p) => p.startsWith('3.')).sort();
-export const StbPatches = PatchData.filter((p) => p.startsWith('4.')).sort();
+export const ARR_PATCHES = PATCH_DATA.filter((p) => p.startsWith('2.')).sort();
+export const HW_PATCHES = PATCH_DATA.filter((p) => p.startsWith('3.')).sort();
+export const STB_PATCHES = PATCH_DATA.filter((p) => p.startsWith('4.')).sort();

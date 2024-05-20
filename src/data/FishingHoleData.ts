@@ -1200,3 +1200,11 @@ export const FISHING_HOLE_DATA: FishingHole[] = [
     location: LocationType.THE_AZIM_STEPPE,
   },
 ];
+
+export const FISHING_HOLE_BY_ID = FISHING_HOLE_DATA.reduce(
+  (r, h) => {
+    r[h.id] = h;
+    return r;
+  },
+  {} as Record<FishingHoleType, FishingHole>
+);

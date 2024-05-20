@@ -21,3 +21,10 @@ export function alphabeticalSort(a: { name: string }, b: { name: string }): numb
   }
   return 0;
 }
+
+export function getEztTimeFromTimestamp(timestamp: number): { h: number; m: number } {
+  const eztHourInMs = 2 * 60 + 55;
+  const eztHour = Math.floor(timestamp / 1000 / eztHourInMs) % 24;
+  const eztMinutes = Math.round(((timestamp / 1000) % eztHourInMs) / (eztHourInMs / 60));
+  return { h: eztHour, m: eztMinutes };
+}

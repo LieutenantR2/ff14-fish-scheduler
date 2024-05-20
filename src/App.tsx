@@ -81,22 +81,6 @@ const Styles = css({
       justifyContent: 'start',
       flexGrow: 0,
 
-      [`@media (max-width: 600px)`]: {
-        h1: {
-          fontSize: '1.3rem',
-        },
-      },
-
-      [`@media (max-width: 360px)`]: {
-        h1: {
-          display: 'block',
-          whiteSpace: 'nowrap',
-          margin: 0,
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-        },
-      },
-
       '.header-buttons': {
         paddingLeft: '24px',
         display: 'flex',
@@ -119,6 +103,35 @@ const Styles = css({
 
       '.text-button': {
         flexGrow: 0,
+      },
+    },
+  },
+
+  [`@media (max-width: 600px)`]: {
+    '.schedule-page': {
+      padding: '10px',
+      h1: {
+        fontSize: '1.3rem',
+      },
+    },
+  },
+
+  [`@media (max-width: 360px)`]: {
+    marginLeft: '48px',
+
+    '.schedule-page': {
+      padding: '5px',
+
+      '.header-section': {
+        marginBottom: '10px',
+      },
+
+      h1: {
+        display: 'block',
+        whiteSpace: 'nowrap',
+        margin: 0,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
       },
     },
   },
@@ -181,12 +194,9 @@ function App() {
               <div className="header-buttons">
                 <TextButton
                   isDisabled={isGenerating}
-                  buttonText="Generate"
+                  buttonText={isGenerating ? 'Generating...' : 'Generate'}
                   onSubmit={handleGenerateSchedule}
                 />
-                <span css={isGenerating ? { visibility: 'visible' } : { visibility: 'hidden' }}>
-                  Generating...
-                </span>
               </div>
             </div>
             <div className="timeline-timeframe">
