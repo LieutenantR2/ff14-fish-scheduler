@@ -99,10 +99,10 @@ export async function createIntervals({
               weight: weight,
               startTimestamp: w.startMs - travelTimeSeconds * 1000,
               endTimestamp: w.endMs,
-              travelStartTimeStamp: w.startMs - travelTimeSeconds * 1000,
-              travelEndTimeStamp: w.startMs,
-              fishStartTimeStamp: w.startMs,
-              fishEndTimeStamp: w.endMs,
+              travelStartTimestamp: w.startMs - travelTimeSeconds * 1000,
+              travelEndTimestamp: w.startMs,
+              fishStartTimestamp: w.startMs,
+              fishEndTimestamp: w.endMs,
             }) as Interval
         ),
     ];
