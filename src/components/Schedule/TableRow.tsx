@@ -139,18 +139,19 @@ const TableRow = ({ interval }: TableRowProps) => {
     [fishProperties]
   );
   const fishStartTimeEzt = useMemo(
-    () => convertEztTimeToString(getEztTimeFromTimestamp(interval.fishStartTimeStamp)),
+    () => convertEztTimeToString(getEztTimeFromTimestamp(interval.fishStartTimestamp)),
     [interval]
   );
   const fishEndTimeEzt = useMemo(
-    () => convertEztTimeToString(getEztTimeFromTimestamp(interval.fishEndTimeStamp)),
+    () => convertEztTimeToString(getEztTimeFromTimestamp(interval.fishEndTimestamp)),
     [interval]
   );
 
   const [isCompleted, setIsCompleted] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(interval.endTimestamp <= new Date().getTime());
+  const [isDisabled, setIsDisabled] = useState(interval.fishEndTimestamp <= new Date().getTime());
   const [isActive, setIsActive] = useState(
-    interval.startTimestamp <= new Date().getTime() && interval.endTimestamp > new Date().getTime()
+    interval.fishStartTimestamp <= new Date().getTime() &&
+      interval.fishEndTimestamp > new Date().getTime()
   );
 
   useEffect(() => {
@@ -164,19 +165,19 @@ const TableRow = ({ interval }: TableRowProps) => {
   }, [isActive, ref]);
 
   useEffect(() => {
-    const windowPassed = interval.endTimestamp <= new Date().getTime();
+    const windowPassed = interval.fishEndTimestamp <= new Date().getTime();
     setIsDisabled(windowPassed);
     setIsActive(
-      interval.startTimestamp <= new Date().getTime() &&
-        interval.endTimestamp > new Date().getTime()
+      interval.fishStartTimestamp <= new Date().getTime() &&
+        interval.fishEndTimestamp > new Date().getTime()
     );
 
     if (!windowPassed) {
       const intvl = setInterval(() => {
-        setIsDisabled(interval.endTimestamp <= new Date().getTime());
+        setIsDisabled(interval.fishEndTimestamp <= new Date().getTime());
         setIsActive(
-          interval.startTimestamp <= new Date().getTime() &&
-            interval.endTimestamp > new Date().getTime()
+          interval.fishStartTimestamp <= new Date().getTime() &&
+            interval.fishEndTimestamp > new Date().getTime()
         );
       }, 1000);
       return () => clearInterval(intvl);
@@ -211,14 +212,14 @@ const TableRow = ({ interval }: TableRowProps) => {
       </div>
       <div className="window-local-time">
         <div className="local-start-time">
-          {new Date(interval.startTimestamp).toLocaleTimeString(navigator.language, {
+          {new Date(interval.fishStartTimestamp).toLocaleTimeString(navigator.language, {
             hour: 'numeric',
             minute: '2-digit',
             second: '2-digit',
           })}
         </div>
         <div className="local-end-time">
-          {new Date(interval.endTimestamp).toLocaleTimeString(navigator.language, {
+          {new Date(interval.fishEndTimestamp).toLocaleTimeString(navigator.language, {
             hour: 'numeric',
             minute: '2-digit',
             second: '2-digit',

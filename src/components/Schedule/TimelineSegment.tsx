@@ -63,12 +63,12 @@ function calculateOffset(
 
 function calculateWidth(
   startTimestamp: number,
-  endTimestamp: number,
+  fishEndTimestamp: number,
   timelineDurationMs: number,
   timelineBufferMs: number
 ) {
   const leftEnd = Math.max(startTimestamp, new Date().getTime() - timelineBufferMs);
-  const widthMs = endTimestamp - leftEnd;
+  const widthMs = fishEndTimestamp - leftEnd;
   const widthProportion = widthMs / timelineDurationMs;
   return {
     width: `${(widthProportion * 100).toFixed(1)}%`,
@@ -84,20 +84,20 @@ const TimelineSegment = ({
   const ref = useRef<HTMLDivElement>(null);
 
   const [offset, setOffset] = useState<React.CSSProperties>(
-    calculateOffset(interval.startTimestamp, timelineDurationMs, timelineBufferMs)
+    calculateOffset(interval.fishStartTimestamp, timelineDurationMs, timelineBufferMs)
   );
   const [segmentWidth, setSegmentWidth] = useState<React.CSSProperties>(
     calculateWidth(
-      interval.startTimestamp,
-      interval.endTimestamp,
+      interval.fishStartTimestamp,
+      interval.fishEndTimestamp,
       timelineDurationMs,
       timelineBufferMs
     )
   );
   const [isActive, setIsActive] = useState(
-    interval.startTimestamp <= new Date().getTime() && interval.endTimestamp > new Date().getTime()
+    interval.fishStartTimestamp <= new Date().getTime() && interval.fishEndTimestamp > new Date().getTime()
   );
-  const [isDisabled, setisDisabled] = useState(interval.endTimestamp <= new Date().getTime());
+  const [isDisabled, setisDisabled] = useState(interval.fishEndTimestamp <= new Date().getTime());
 
   useEffect(() => {
     if (isActive && ref.current) {
@@ -106,30 +106,30 @@ const TimelineSegment = ({
   }, [isActive, ref]);
 
   useEffect(() => {
-    setOffset(calculateOffset(interval.startTimestamp, timelineDurationMs, timelineBufferMs));
+    setOffset(calculateOffset(interval.fishStartTimestamp, timelineDurationMs, timelineBufferMs));
     setSegmentWidth(
       calculateWidth(
-        interval.startTimestamp,
-        interval.endTimestamp,
+        interval.fishStartTimestamp,
+        interval.fishEndTimestamp,
         timelineDurationMs,
         timelineBufferMs
       )
     );
     const intvl = setInterval(() => {
-      setOffset(calculateOffset(interval.startTimestamp, timelineDurationMs, timelineBufferMs));
+      setOffset(calculateOffset(interval.fishStartTimestamp, timelineDurationMs, timelineBufferMs));
       setSegmentWidth(
         calculateWidth(
-          interval.startTimestamp,
-          interval.endTimestamp,
+          interval.fishStartTimestamp,
+          interval.fishEndTimestamp,
           timelineDurationMs,
           timelineBufferMs
         )
       );
       setIsActive(
-        interval.startTimestamp <= new Date().getTime() &&
-          interval.endTimestamp > new Date().getTime()
+        interval.fishStartTimestamp <= new Date().getTime() &&
+          interval.fishEndTimestamp > new Date().getTime()
       );
-      setisDisabled(interval.endTimestamp <= new Date().getTime());
+      setisDisabled(interval.fishEndTimestamp <= new Date().getTime());
     }, 1000);
     return () => clearInterval(intvl);
   }, [interval, timelineBufferMs, timelineDurationMs]);
@@ -147,7 +147,7 @@ const TimelineSegment = ({
       <div ref={ref}>
         <div className={`icon fish-icon fish-icon-${interval.fish}`} />
         <span>
-          {new Date(interval.startTimestamp)
+          {new Date(interval.fishStartTimestamp)
             .toLocaleTimeString(navigator.language, {
               hour: 'numeric',
               minute: '2-digit',
