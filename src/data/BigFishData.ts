@@ -2,13 +2,10 @@ import { BigFish } from '../types/BigFish.ts';
 import { BigFishType } from '../enums/BigFishType.ts';
 import { FishingHoleType } from '../enums/FishingHoleType.ts';
 import { BaitType } from '../enums/BaitType.ts';
-import { NormalFish } from '../types/NormalFish.ts';
 import { NormalFishType } from '../enums/NormalFishType.ts';
 import { WeatherType } from '../enums/WeatherType.ts';
 
-export const NormalFishData: NormalFish[] = [];
-
-export const BigFishData: Record<string, BigFish[]> = {
+export const BIG_FISH_DATA: Record<string, BigFish[]> = {
   '2.2': [
     // Limsa Lominsa Upper Decks
     {
@@ -68,8 +65,8 @@ export const BigFishData: Record<string, BigFish[]> = {
       id: BigFishType.GIGANTSHARK,
       name: 'Gigantshark',
       patch: '2.2',
-      baits: [BaitType.FLOATING_MINNOW],
-      fishSequence: [BaitType.FLOATING_MINNOW, NormalFishType.HARBOR_HERRING],
+      baits: [BaitType.PILL_BUG],
+      fishSequence: [BaitType.PILL_BUG, NormalFishType.HARBOR_HERRING],
       location: FishingHoleType.SUMMERFORD,
       difficulty: 1,
       weathers: [WeatherType.CLEARSKIES, WeatherType.FAIRSKIES],
@@ -454,7 +451,7 @@ export const BigFishData: Record<string, BigFish[]> = {
       name: 'Bombardfish',
       patch: '2.3',
       baits: [BaitType.HERRING_BALL],
-      fishSequence: [BaitType.HERRING_BALL, NormalFishType.FULLMOON_SARDINE],
+      fishSequence: [BaitType.HERRING_BALL],
       location: FishingHoleType.NORTH_BLOODSHORE,
       difficulty: 1,
       times: [{ start: 9, end: 15 }],
@@ -494,8 +491,8 @@ export const BigFishData: Record<string, BigFish[]> = {
       id: BigFishType.MIRRORSCALE,
       name: 'Mirrorscale',
       patch: '2.3',
-      baits: [BaitType.MIDGE_BASKET],
-      fishSequence: [BaitType.MIDGE_BASKET, NormalFishType.COPPERFISH],
+      baits: [BaitType.BUTTERWORM],
+      fishSequence: [BaitType.BUTTERWORM, NormalFishType.COPPERFISH],
       location: FishingHoleType.THE_JUGGERNAUT,
       difficulty: 1,
       weathers: [WeatherType.CLEARSKIES, WeatherType.FAIRSKIES],
@@ -543,8 +540,8 @@ export const BigFishData: Record<string, BigFish[]> = {
       id: BigFishType.THE_CAPTAINS_CHALICE,
       name: "The Captain's Chalice",
       patch: '2.3',
-      baits: [BaitType.STEEL_JIG],
-      fishSequence: [BaitType.STEEL_JIG, NormalFishType.FULLMOON_SARDINE],
+      baits: [BaitType.SPOON_WORM],
+      fishSequence: [BaitType.SPOON_WORM, NormalFishType.FULLMOON_SARDINE],
       location: FishingHoleType.SAPSA_SPAWNING_GROUNDS,
       difficulty: 1,
       times: [{ start: 23.5, end: 1 + 1 / 12 }],
@@ -812,8 +809,8 @@ export const BigFishData: Record<string, BigFish[]> = {
       id: BigFishType.OLD_HOLLOW_EYES,
       name: 'Old Hollow Eyes',
       patch: '2.3',
-      baits: [BaitType.MIDGE_BASKET],
-      fishSequence: [BaitType.MIDGE_BASKET, NormalFishType.COPPERFISH],
+      baits: [BaitType.BUTTERWORM],
+      fishSequence: [BaitType.BUTTERWORM, NormalFishType.COPPERFISH],
       location: FishingHoleType.BURNT_LIZARD_CREEK,
       difficulty: 1,
       weathers: [WeatherType.FOG],
@@ -866,8 +863,8 @@ export const BigFishData: Record<string, BigFish[]> = {
       id: BigFishType.HANNIBAL,
       name: 'Hannibal',
       patch: '2.3',
-      baits: [BaitType.SPINNERBAIT],
-      fishSequence: [BaitType.SPINNERBAIT, NormalFishType.COMMON_SCULPIN],
+      baits: [BaitType.SPINNER],
+      fishSequence: [BaitType.SPINNER, NormalFishType.COMMON_SCULPIN],
       location: FishingHoleType.BLUEFOG,
       difficulty: 1,
       times: [{ start: 22, end: 4 }],
@@ -912,8 +909,8 @@ export const BigFishData: Record<string, BigFish[]> = {
       id: BigFishType.STARBRIGHT,
       name: 'Starbright',
       patch: '2.3',
-      baits: [BaitType.SYRPHID_BASKET],
-      fishSequence: [BaitType.SYRPHID_BASKET, NormalFishType.ABALATHIAN_SMELT],
+      baits: [BaitType.HONEY_WORM],
+      fishSequence: [BaitType.HONEY_WORM, NormalFishType.ABALATHIAN_SMELT],
       location: FishingHoleType.THE_NAIL,
       difficulty: 1,
       times: [{ start: 20, end: 4 }],
@@ -1183,7 +1180,7 @@ export const BigFishData: Record<string, BigFish[]> = {
       id: BigFishType.DARKSTAR,
       name: 'Darkstar',
       patch: '2.4',
-      baits: [BaitType.WILDFOWL_FLY, BaitType.CHOCOBO_FLY],
+      baits: [BaitType.HONEY_WORM, BaitType.CHOCOBO_FLY],
       fishSequence: [BaitType.HONEY_WORM, NormalFishType.ABALATHIAN_SMELT],
       location: FishingHoleType.THE_WEEPING_SAINT,
       difficulty: 1,
@@ -1422,8 +1419,8 @@ export const BigFishData: Record<string, BigFish[]> = {
       id: BigFishType.METEORTOISE,
       name: 'Meteortoise',
       patch: '3.3',
-      baits: [BaitType.MAGMA_WORM],
-      fishSequence: [BaitType.MAGMA_WORM, NormalFishType.GRANITE_CRAB],
+      baits: [BaitType.METAL_SPINNER],
+      fishSequence: [BaitType.METAL_SPINNER, NormalFishType.GRANITE_CRAB],
       location: FishingHoleType.WEST_MOURN,
       difficulty: 1,
     },
@@ -1594,8 +1591,8 @@ export const BigFishData: Record<string, BigFish[]> = {
       id: BigFishType.MADAM_BUTTERFLY,
       name: 'Madam Butterfly',
       patch: '3.4',
-      baits: [BaitType.PURSE_WEB_SPIDER],
-      fishSequence: [BaitType.PURSE_WEB_SPIDER, NormalFishType.HEDGEMOLE_CRICKET],
+      baits: [BaitType.STONEFLY_NYMPH],
+      fishSequence: [BaitType.STONEFLY_NYMPH, NormalFishType.HEDGEMOLE_CRICKET],
       location: FishingHoleType.QUICKSPILL_DELTA,
       difficulty: 1,
       times: [{ start: 21, end: 2 }],
@@ -1605,8 +1602,8 @@ export const BigFishData: Record<string, BigFish[]> = {
       id: BigFishType.BOBGOBLIN_BASS,
       name: 'Bobgoblin Bass',
       patch: '3.4',
-      baits: [BaitType.GOBLIN_JIG],
-      fishSequence: [BaitType.GOBLIN_JIG, NormalFishType.SWEETFISH],
+      baits: [BaitType.BLADED_STEEL_JIG],
+      fishSequence: [BaitType.BLADED_STEEL_JIG, NormalFishType.SWEETFISH],
       location: FishingHoleType.MIDDLE_THALIAK_RIVER,
       difficulty: 1,
       times: [{ start: 2, end: 6 }],
@@ -1777,8 +1774,8 @@ export const BigFishData: Record<string, BigFish[]> = {
       id: BigFishType.RIDDLE,
       name: 'Riddle',
       patch: '3.5',
-      baits: [BaitType.MAGMA_WORM],
-      fishSequence: [BaitType.MAGMA_WORM, NormalFishType.GRANITE_CRAB],
+      baits: [BaitType.METAL_SPINNER],
+      fishSequence: [BaitType.METAL_SPINNER, NormalFishType.GRANITE_CRAB],
       location: FishingHoleType.ANYX_OLD,
       difficulty: 1,
       times: [{ start: 8, end: 16 }],
@@ -2503,47 +2500,47 @@ export const BigFishData: Record<string, BigFish[]> = {
   ],
 };
 
-export const ArrFishes: Record<string, BigFish[]> = Object.keys(BigFishData)
+export const ARR_BIG_FISHES: Record<string, BigFish[]> = Object.keys(BIG_FISH_DATA)
   .filter((p) => p.startsWith('2.'))
   .reduce(
     (r, p) => {
-      r[p] = BigFishData[p];
+      r[p] = BIG_FISH_DATA[p];
       return r;
     },
     {} as Record<string, BigFish[]>
   );
-export const ArrFishTypes: BigFishType[] = Object.values(ArrFishes)
+export const ARR_BIG_FISH_IDS: BigFishType[] = Object.values(ARR_BIG_FISHES)
   .reduce((a, b) => [...a, ...b])
   .map((f) => f.id);
 
-export const HwFishes: Record<string, BigFish[]> = Object.keys(BigFishData)
+export const HW_BIG_FISHES: Record<string, BigFish[]> = Object.keys(BIG_FISH_DATA)
   .filter((p) => p.startsWith('3.'))
   .reduce(
     (r, p) => {
-      r[p] = BigFishData[p];
+      r[p] = BIG_FISH_DATA[p];
       return r;
     },
     {} as Record<string, BigFish[]>
   );
-export const HwFishTypes: BigFishType[] = Object.values(HwFishes)
+export const HW_BIG_FISH_IDS: BigFishType[] = Object.values(HW_BIG_FISHES)
   .reduce((a, b) => [...a, ...b])
   .map((f) => f.id);
 
-export const StbFishes: Record<string, BigFish[]> = Object.keys(BigFishData)
+export const STB_BIG_FISHES: Record<string, BigFish[]> = Object.keys(BIG_FISH_DATA)
   .filter((p) => p.startsWith('4.'))
   .reduce(
     (r, p) => {
-      r[p] = BigFishData[p];
+      r[p] = BIG_FISH_DATA[p];
       return r;
     },
     {} as Record<string, BigFish[]>
   );
-export const StbFishTypes: BigFishType[] = Object.values(StbFishes)
+export const STB_BIG_FISH_IDS: BigFishType[] = Object.values(STB_BIG_FISHES)
   .reduce((a, b) => [...a, ...b])
   .map((f) => f.id);
 
-export const AllFishes = Object.values(BigFishData).reduce((a, b) => [...a, ...b]);
-export const BigFishesById = Object.values(BigFishData).reduce(
+export const ALL_BIG_FISHES = Object.values(BIG_FISH_DATA).reduce((a, b) => [...a, ...b]);
+export const BIG_FISH_BY_ID = Object.values(BIG_FISH_DATA).reduce(
   (r, fishes) => {
     fishes.forEach((f) => {
       r[f.id] = f;

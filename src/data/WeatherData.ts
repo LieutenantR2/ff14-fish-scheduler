@@ -1,7 +1,7 @@
 import { Weather } from '../types/Weather.ts';
 import { WeatherType } from '../enums/WeatherType.ts';
 
-export const WeatherData: Weather[] = [
+export const WEATHER_DATA: Weather[] = [
   { id: WeatherType.CLEARSKIES, name: 'Clear Skies' },
   { id: WeatherType.FAIRSKIES, name: 'Fair Skies' },
   { id: WeatherType.CLOUDS, name: 'Clouds' },
@@ -19,7 +19,7 @@ export const WeatherData: Weather[] = [
   { id: WeatherType.GLOOM, name: 'Gloom' },
 ];
 
-export const WeathersById = WeatherData.reduce(
+export const WEATHER_BY_ID = WEATHER_DATA.reduce(
   (r, w) => {
     r[w.id] = w.name;
     return r;

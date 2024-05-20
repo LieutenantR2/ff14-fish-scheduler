@@ -5,9 +5,9 @@ import { BigFish } from '../types/BigFish.ts';
 import { BigFishType } from '../enums/BigFishType.ts';
 import { BaitType } from '../enums/BaitType.ts';
 import { Bait } from '../types/Bait.ts';
-import { AllBaits, BaitData } from '../data/BaitData.ts';
-import { AllFishes } from '../data/BigFishData.ts';
-import { PatchData } from '../data/PatchData.ts';
+import { ALL_BAITS, BAIT_DATA } from '../data/BaitData.ts';
+import { ALL_BIG_FISHES } from '../data/BigFishData.ts';
+import { PATCH_DATA } from '../data/PatchData.ts';
 import { CarbunclePlushySettings } from '../components/Import/CarbunclePlushySettings.ts';
 import { getCarbunclePlushyPatches } from '../components/Import/parser.ts';
 
@@ -16,9 +16,9 @@ type ConfigurationProviderProps = {
 };
 
 const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => {
-  const [patches, setPatches] = useState(new Set<string>(PatchData));
-  const [baitTypes, setBaitTypes] = useState(new Set<BaitType>(AllBaits.map((b) => b.id)));
-  const [fishTypes, setFishTypes] = useState(new Set<BigFishType>(AllFishes.map((f) => f.id)));
+  const [patches, setPatches] = useState(new Set<string>(PATCH_DATA));
+  const [baitTypes, setBaitTypes] = useState(new Set<BaitType>(ALL_BAITS.map((b) => b.id)));
+  const [fishTypes, setFishTypes] = useState(new Set<BigFishType>(ALL_BIG_FISHES.map((f) => f.id)));
   const [completedFishes, setCompletedFishes] = useState(new Set<BigFishType>());
 
   const [scheduleLookaheadMonths, setScheduleLookaheadMonths] = useState(12);
@@ -33,7 +33,7 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
 
   useEffect(() => {
     const patchBaits = [...patches]
-      .map((p) => BaitData[p] ?? [])
+      .map((p) => BAIT_DATA[p] ?? [])
       .reduce((a, b) => [...a, ...b])
       .map((b) => b.id);
 
@@ -41,7 +41,7 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
   }, [patches]);
 
   useEffect(() => {
-    const baitFishes = AllFishes.filter(
+    const baitFishes = ALL_BIG_FISHES.filter(
       (f) =>
         patches.has(f.patch) &&
         setIntersect(baitTypes, f.baits).size === f.baits.length &&

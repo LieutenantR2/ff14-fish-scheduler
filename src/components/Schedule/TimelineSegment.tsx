@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Interval } from './Interval.ts';
+import { ConfigurationContext } from '../../contexts/ConfigurationContext.tsx';
 
 const Styles = css({
   flexGrow: 1,
@@ -12,17 +13,24 @@ const Styles = css({
   padding: '2px',
   boxSizing: 'border-box',
 
-  '&.active': {
+  '&.active:not(.completed)': {
     backgroundColor: '#526D82',
     border: '1px solid #9DB2BF',
     color: 'rgba(255, 255, 255, 0.87)',
     textShadow: '0px 0px 1px white;',
   },
 
-  '&.disabled': {
+  '&.disabled:not(.completed)': {
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
     border: '1px solid #777',
     color: '#777',
+    textShadow: 'none',
+  },
+
+  '&.completed': {
+    backgroundColor: '#2e3f27',
+    border: '1px solid #6a8f63',
+    color: '#6a8f63',
     textShadow: 'none',
   },
 
@@ -72,6 +80,7 @@ const TimelineSegment = ({
   timelineBufferMs,
   interval,
 }: TimelineSegmentProps) => {
+  const { completed } = useContext(ConfigurationContext);
   const ref = useRef<HTMLDivElement>(null);
 
   const [offset, setOffset] = useState<React.CSSProperties>(
@@ -92,7 +101,7 @@ const TimelineSegment = ({
 
   useEffect(() => {
     if (isActive && ref.current) {
-      ref.current.scrollIntoView(true);
+      ref.current.scrollIntoView({block: "center", inline: "nearest"});
     }
   }, [isActive, ref]);
 
@@ -129,7 +138,11 @@ const TimelineSegment = ({
     <div
       css={Styles}
       style={{ ...offset, ...segmentWidth }}
-      className={(isActive ? 'active' : '') + (isDisabled ? ' disabled' : '')}
+      className={
+        (isActive ? 'active' : '') +
+        (isDisabled ? ' disabled' : '') +
+        (completed.has(interval.fish) ? ' completed' : '')
+      }
     >
       <div ref={ref}>
         <div className={`icon fish-icon fish-icon-${interval.fish}`} />

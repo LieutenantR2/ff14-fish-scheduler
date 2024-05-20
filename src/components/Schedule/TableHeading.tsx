@@ -10,9 +10,12 @@ const Styles = css({
 const TableHeading = () => {
   return (
     <div css={[TableRowStyles, Styles]}>
+      <div className="checkbox" />
       <div className="window-local-time">Local Time</div>
       <div className="icon-col" />
       <div className="fish-name">Name</div>
+      <div className="fish-location">Location</div>
+      <div className="fishing-sequence" />
       <div className="window-ezt-time">EZT Time</div>
       <div className="window-weather">Weather</div>
     </div>

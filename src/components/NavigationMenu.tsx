@@ -62,7 +62,7 @@ const Styles = css({
     justifyContent: 'start',
 
     '.navmenu-text': {
-      padding: '12px',
+      padding: '0 12px',
       paddingLeft: '16px',
       lineHeight: '1.2em',
       fontSize: '1.2rem',
@@ -75,9 +75,18 @@ const Styles = css({
 
   [`@media (max-width: ${LARGE_SCREEN_SIZE})`]: {
     width: '60px',
+  },
 
-    '&.expanded': {
-      width: '350px',
+  [`@media (max-width: 360px)`]: {
+    width: '48px',
+
+    '.icon': {
+      padding: '12px 8px',
+      flexGrow: '0',
+
+      '&.MuiSvgIcon-fontSizeMedium': {
+        padding: '18px 12px',
+      },
     },
   },
 });

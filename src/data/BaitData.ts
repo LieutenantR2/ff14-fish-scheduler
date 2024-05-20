@@ -1,7 +1,7 @@
 import { Bait } from '../types/Bait.ts';
 import { BaitType } from '../enums/BaitType.ts';
 
-export const BaitData: Record<string, Bait[]> = {
+export const BAIT_DATA: Record<string, Bait[]> = {
   '2.0': [
     {
       id: BaitType.LUGWORM,
@@ -435,43 +435,50 @@ export const BaitData: Record<string, Bait[]> = {
   ],
 };
 
-export const ArrBaits: Record<string, Bait[]> = Object.keys(BaitData)
+export const ARR_BAITS: Record<string, Bait[]> = Object.keys(BAIT_DATA)
   .filter((p) => p.startsWith('2.'))
   .reduce(
     (r, p) => {
-      r[p] = BaitData[p];
+      r[p] = BAIT_DATA[p];
       return r;
     },
     {} as Record<string, Bait[]>
   );
-export const ArrBaitTypes: BaitType[] = Object.values(ArrBaits)
+export const ARR_BAIT_IDS: BaitType[] = Object.values(ARR_BAITS)
   .reduce((a, b) => [...a, ...b])
   .map((b) => b.id);
 
-export const HwBaits: Record<string, Bait[]> = Object.keys(BaitData)
+export const HW_BAITS: Record<string, Bait[]> = Object.keys(BAIT_DATA)
   .filter((p) => p.startsWith('3.'))
   .reduce(
     (r, p) => {
-      r[p] = BaitData[p];
+      r[p] = BAIT_DATA[p];
       return r;
     },
     {} as Record<string, Bait[]>
   );
-export const HwBaitTypes: BaitType[] = Object.values(HwBaits)
+export const HW_BAIT_IDS: BaitType[] = Object.values(HW_BAITS)
   .reduce((a, b) => [...a, ...b])
   .map((b) => b.id);
 
-export const StbBaits: Record<string, Bait[]> = Object.keys(BaitData)
+export const StbBaits: Record<string, Bait[]> = Object.keys(BAIT_DATA)
   .filter((p) => p.startsWith('4.'))
   .reduce(
     (r, p) => {
-      r[p] = BaitData[p];
+      r[p] = BAIT_DATA[p];
       return r;
     },
     {} as Record<string, Bait[]>
   );
-export const StbBaitTypes: BaitType[] = Object.values(StbBaits)
+export const STB_BAIT_IDS: BaitType[] = Object.values(StbBaits)
   .reduce((a, b) => [...a, ...b])
   .map((b) => b.id);
 
-export const AllBaits = Object.values(BaitData).reduce((a, b) => [...a, ...b]);
+export const ALL_BAITS = Object.values(BAIT_DATA).reduce((a, b) => [...a, ...b]);
+export const BAIT_BY_ID = ALL_BAITS.reduce(
+  (r, b) => {
+    r[b.id] = b;
+    return r;
+  },
+  {} as Record<BaitType, Bait>
+);

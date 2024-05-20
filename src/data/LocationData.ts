@@ -50,3 +50,11 @@ export const LOCATION_DATA: Location[] = [
   { id: LocationType.THE_AZIM_STEPPE, name: 'The Azim Steppe' },
   { id: LocationType.THE_DOMAN_ENCLAVE, name: 'The Doman Enclave' },
 ];
+
+export const LOCATION_BY_ID = LOCATION_DATA.reduce(
+  (r, l) => {
+    r[l.id] = l.name;
+    return r;
+  },
+  {} as Record<LocationType, string>
+);

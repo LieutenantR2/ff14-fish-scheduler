@@ -1,4 +1,6 @@
+import { LocationType } from '../enums/LocationType.ts';
+
 export type Location = {
-  id: number;
+  id: LocationType;
   name: string;
 };
