@@ -25,6 +25,9 @@ export interface ConfigurationContextModel {
   moochPrepTimeSeconds: number;
   customFishOrdering?: BigFishType[];
 
+  setScheduleLookaheadMonths: (months: number) => void;
+  setScheduleDurationHours: (hours: number) => void;
+  setMinimumRemainingWindowSeconds: (seconds: number) => void;
   setTravelTimeSeconds: (seconds: number) => void;
   setStacksPrepTimeSeconds: (seconds: number) => void;
   setMoochPrepTimeSeconds: (seconds: number) => void;

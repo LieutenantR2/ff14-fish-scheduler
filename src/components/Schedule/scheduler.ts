@@ -1,5 +1,6 @@
 import { Interval } from './Interval.ts';
 import { BigFishType } from '../../enums/BigFishType.ts';
+import { BIG_FISH_BY_ID } from '../../data/BigFishData.ts';
 
 export async function getWindows(
   startDate: Date,
@@ -55,13 +56,18 @@ export async function getWindows(
 export async function createIntervals({
   lookaheadMonths,
   scheduledHours,
+  minimumRemainingWindowSeconds,
+  travelTimeSeconds,
   includedFishes,
 }: {
   lookaheadMonths: number;
   scheduledHours: number;
+  minimumRemainingWindowSeconds: number;
+  travelTimeSeconds: number;
   includedFishes?: Set<BigFishType>;
 }): Promise<Interval[]> {
   const dataStartDate = new Date();
+  const scheduleStartTimestamp = dataStartDate.getTime();
   const dataEndDate = new Date(new Date().setMonth(dataStartDate.getMonth() + lookaheadMonths));
   const scheduleEndDate = new Date(dataStartDate.getTime() + scheduledHours * 60 * 60 * 1000);
   const scheduleEndTimestamp = scheduleEndDate.getTime();
@@ -74,20 +80,27 @@ export async function createIntervals({
   const intervals = Object.keys(allWindows).reduce((r, f) => {
     const fishType = parseInt(f) as BigFishType;
     const fishWindow = allWindows[fishType];
-    const weight = (lookaheadDays / fishWindow.length) ** 2;
+    const weight = (lookaheadDays / fishWindow.length) ** 2 * BIG_FISH_BY_ID[fishType].difficulty;
     return [
       ...r,
       ...fishWindow
         .filter((w) => {
-          return w.startMs <= scheduleEndTimestamp;
+          return (
+            w.startMs <= scheduleEndTimestamp &&
+            (w.startMs >= scheduleStartTimestamp ||
+              (isFinite(minimumRemainingWindowSeconds) &&
+                w.endMs - new Date().getTime() >= minimumRemainingWindowSeconds * 1000))
+          );
         })
         .map(
           (w) =>
             ({
               fish: fishType,
               weight: weight,
-              startTimestamp: w.startMs,
+              startTimestamp: w.startMs - travelTimeSeconds * 1000,
               endTimestamp: w.endMs,
+              travelStartTimeStamp: w.startMs - travelTimeSeconds * 1000,
+              travelEndTimeStamp: w.startMs,
               fishStartTimeStamp: w.startMs,
               fishEndTimeStamp: w.endMs,
             }) as Interval
