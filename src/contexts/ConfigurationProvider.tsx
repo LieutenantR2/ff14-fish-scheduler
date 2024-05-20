@@ -15,21 +15,83 @@ type ConfigurationProviderProps = {
   children?: React.ReactNode;
 };
 
-const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => {
-  const [patches, setPatches] = useState(new Set<string>(PATCH_DATA));
-  const [baitTypes, setBaitTypes] = useState(new Set<BaitType>(ALL_BAITS.map((b) => b.id)));
-  const [fishTypes, setFishTypes] = useState(new Set<BigFishType>(ALL_BIG_FISHES.map((f) => f.id)));
-  const [completedFishes, setCompletedFishes] = useState(new Set<BigFishType>());
+function getStoredNumericConfig(key: string, defaultVal: number) {
+  const storedVal = localStorage.getItem(key);
+  if (storedVal === null || !storedVal.match(/^\d+$/)) {
+    return defaultVal;
+  }
+  return parseInt(storedVal);
+}
 
-  const [scheduleLookaheadMonths, setScheduleLookaheadMonths] = useState(12);
-  const [scheduleDurationHours, setScheduleDurationHours] = useState(12);
-  const [minimumRemainingWindowSeconds, setMinimumRemainingWindowSeconds] = useState(300);
-  const [travelTimeSeconds, setTravelTimeSeconds] = useState(60);
-  const [stacksPrepTimeSeconds, setStacksPrepTimeSeconds] = useState(300);
-  const [moochPrepTimeSeconds, setMoochPrepTimeSeconds] = useState(120);
+function getStoredArrayConfig<T>(key: string, defaultVal: T[]) {
+  const storedVal = localStorage.getItem(key);
+  if (storedVal === null) {
+    return defaultVal;
+  }
+  try {
+    return JSON.parse(storedVal) as T[];
+  } catch {
+    return defaultVal;
+  }
+}
+
+const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => {
+  const [patches, setPatches] = useState(
+    new Set<string>(getStoredArrayConfig('patches', PATCH_DATA))
+  );
+  const [baitTypes, setBaitTypes] = useState(
+    new Set<BaitType>(
+      getStoredArrayConfig(
+        'baits',
+        ALL_BAITS.map((b) => b.id)
+      )
+    )
+  );
+  const [fishTypes, setFishTypes] = useState(
+    new Set<BigFishType>(
+      getStoredArrayConfig(
+        'fishes',
+        ALL_BIG_FISHES.map((f) => f.id)
+      )
+    )
+  );
+  const [completedFishes, setCompletedFishes] = useState(
+    new Set<BigFishType>(getStoredArrayConfig<BigFishType>('completed', []))
+  );
+
+  const [scheduleLookaheadMonths, setScheduleLookaheadMonths] = useState(
+    getStoredNumericConfig('scheduleLookaheadMonths', 12)
+  );
+  const [scheduleDurationHours, setScheduleDurationHours] = useState(
+    getStoredNumericConfig('scheduleDurationHours', 6)
+  );
+  const [minimumRemainingWindowSeconds, setMinimumRemainingWindowSeconds] = useState(
+    getStoredNumericConfig('minimumRemainingWindowSeconds', 360)
+  );
+  const [travelTimeSeconds, setTravelTimeSeconds] = useState(
+    getStoredNumericConfig('travelTimeSeconds', 0)
+  );
+  const [stacksPrepTimeSeconds, setStacksPrepTimeSeconds] = useState(0);
+  const [moochPrepTimeSeconds, setMoochPrepTimeSeconds] = useState(0);
   const [customFishOrdering, setCustomFishOrdering] = useState<BigFishType[] | undefined>(
     undefined
   );
+
+  useEffect(() => {
+    localStorage.setItem('scheduleLookaheadMonths', scheduleLookaheadMonths.toString());
+  }, [scheduleLookaheadMonths]);
+
+  useEffect(() => {
+    localStorage.setItem('scheduleDurationHours', scheduleDurationHours.toString());
+  }, [scheduleDurationHours]);
+
+  useEffect(() => {
+    localStorage.setItem('minimumRemainingWindowSeconds', minimumRemainingWindowSeconds.toString());
+  }, [minimumRemainingWindowSeconds]);
+
+  useEffect(() => {
+    localStorage.setItem('travelTimeSeconds', travelTimeSeconds.toString());
+  }, [travelTimeSeconds]);
 
   useEffect(() => {
     const patchBaits = [...patches]
@@ -38,7 +100,12 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
       .map((b) => b.id);
 
     setBaitTypes(new Set(patchBaits));
+    localStorage.setItem('patches', JSON.stringify([...patches]));
   }, [patches]);
+
+  useEffect(() => {
+    localStorage.setItem('baits', JSON.stringify([...baitTypes]));
+  }, [baitTypes]);
 
   useEffect(() => {
     const baitFishes = ALL_BIG_FISHES.filter(
@@ -50,6 +117,14 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
 
     setFishTypes(new Set(baitFishes));
   }, [patches, baitTypes]);
+
+  useEffect(() => {
+    localStorage.setItem('fishes', JSON.stringify([...fishTypes]));
+  }, [fishTypes]);
+
+  useEffect(() => {
+    localStorage.setItem('completed', JSON.stringify([...completedFishes]));
+  }, [completedFishes]);
 
   const onSelectPatch = useCallback(
     (patchNames: string[], isSelected: boolean) => {

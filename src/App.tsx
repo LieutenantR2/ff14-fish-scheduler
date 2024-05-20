@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useCallback, useContext, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import './App.css';
 import NavigationMenu from './components/NavigationMenu.tsx';
 import FishFilterPage from './components/FishFilterPage.tsx';
@@ -12,6 +12,7 @@ import ScheduleTimeline from './components/Schedule/ScheduleTimeline.tsx';
 import { ConfigurationContext } from './contexts/ConfigurationContext.tsx';
 import TextCheckboxButton from './components/GenericUI/TextCheckboxButton.tsx';
 import ScheduleTable from './components/Schedule/ScheduleTable.tsx';
+import SchedulerSettingsPage from './components/SchedulerSettingsPage.tsx';
 
 const Styles = css({
   boxSizing: 'border-box',
@@ -137,14 +138,35 @@ const Styles = css({
   },
 });
 
-function App() {
-  const { scheduleLookaheadMonths, scheduleDurationHours, fishes } =
-    useContext(ConfigurationContext);
+function getStoredSchedule() {
+  const storedVal = localStorage.getItem('schedule');
+  if (storedVal === null) {
+    return null;
+  }
+  try {
+    return JSON.parse(storedVal) as Interval[];
+  } catch {
+    return null;
+  }
+}
 
-  const [schedule, setSchedule] = useState<Interval[] | null>(null);
+function App() {
+  const {
+    scheduleLookaheadMonths,
+    scheduleDurationHours,
+    minimumRemainingWindowSeconds,
+    travelTimeSeconds,
+    fishes,
+  } = useContext(ConfigurationContext);
+
+  const [schedule, setSchedule] = useState<Interval[] | null>(getStoredSchedule());
   const [isGenerating, setIsGenerating] = useState(false);
   const [activeOverlay, setActiveOverlay] = useState<string | null>(null);
   const [timelineDurationMinutes, setTimelineDurationMinutes] = useState(60);
+
+  useEffect(() => {
+    localStorage.setItem('schedule', JSON.stringify(schedule));
+  }, [schedule]);
 
   const handleOverlayChange = useCallback((page: string) => {
     setActiveOverlay(page === 'schedule' ? null : page);
@@ -155,12 +177,20 @@ function App() {
     const intervals = await createIntervals({
       lookaheadMonths: scheduleLookaheadMonths,
       scheduledHours: scheduleDurationHours,
+      minimumRemainingWindowSeconds: minimumRemainingWindowSeconds,
+      travelTimeSeconds: travelTimeSeconds,
       includedFishes: fishes,
     });
     const schedule = await weightedIntervalScheduling(intervals);
     setSchedule(schedule);
     setIsGenerating(false);
-  }, [fishes, scheduleDurationHours, scheduleLookaheadMonths]);
+  }, [
+    fishes,
+    scheduleDurationHours,
+    scheduleLookaheadMonths,
+    minimumRemainingWindowSeconds,
+    travelTimeSeconds,
+  ]);
 
   const handleTimeframeChange = useCallback((timeframe: number) => {
     setTimelineDurationMinutes(timeframe);
@@ -173,6 +203,7 @@ function App() {
         <div className={'overlay ' + (!activeOverlay ? 'hidden' : '')}>
           {activeOverlay === 'filter' && <FishFilterPage />}
           {activeOverlay === 'import' && <ImportConfigurationPage />}
+          {activeOverlay === 'settings' && <SchedulerSettingsPage />}
         </div>
         {!schedule && (
           <div className="landing-page">

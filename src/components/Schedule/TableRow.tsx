@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { Interval } from './Interval.ts';
 import { BIG_FISH_BY_ID } from '../../data/BigFishData.ts';
-import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { Fragment, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { WEATHER_BY_ID } from '../../data/WeatherData.ts';
 
@@ -236,30 +236,30 @@ const TableRow = ({ interval }: TableRowProps) => {
       </div>
       <div className="fishing-sequence">
         {fishProperties.fishSequence.map((s, i) => (
-          <>
-            {i !== 0 && <ArrowRightAltIcon fontSize="medium" />}
+          <Fragment key={`${s}-${i}`}>
+            {i !== 0 && <ArrowRightAltIcon key={`arrow-${i}`} fontSize="medium" />}
             {s in BaitType && (
               <div
-                key={`from-${i}`}
+                key={`bait-${i}`}
                 className={`icon bait-icon bait-icon-${s}`}
                 title={BAIT_BY_ID[s as BaitType].name}
               />
             )}
             {s in BigFishType && (
               <div
-                key={`from-${i}`}
+                key={`bfish-${i}`}
                 className={`icon fish-icon fish-icon-${s}`}
                 title={BIG_FISH_BY_ID[s as BigFishType].name}
               />
             )}
             {s in NormalFishType && (
               <div
-                key={`from-${i}`}
+                key={`nfish-${i}`}
                 className={`icon fish-icon fish-icon-${s}`}
                 title={NORMAL_FISH_BY_ID[s as NormalFishType].name}
               />
             )}
-          </>
+          </Fragment>
         ))}
       </div>
       <div className="window-ezt-time">
