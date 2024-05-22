@@ -24,6 +24,9 @@ export interface ConfigurationContextModel {
   stacksPrepTimeSeconds: number;
   moochPrepTimeSeconds: number;
   customFishOrdering?: BigFishType[];
+  excludeRequiredBigFish: boolean;
+  autoGenerateOnCompletion: boolean;
+  isFreeTrial: boolean;
 
   setScheduleLookaheadMonths: (months: number) => void;
   setScheduleDurationHours: (hours: number) => void;
@@ -32,6 +35,9 @@ export interface ConfigurationContextModel {
   setStacksPrepTimeSeconds: (seconds: number) => void;
   setMoochPrepTimeSeconds: (seconds: number) => void;
   setCustomFishOrdering: (fishOrder: BigFishType[] | undefined) => void;
+  setExcludeRequiredBigFish: (exclude: boolean) => void;
+  setAutoGenerateOnCompletion: (exclude: boolean) => void;
+  setIsFreeTrial: (exclude: boolean) => void;
 }
 
 /**

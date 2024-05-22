@@ -45,6 +45,24 @@ const Styles = css({
     },
   },
 
+  '.additional-icon': {
+    flexShrink: 0,
+    flexBasis: '32px',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    '.icons-icon': {
+      transform: 'scale(0.4)',
+      transformOrigin: 'center',
+      margin: '-16px -16px -16px -12px',
+      backgroundColor: 'rgba(0, 0, 0, 0.1)',
+      boxShadow: '0 0 12px 12px rgba(0, 0, 0, 0.1)',
+      borderRadius: '32px',
+    },
+  },
+
   '.checkbox': {
     flexShrink: 0,
     flexBasis: '32px',
@@ -89,6 +107,7 @@ type CheckableOptionProps = {
   isDisabled: boolean;
   label: string;
   iconClass?: string;
+  additionalIconClass?: { className: string; title: string };
   showCheckbox?: boolean;
   handleClick: (checked: boolean) => void;
   handleChecked?: (checked: boolean) => void;
@@ -100,6 +119,7 @@ const CheckableOption = ({
   isDisabled,
   label,
   iconClass,
+  additionalIconClass,
   showCheckbox,
   handleClick,
   handleChecked,
@@ -125,7 +145,7 @@ const CheckableOption = ({
         <div
           className={'checkbox' + (isCompleted ? ' completed' : '')}
           onClick={(e) => {
-            if (!!handleChecked) {
+            if (handleChecked) {
               handleChecked(!isCompleted);
             }
             e.preventDefault();
@@ -134,6 +154,11 @@ const CheckableOption = ({
           title={isCompleted ? 'Remove Completion' : 'Mark Completed'}
         >
           <CheckCircleIcon />
+        </div>
+      )}
+      {!showCheckbox && !!additionalIconClass && (
+        <div className={'additional-icon'} title={additionalIconClass.title}>
+          <div className={'icons-icon ' + additionalIconClass.className} />
         </div>
       )}
       {!!iconClass && <div className={'icon ' + iconClass} />}

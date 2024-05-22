@@ -59,16 +59,20 @@ export async function createIntervals({
   minimumRemainingWindowSeconds,
   travelTimeSeconds,
   includedFishes,
+  startTime,
 }: {
   lookaheadMonths: number;
   scheduledHours: number;
   minimumRemainingWindowSeconds: number;
   travelTimeSeconds: number;
   includedFishes?: Set<BigFishType>;
+  startTime?: Date;
 }): Promise<Interval[]> {
-  const dataStartDate = new Date();
+  const dataStartDate = startTime ?? new Date();
   const scheduleStartTimestamp = dataStartDate.getTime();
-  const dataEndDate = new Date(new Date().setMonth(dataStartDate.getMonth() + lookaheadMonths));
+  const dataEndDate = new Date(
+    new Date(dataStartDate.getTime()).setMonth(dataStartDate.getMonth() + lookaheadMonths)
+  );
   const scheduleEndDate = new Date(dataStartDate.getTime() + scheduledHours * 60 * 60 * 1000);
   const scheduleEndTimestamp = scheduleEndDate.getTime();
 

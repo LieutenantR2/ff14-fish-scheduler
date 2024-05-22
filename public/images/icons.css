@@ -1,0 +1,33 @@
+.icons-icon {
+  background-image: url('icons.png?1716370189');
+}
+.gil {
+  background-position: -0px -0px;
+  width: 64px;
+  height: 64px;
+}
+.gsm {
+  background-position: -0px -64px;
+  width: 64px;
+  height: 64px;
+}
+.intuition {
+  background-position: -64px -0px;
+  width: 40px;
+  height: 53px;
+}
+.powerful {
+  background-position: -64px -53px;
+  width: 64px;
+  height: 64px;
+}
+.precision {
+  background-position: -128px -0px;
+  width: 64px;
+  height: 64px;
+}
+.scrips {
+  background-position: -128px -64px;
+  width: 64px;
+  height: 64px;
+}

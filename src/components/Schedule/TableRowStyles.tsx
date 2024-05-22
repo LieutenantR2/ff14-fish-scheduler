@@ -52,6 +52,18 @@ export const TableRowStyles = css({
     flexDirection: 'column',
   },
 
+  '.fish-intuition': {
+    flexGrow: 0,
+    flexShrink: 1,
+    flexBasis: '60px',
+    alignItems: 'center',
+
+    '.intuition': {
+      transform: 'scale(0.7)',
+      transformOrigin: 'center',
+    },
+  },
+
   '.fishing-sequence': {
     flexGrow: 0,
     flexShrink: 1,
@@ -89,12 +101,22 @@ export const TableRowStyles = css({
       transform: 'scale(0.85)',
       transformOrigin: 'center',
     },
+    '.icons-icon.intuition': {
+      transform: 'scale(0.6)',
+      transformOrigin: 'center',
+    },
     '.window-weather': {
       display: 'none',
     },
   },
 
   [`@media (max-width: 480px)`]: {
+    '.fish-name': {
+      flexShrink: 1,
+      flexBasis: '100px',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+    },
     '.window-ezt-time': {
       display: 'none !important',
     },

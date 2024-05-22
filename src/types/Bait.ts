@@ -5,6 +5,6 @@ export type Bait = {
   name: string;
   level: number;
   patch: string;
-  obtainMethod: 'crafting' | 'gil' | 'scrips';
+  obtainMethod: 'gsm' | 'gil' | 'scrips';
   reusable: boolean;
 };

@@ -157,12 +157,57 @@ function App() {
     minimumRemainingWindowSeconds,
     travelTimeSeconds,
     fishes,
+    completed,
+    autoGenerateOnCompletion,
   } = useContext(ConfigurationContext);
 
+  const [completedScheduleHistory, setCompletedScheduleHistory] = useState<Interval[]>([]);
   const [schedule, setSchedule] = useState<Interval[] | null>(getStoredSchedule());
   const [isGenerating, setIsGenerating] = useState(false);
   const [activeOverlay, setActiveOverlay] = useState<string | null>(null);
   const [timelineDurationMinutes, setTimelineDurationMinutes] = useState(60);
+
+  const generateSchedule = useCallback(
+    async (startTime: Date) => {
+      const intervals = await createIntervals({
+        lookaheadMonths: scheduleLookaheadMonths,
+        scheduledHours: scheduleDurationHours,
+        minimumRemainingWindowSeconds: minimumRemainingWindowSeconds,
+        travelTimeSeconds: travelTimeSeconds,
+        includedFishes: fishes,
+        startTime: startTime,
+      });
+      return await weightedIntervalScheduling(intervals);
+    },
+    [
+      fishes,
+      scheduleDurationHours,
+      scheduleLookaheadMonths,
+      minimumRemainingWindowSeconds,
+      travelTimeSeconds,
+    ]
+  );
+
+  useEffect(() => {
+    if (!schedule || !autoGenerateOnCompletion) {
+      return;
+    }
+
+    const generateScheduleAsync = async () => {
+      setIsGenerating(true);
+      const newSchedule = await generateSchedule(new Date());
+      const scheduleHistory = schedule.filter((s) => s.startTimestamp < new Date().getTime());
+      setCompletedScheduleHistory([...completedScheduleHistory, ...scheduleHistory]);
+      setSchedule(newSchedule);
+      setIsGenerating(false);
+    };
+    const hasFutureCompleted =
+      schedule.filter((s) => s.fishEndTimestamp >= new Date().getTime() && completed.has(s.fish))
+        .length > 0;
+    if (hasFutureCompleted) {
+      generateScheduleAsync().catch();
+    }
+  }, [autoGenerateOnCompletion, completed, schedule, generateSchedule]);
 
   useEffect(() => {
     localStorage.setItem('schedule', JSON.stringify(schedule));
@@ -174,23 +219,11 @@ function App() {
 
   const handleGenerateSchedule = useCallback(async () => {
     setIsGenerating(true);
-    const intervals = await createIntervals({
-      lookaheadMonths: scheduleLookaheadMonths,
-      scheduledHours: scheduleDurationHours,
-      minimumRemainingWindowSeconds: minimumRemainingWindowSeconds,
-      travelTimeSeconds: travelTimeSeconds,
-      includedFishes: fishes,
-    });
-    const schedule = await weightedIntervalScheduling(intervals);
+    const schedule = await generateSchedule(new Date());
+    setCompletedScheduleHistory([]);
     setSchedule(schedule);
     setIsGenerating(false);
-  }, [
-    fishes,
-    scheduleDurationHours,
-    scheduleLookaheadMonths,
-    minimumRemainingWindowSeconds,
-    travelTimeSeconds,
-  ]);
+  }, [generateSchedule]);
 
   const handleTimeframeChange = useCallback((timeframe: number) => {
     setTimelineDurationMinutes(timeframe);
@@ -263,10 +296,10 @@ function App() {
               />
             </div>
             <ScheduleTimeline
-              schedule={schedule}
+              schedule={[...completedScheduleHistory, ...schedule]}
               timelineDurationMs={timelineDurationMinutes * 60 * 1000}
             />
-            <ScheduleTable schedule={schedule} />
+            <ScheduleTable schedule={[...completedScheduleHistory, ...schedule]} />
           </div>
         )}
       </div>

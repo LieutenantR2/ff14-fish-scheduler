@@ -14,6 +14,7 @@ import CheckableOption from './CheckableOption.tsx';
 import { BigFish } from '../../types/BigFish.ts';
 import { BaitType } from '../../enums/BaitType.ts';
 import { BigFishType } from '../../enums/BigFishType.ts';
+import { BAIT_BY_ID, BAIT_OBTAIN_METHOD_NAMES } from '../../data/BaitData.ts';
 
 const Styles = css({
   boxShadow: '0 0 3px 3px rgba(0, 0, 0, 0.1)',
@@ -226,17 +227,24 @@ const FishExpansionFilter = ({
           </span>
         </div>
         <div className={'section-content collapsible ' + (baitCollapsed ? 'collapsed' : '')}>
-          {allBaits.map((b) => (
-            <CheckableOption
-              key={b.id}
-              isIncluded={configBaits.has(b.id)}
-              isDisabled={!configPatches.has(b.patch)}
-              isCompleted={false}
-              label={b.name}
-              iconClass={`bait-icon bait-icon-${b.id}`}
-              handleClick={(checked) => onSelectBait([b], checked)}
-            />
-          ))}
+          {allBaits.map((b) => {
+            const baitProps = BAIT_BY_ID[b.id];
+            return (
+              <CheckableOption
+                key={b.id}
+                isIncluded={configBaits.has(b.id)}
+                isDisabled={!configPatches.has(b.patch)}
+                isCompleted={false}
+                label={b.name}
+                iconClass={`bait-icon bait-icon-${b.id}`}
+                additionalIconClass={{
+                  className: baitProps.obtainMethod,
+                  title: BAIT_OBTAIN_METHOD_NAMES[baitProps.obtainMethod],
+                }}
+                handleClick={(checked) => onSelectBait([b], checked)}
+              />
+            );
+          })}
         </div>
 
         <hr />

@@ -144,7 +144,7 @@ export const BAIT_DATA: Record<string, Bait[]> = {
       name: 'Sinking Minnow',
       level: 34,
       patch: '2.0',
-      obtainMethod: 'crafting',
+      obtainMethod: 'gsm',
       reusable: true,
     },
     {
@@ -184,7 +184,7 @@ export const BAIT_DATA: Record<string, Bait[]> = {
       name: 'Heavy Steel Jig',
       level: 37,
       patch: '2.0',
-      obtainMethod: 'crafting',
+      obtainMethod: 'gsm',
       reusable: true,
     },
     {
@@ -192,7 +192,7 @@ export const BAIT_DATA: Record<string, Bait[]> = {
       name: 'Spinner',
       level: 39,
       patch: '2.0',
-      obtainMethod: 'crafting',
+      obtainMethod: 'gsm',
       reusable: true,
     },
     {
@@ -208,7 +208,7 @@ export const BAIT_DATA: Record<string, Bait[]> = {
       name: 'Snurble Fly',
       level: 43,
       patch: '2.0',
-      obtainMethod: 'crafting',
+      obtainMethod: 'gsm',
       reusable: true,
     },
     {
@@ -216,7 +216,7 @@ export const BAIT_DATA: Record<string, Bait[]> = {
       name: 'Topwater Frog',
       level: 44,
       patch: '2.0',
-      obtainMethod: 'crafting',
+      obtainMethod: 'gsm',
       reusable: true,
     },
     {
@@ -240,7 +240,7 @@ export const BAIT_DATA: Record<string, Bait[]> = {
       name: 'Rainbow Spoon Lure',
       level: 46,
       patch: '2.0',
-      obtainMethod: 'crafting',
+      obtainMethod: 'gsm',
       reusable: true,
     },
     {
@@ -248,7 +248,7 @@ export const BAIT_DATA: Record<string, Bait[]> = {
       name: 'Spinnerbait',
       level: 47,
       patch: '2.0',
-      obtainMethod: 'crafting',
+      obtainMethod: 'gsm',
       reusable: true,
     },
     {
@@ -256,7 +256,7 @@ export const BAIT_DATA: Record<string, Bait[]> = {
       name: 'Yumizuno',
       level: 48,
       patch: '2.0',
-      obtainMethod: 'crafting',
+      obtainMethod: 'gsm',
       reusable: true,
     },
     {
@@ -331,7 +331,7 @@ export const BAIT_DATA: Record<string, Bait[]> = {
       name: 'Goblin Jig',
       level: 58,
       patch: '3.0',
-      obtainMethod: 'crafting',
+      obtainMethod: 'gsm',
       reusable: true,
     },
     {
@@ -355,7 +355,7 @@ export const BAIT_DATA: Record<string, Bait[]> = {
       name: 'Bladed Steel Jig',
       level: 60,
       patch: '3.0',
-      obtainMethod: 'crafting',
+      obtainMethod: 'gsm',
       reusable: true,
     },
   ],
@@ -482,3 +482,9 @@ export const BAIT_BY_ID = ALL_BAITS.reduce(
   },
   {} as Record<BaitType, Bait>
 );
+
+export const BAIT_OBTAIN_METHOD_NAMES = {
+  gil: 'Gil',
+  scrips: 'Gathering Scrips',
+  gsm: 'Crafted with GSM',
+};
