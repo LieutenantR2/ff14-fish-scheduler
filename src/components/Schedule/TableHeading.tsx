@@ -15,6 +15,7 @@ const TableHeading = () => {
       <div className="icon-col" />
       <div className="fish-name">Name</div>
       <div className="fish-location">Location</div>
+      <div className="fish-intuition" />
       <div className="fishing-sequence" />
       <div className="window-ezt-time">EZT Time</div>
       <div className="window-weather">Weather</div>

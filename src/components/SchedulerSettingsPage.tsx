@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import NumericalConfigSetting from './Settings/NumericalConfigSetting.tsx';
 import { useContext } from 'react';
 import { ConfigurationContext } from '../contexts/ConfigurationContext.tsx';
+import BooleanConfigSetting from './Settings/BooleanConfigSetting.tsx';
 
 const Styles = css({
   width: '100%',
@@ -15,8 +16,22 @@ const Styles = css({
     overflowX: 'hidden',
     overflowY: 'auto',
 
-    '.MuiSlider-root': {
+    '.MuiSlider-root, .MuiSwitch-root': {
       color: '#526D82',
+
+      '.MuiSwitch-switchBase': {
+        color: '#526D82',
+        '& ~ .MuiSwitch-track': {
+          backgroundColor: '#526D82',
+        },
+
+        '&:not(.Mui-checked), &.Mui-disabled': {
+          color: '#777',
+          '& ~ .MuiSwitch-track': {
+            backgroundColor: '#777',
+          },
+        },
+      },
 
       '.MuiSlider-markLabel': {
         color: 'rgba(255, 255, 255, 0.87)',
@@ -47,6 +62,12 @@ const SchedulerSettingsPage = () => {
     setStacksPrepTimeSeconds,
     moochPrepTimeSeconds,
     setMoochPrepTimeSeconds,
+    excludeRequiredBigFish,
+    setExcludeRequiredBigFish,
+    autoGenerateOnCompletion,
+    setAutoGenerateOnCompletion,
+    isFreeTrial,
+    setIsFreeTrial,
   } = useContext(ConfigurationContext);
 
   return (
@@ -157,6 +178,25 @@ const SchedulerSettingsPage = () => {
           ]}
           defaultValue={moochPrepTimeSeconds / 60}
           onChange={(v) => setMoochPrepTimeSeconds(v * 60)}
+          isDisabled={true}
+        />
+        <BooleanConfigSetting
+          settingLabel="Exclude Required Big Fishes"
+          settingDescription="Certain Big Fishes are a mooch or intuition requirement for other Big Fishes, so they are always going to be caught when attempting the harder Big Fish.<br/><br/>Enabling this option will exclude these fishes from the schedule."
+          checked={excludeRequiredBigFish}
+          onChange={(v) => setExcludeRequiredBigFish(v)}
+        />
+        <BooleanConfigSetting
+          settingLabel="Re-generate Schedule on Completion"
+          settingDescription="When enabled, marking a fish as completed in the Schedule (e.g. Big Fish caught during the window) will automatically re-generate the schedule to remove that fish from appearing again at a future time."
+          checked={autoGenerateOnCompletion}
+          onChange={(v) => setAutoGenerateOnCompletion(v)}
+        />
+        <BooleanConfigSetting
+          settingLabel="Free Trial [Coming Soon]"
+          settingDescription="Free Trial players have limited access to certain baits and abilities. Enabling this will re-rank certain fishes to be higher difficulty as well has have bait options swapped.<br/><br/><em>All expansions after Stormblood will be hidden if this is enabled.</em>"
+          checked={isFreeTrial}
+          onChange={(v) => setIsFreeTrial(v)}
           isDisabled={true}
         />
       </div>

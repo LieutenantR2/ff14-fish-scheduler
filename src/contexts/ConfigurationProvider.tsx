@@ -23,6 +23,14 @@ function getStoredNumericConfig(key: string, defaultVal: number) {
   return parseInt(storedVal);
 }
 
+function getStoredBooleanConfig(key: string, defaultVal: boolean) {
+  const storedVal = localStorage.getItem(key);
+  if (storedVal === null || !storedVal.match(/^(true|false)$/i)) {
+    return defaultVal;
+  }
+  return storedVal.toLowerCase() === 'true';
+}
+
 function getStoredArrayConfig<T>(key: string, defaultVal: T[]) {
   const storedVal = localStorage.getItem(key);
   if (storedVal === null) {
@@ -77,6 +85,14 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
     undefined
   );
 
+  const [autoGenerateOnCompletion, setAutoGenerateOnCompletion] = useState(
+    getStoredBooleanConfig('autoGenerateOnCompletion', true)
+  );
+  const [isFreeTrial, setIsFreeTrial] = useState(getStoredBooleanConfig('isFreeTrial', true));
+  const [excludeRequiredBigFish, setExcludeRequiredBigFish] = useState(
+    getStoredBooleanConfig('excludeRequiredBigFish', true)
+  );
+
   useEffect(() => {
     localStorage.setItem('scheduleLookaheadMonths', scheduleLookaheadMonths.toString());
   }, [scheduleLookaheadMonths]);
@@ -92,6 +108,10 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
   useEffect(() => {
     localStorage.setItem('travelTimeSeconds', travelTimeSeconds.toString());
   }, [travelTimeSeconds]);
+
+  useEffect(() => {
+    localStorage.setItem('excludeRequiredBigFish', excludeRequiredBigFish.toString());
+  }, [excludeRequiredBigFish]);
 
   useEffect(() => {
     const patchBaits = [...patches]
@@ -116,7 +136,7 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
     ).map((f) => f.id);
 
     setFishTypes(new Set(baitFishes));
-  }, [patches, baitTypes]);
+  }, [patches, baitTypes, completedFishes]);
 
   useEffect(() => {
     localStorage.setItem('fishes', JSON.stringify([...fishTypes]));
@@ -179,7 +199,7 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
       setFishTypes(setDifference(fishTypes, settings.completed));
       return true;
     },
-    [fishTypes, onSelectPatch, patches]
+    [fishTypes]
   );
 
   const updateScheduleLookaheadMonths = useCallback((months: number) => {
@@ -210,6 +230,18 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
     setCustomFishOrdering(fishOrder);
   }, []);
 
+  const updateExcludeRequiredBigFish = useCallback((exclude: boolean) => {
+    setExcludeRequiredBigFish(exclude);
+  }, []);
+
+  const updateAutoGenerateOnCompletion = useCallback((autoGenerate: boolean) => {
+    setAutoGenerateOnCompletion(autoGenerate);
+  }, []);
+
+  const updateIsFreeTrial = useCallback((freeTrial: boolean) => {
+    setIsFreeTrial(freeTrial);
+  }, []);
+
   const contextValue = useMemo<ConfigurationContextModel>(
     () => ({
       patches,
@@ -230,6 +262,9 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
       stacksPrepTimeSeconds,
       moochPrepTimeSeconds,
       customFishOrdering,
+      excludeRequiredBigFish,
+      autoGenerateOnCompletion,
+      isFreeTrial,
 
       setScheduleLookaheadMonths: updateScheduleLookaheadMonths,
       setScheduleDurationHours: updateScheduleDurationHours,
@@ -238,6 +273,10 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
       setStacksPrepTimeSeconds: updateStacksPrepTimeSeconds,
       setMoochPrepTimeSeconds: updateMoochPrepTimeSeconds,
       setCustomFishOrdering: updateCustomFishOrdering,
+
+      setExcludeRequiredBigFish: updateExcludeRequiredBigFish,
+      setAutoGenerateOnCompletion: updateAutoGenerateOnCompletion,
+      setIsFreeTrial: updateIsFreeTrial,
     }),
     [
       patches,
@@ -247,6 +286,7 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
       onSelectPatch,
       onSelectFish,
       onSelectBait,
+      onCompleteFish,
       loadCarbunclePlushySettings,
       scheduleLookaheadMonths,
       scheduleDurationHours,
@@ -255,6 +295,9 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
       stacksPrepTimeSeconds,
       moochPrepTimeSeconds,
       customFishOrdering,
+      excludeRequiredBigFish,
+      autoGenerateOnCompletion,
+      isFreeTrial,
       updateScheduleLookaheadMonths,
       updateScheduleDurationHours,
       updateMinimumRemainingWindowSeconds,
@@ -262,6 +305,9 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
       updateStacksPrepTimeSeconds,
       updateMoochPrepTimeSeconds,
       updateCustomFishOrdering,
+      updateExcludeRequiredBigFish,
+      updateAutoGenerateOnCompletion,
+      updateIsFreeTrial,
     ]
   );
 
