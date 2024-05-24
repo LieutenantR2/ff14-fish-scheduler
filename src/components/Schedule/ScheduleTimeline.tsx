@@ -12,6 +12,15 @@ const Styles = css({
   maxHeight: '420px',
   display: 'flex',
 
+  '.no-window-message': {
+    alignSelf: 'center',
+    marginTop: '24px',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    padding: '8px',
+    zIndex: 2,
+    fontStyle: 'italic',
+  },
+
   '.segment-window': {
     boxSizing: 'border-box',
     display: 'flex',
@@ -123,6 +132,11 @@ const ScheduleTimeline = ({ schedule, timelineDurationMs }: ScheduleTimelineProp
             interval={s}
           />
         ))}
+        {!visibleSegments.length && (
+          <div className="no-window-message">
+            No windows are approaching within the selected timeframe.
+          </div>
+        )}
       </div>
     </div>
   );

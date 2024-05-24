@@ -89,7 +89,7 @@ const SchedulerSettingsPage = () => {
         />
         <NumericalConfigSetting
           settingLabel="Schedule Duration"
-          settingDescription="The number of upcoming <strong>hours</strong> to plan for fish windows."
+          settingDescription="The number of upcoming <strong>hours</strong> to plan for fish windows.<br/><br/><em>A longer duration will result in slower schedule generation times.</em>"
           marks={[
             { label: '1', value: 1 },
             { label: '2', value: 2 },
