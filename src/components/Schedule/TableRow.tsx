@@ -136,22 +136,22 @@ const TableRow = ({ interval }: TableRowProps) => {
   const fishProperties = useMemo(() => BIG_FISH_BY_ID[interval.fish], [interval]);
   const fishingHoleProperties = useMemo(
     () => FISHING_HOLE_BY_ID[fishProperties.location],
-    [fishProperties],
+    [fishProperties]
   );
   const fishStartTimeEzt = useMemo(
     () => convertEztTimeToString(getEztTimeFromTimestamp(interval.fishStartTimestamp)),
-    [interval],
+    [interval]
   );
   const fishEndTimeEzt = useMemo(
     () => convertEztTimeToString(getEztTimeFromTimestamp(interval.fishEndTimestamp)),
-    [interval],
+    [interval]
   );
 
   const [isCompleted, setIsCompleted] = useState(false);
   const [isDisabled, setIsDisabled] = useState(interval.fishEndTimestamp <= new Date().getTime());
   const [isActive, setIsActive] = useState(
     interval.fishStartTimestamp <= new Date().getTime() &&
-    interval.fishEndTimestamp > new Date().getTime(),
+      interval.fishEndTimestamp > new Date().getTime()
   );
 
   useEffect(() => {
@@ -169,7 +169,7 @@ const TableRow = ({ interval }: TableRowProps) => {
     setIsDisabled(windowPassed);
     setIsActive(
       interval.fishStartTimestamp <= new Date().getTime() &&
-      interval.fishEndTimestamp > new Date().getTime(),
+        interval.fishEndTimestamp > new Date().getTime()
     );
 
     if (!windowPassed) {
@@ -177,7 +177,7 @@ const TableRow = ({ interval }: TableRowProps) => {
         setIsDisabled(interval.fishEndTimestamp <= new Date().getTime());
         setIsActive(
           interval.fishStartTimestamp <= new Date().getTime() &&
-          interval.fishEndTimestamp > new Date().getTime(),
+            interval.fishEndTimestamp > new Date().getTime()
         );
       }, 1000);
       return () => clearInterval(intvl);
@@ -189,7 +189,7 @@ const TableRow = ({ interval }: TableRowProps) => {
       onCompleteFish([interval.fish], checked);
       setIsCompleted(checked);
     },
-    [interval, onCompleteFish],
+    [interval, onCompleteFish]
   );
 
   return (
@@ -236,7 +236,9 @@ const TableRow = ({ interval }: TableRowProps) => {
         <span className="area-name">{LOCATION_BY_ID[fishingHoleProperties.location]}</span>
       </div>
       <div className="fish-intuition">
-        {!!fishProperties.intuition && <div className="icons-icon intuition" title="Intuition Conditions" />}
+        {!!fishProperties.intuition && (
+          <div className="icons-icon intuition" title="Intuition Conditions" />
+        )}
       </div>
       <div className="fishing-sequence">
         {fishProperties.fishSequence.map((s, i) => (

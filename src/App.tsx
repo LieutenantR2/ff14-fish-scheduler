@@ -197,7 +197,8 @@ function App() {
       setIsGenerating(true);
       const newSchedule = await generateSchedule(new Date());
       const scheduleHistory = schedule.filter((s) => s.startTimestamp < new Date().getTime());
-      setCompletedScheduleHistory([...completedScheduleHistory, ...scheduleHistory]);
+      const completedHistory = [...completedScheduleHistory, ...scheduleHistory];
+      setCompletedScheduleHistory(completedHistory.filter((s) => completed.has(s.fish)));
       setSchedule(newSchedule);
       setIsGenerating(false);
     };
@@ -205,9 +206,13 @@ function App() {
       schedule.filter((s) => s.fishEndTimestamp >= new Date().getTime() && completed.has(s.fish))
         .length > 0;
     if (hasFutureCompleted) {
-      generateScheduleAsync().catch();
+      // debounce consecutive changes
+      const timeout = setTimeout(() => {
+        generateScheduleAsync().catch();
+      }, 500);
+      return () => clearTimeout(timeout);
     }
-  }, [autoGenerateOnCompletion, completed, schedule, generateSchedule]);
+  }, [autoGenerateOnCompletion, completed, schedule, generateSchedule, completedScheduleHistory]);
 
   useEffect(() => {
     localStorage.setItem('schedule', JSON.stringify(schedule));

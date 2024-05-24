@@ -19,6 +19,12 @@ const Styles = css({
       backgroundColor: 'rgba(0, 0, 0, 0.3)',
     },
   },
+
+  '.no-fish-message': {
+    alignSelf: 'center',
+    marginTop: '16px',
+    fontStyle: 'italic',
+  },
 });
 
 type ScheduleTableProps = {
@@ -34,6 +40,11 @@ const ScheduleTable = ({ schedule }: ScheduleTableProps) => {
           <TableRow key={`${interval.fish}-${i}`} interval={interval} />
         ))}
       </div>
+      {!schedule.length && (
+        <div className="no-fish-message">
+          No fishes are available to be caught in the selected time range.
+        </div>
+      )}
     </div>
   );
 };
