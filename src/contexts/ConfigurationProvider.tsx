@@ -1,72 +1,46 @@
-import { FC, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { ConfigurationContext, ConfigurationContextModel } from './ConfigurationContext.tsx';
-import { setDifference, setIntersect, setUnion } from '../utils.ts';
+import { setDifference, setUnion } from '../utils.ts';
 import { BigFish } from '../types/BigFish.ts';
 import { BigFishType } from '../enums/BigFishType.ts';
 import { BaitType } from '../enums/BaitType.ts';
 import { Bait } from '../types/Bait.ts';
-import { ALL_BAITS, BAIT_DATA } from '../data/BaitData.ts';
+import { ALL_BAITS } from '../data/BaitData.ts';
 import { ALL_BIG_FISHES } from '../data/BigFishData.ts';
 import { PATCH_DATA } from '../data/PatchData.ts';
 import { CarbunclePlushySettings } from '../components/Import/CarbunclePlushySettings.ts';
 import { getCarbunclePlushyPatches } from '../components/Import/parser.ts';
+import {
+  getStoredArrayConfig,
+  getStoredBooleanConfig,
+  getStoredNumericConfig,
+} from '../storageUtils.ts';
+import { FilterProps, useFilterState } from './useFilterState.ts';
 
 type ConfigurationProviderProps = {
   children?: React.ReactNode;
 };
 
-function getStoredNumericConfig(key: string, defaultVal: number) {
-  const storedVal = localStorage.getItem(key);
-  if (storedVal === null || !storedVal.match(/^\d+$/)) {
-    return defaultVal;
-  }
-  return parseInt(storedVal);
-}
-
-function getStoredBooleanConfig(key: string, defaultVal: boolean) {
-  const storedVal = localStorage.getItem(key);
-  if (storedVal === null || !storedVal.match(/^(true|false)$/i)) {
-    return defaultVal;
-  }
-  return storedVal.toLowerCase() === 'true';
-}
-
-function getStoredArrayConfig<T>(key: string, defaultVal: T[]) {
-  const storedVal = localStorage.getItem(key);
-  if (storedVal === null) {
-    return defaultVal;
-  }
-  try {
-    return JSON.parse(storedVal) as T[];
-  } catch {
-    return defaultVal;
-  }
-}
-
 const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => {
-  const [patches, setPatches] = useState(
-    new Set<string>(getStoredArrayConfig('patches', PATCH_DATA))
-  );
-  const [baitTypes, setBaitTypes] = useState(
-    new Set<BaitType>(
+  // Fish Filter States
+  const [filters, setFilters] = useFilterState({
+    patches: new Set<string>(getStoredArrayConfig('patches', PATCH_DATA)),
+    baits: new Set<BaitType>(
       getStoredArrayConfig(
         'baits',
         ALL_BAITS.map((b) => b.id)
       )
-    )
-  );
-  const [fishTypes, setFishTypes] = useState(
-    new Set<BigFishType>(
+    ),
+    fishes: new Set<BigFishType>(
       getStoredArrayConfig(
         'fishes',
         ALL_BIG_FISHES.map((f) => f.id)
       )
-    )
-  );
-  const [completedFishes, setCompletedFishes] = useState(
-    new Set<BigFishType>(getStoredArrayConfig<BigFishType>('completed', []))
-  );
+    ),
+    completed: new Set<BigFishType>(getStoredArrayConfig<BigFishType>('completed', [])),
+  });
 
+  // Config States
   const [scheduleLookaheadMonths, setScheduleLookaheadMonths] = useState(
     getStoredNumericConfig('scheduleLookaheadMonths', 12)
   );
@@ -84,7 +58,6 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
   const [customFishOrdering, setCustomFishOrdering] = useState<BigFishType[] | undefined>(
     undefined
   );
-
   const [autoGenerateOnCompletion, setAutoGenerateOnCompletion] = useState(
     getStoredBooleanConfig('autoGenerateOnCompletion', true)
   );
@@ -93,6 +66,7 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
     getStoredBooleanConfig('excludeRequiredBigFish', true)
   );
 
+  // Storage Save Triggers
   useEffect(() => {
     localStorage.setItem('scheduleLookaheadMonths', scheduleLookaheadMonths.toString());
   }, [scheduleLookaheadMonths]);
@@ -114,92 +88,90 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
   }, [excludeRequiredBigFish]);
 
   useEffect(() => {
-    const patchBaits = [...patches]
-      .map((p) => BAIT_DATA[p] ?? [])
-      .reduce((a, b) => [...a, ...b])
-      .map((b) => b.id);
+    localStorage.setItem('patches', JSON.stringify([...filters.patches]));
+    localStorage.setItem('baits', JSON.stringify([...filters.baits]));
+    localStorage.setItem('fishes', JSON.stringify([...filters.fishes]));
+    localStorage.setItem('completed', JSON.stringify([...filters.completed]));
+  }, [filters]);
 
-    setBaitTypes(new Set(patchBaits));
-    localStorage.setItem('patches', JSON.stringify([...patches]));
-  }, [patches]);
-
-  useEffect(() => {
-    localStorage.setItem('baits', JSON.stringify([...baitTypes]));
-  }, [baitTypes]);
-
-  useEffect(() => {
-    const baitFishes = ALL_BIG_FISHES.filter(
-      (f) =>
-        patches.has(f.patch) &&
-        setIntersect(baitTypes, f.baits).size === f.baits.length &&
-        !completedFishes.has(f.id)
-    ).map((f) => f.id);
-
-    setFishTypes(new Set(baitFishes));
-  }, [patches, baitTypes, completedFishes]);
-
-  useEffect(() => {
-    localStorage.setItem('fishes', JSON.stringify([...fishTypes]));
-  }, [fishTypes]);
-
-  useEffect(() => {
-    localStorage.setItem('completed', JSON.stringify([...completedFishes]));
-  }, [completedFishes]);
-
+  // Interaction Handlers
   const onSelectPatch = useCallback(
     (patchNames: string[], isSelected: boolean) => {
-      const updatedPatches = isSelected
-        ? setUnion(patches, patchNames)
-        : setDifference(patches, patchNames);
-      setPatches(updatedPatches);
+      setFilters((prevState: FilterProps) => {
+        const updatedPatches = isSelected
+          ? setUnion(prevState.patches, patchNames)
+          : setDifference(prevState.patches, patchNames);
+        return {
+          ...prevState,
+          patches: updatedPatches,
+        } as FilterProps;
+      });
     },
-    [patches]
+    [setFilters]
   );
 
   const onSelectBait = useCallback(
     (baits: Bait[], isSelected: boolean) => {
       const baitIds = new Set(baits.map((b) => b.id));
-      const updatedBaitIds = isSelected
-        ? setUnion(baitTypes, baitIds)
-        : setDifference(baitTypes, baitIds);
-      setBaitTypes(updatedBaitIds);
+      setFilters((prevState) => {
+        const updatedBaitIds = isSelected
+          ? setUnion(prevState.baits, baitIds)
+          : setDifference(prevState.baits, baitIds);
+        return {
+          ...prevState,
+          baits: updatedBaitIds,
+        };
+      });
     },
-    [baitTypes]
+    [setFilters]
   );
 
   const onSelectFish = useCallback(
     (fishes: BigFish[], isSelected: boolean) => {
       const fishIds = fishes.map((f) => f.id);
       if (isSelected) {
-        setFishTypes(setDifference(setUnion(fishTypes, fishIds), completedFishes));
+        setFilters((prevState) => ({
+          ...prevState,
+          fishes: setDifference(setUnion(prevState.fishes, fishIds), prevState.completed),
+        }));
       } else {
-        setFishTypes(setDifference(fishTypes, setUnion(fishIds, completedFishes)));
+        setFilters((prevState) => ({
+          ...prevState,
+          fishes: setDifference(prevState.fishes, setUnion(fishIds, prevState.completed)),
+        }));
       }
     },
-    [completedFishes, fishTypes]
+    [setFilters]
   );
 
   const onCompleteFish = useCallback(
     (fishIds: BigFishType[], isSelected: boolean) => {
       if (isSelected) {
-        setCompletedFishes(setUnion(completedFishes, fishIds));
-        setFishTypes(setDifference(fishTypes, fishIds));
+        setFilters((prevState) => ({
+          ...prevState,
+          completed: setUnion(prevState.completed, fishIds),
+        }));
       } else {
-        setCompletedFishes(setDifference(completedFishes, fishIds));
-        setFishTypes(setUnion(fishTypes, fishIds));
+        setFilters((prevState) => ({
+          ...prevState,
+          completed: setDifference(prevState.completed, fishIds),
+        }));
       }
     },
-    [completedFishes, fishTypes]
+    [setFilters]
   );
 
   const loadCarbunclePlushySettings = useCallback(
     (settings: CarbunclePlushySettings): boolean => {
-      setCompletedFishes(new Set(settings.completed));
-      setPatches(getCarbunclePlushyPatches(settings));
-      setFishTypes(setDifference(fishTypes, settings.completed));
+      setFilters((prevState) => ({
+        ...prevState,
+        patches: getCarbunclePlushyPatches(settings),
+        fishes: setDifference(prevState.fishes, settings.completed),
+        completed: new Set(settings.completed),
+      }));
       return true;
     },
-    [fishTypes]
+    [setFilters]
   );
 
   const updateScheduleLookaheadMonths = useCallback((months: number) => {
@@ -242,12 +214,13 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
     setIsFreeTrial(freeTrial);
   }, []);
 
+  // Context State
   const contextValue = useMemo<ConfigurationContextModel>(
     () => ({
-      patches,
-      baits: baitTypes,
-      fishes: fishTypes,
-      completed: completedFishes,
+      patches: filters.patches,
+      baits: filters.baits,
+      fishes: filters.fishes,
+      completed: filters.completed,
 
       onSelectPatch,
       onSelectFish,
@@ -279,10 +252,7 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
       setIsFreeTrial: updateIsFreeTrial,
     }),
     [
-      patches,
-      baitTypes,
-      fishTypes,
-      completedFishes,
+      filters,
       onSelectPatch,
       onSelectFish,
       onSelectBait,
