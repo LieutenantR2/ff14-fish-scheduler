@@ -19,6 +19,7 @@ export type BigFish = {
   times?: { start: number; end: number }[];
   weathers?: WeatherType[];
   weatherTransitions?: { from: WeatherType[]; to: WeatherType[] };
+  surfaceSlap?: BigFishType | NormalFishType;
 };
 
 export type IntuitionRequirement = {

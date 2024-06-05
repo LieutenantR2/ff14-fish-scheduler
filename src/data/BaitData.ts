@@ -433,6 +433,16 @@ export const BAIT_DATA: Record<string, Bait[]> = {
       reusable: false,
     },
   ],
+  '5.0': [
+    {
+      id: BaitType.SIGNATURE_SKYBALL,
+      name: 'Signature Skyball',
+      level: 80,
+      patch: '5.0',
+      obtainMethod: 'gil',
+      reusable: false,
+    },
+  ],
 };
 
 export const ARR_BAITS: Record<string, Bait[]> = Object.keys(BAIT_DATA)
