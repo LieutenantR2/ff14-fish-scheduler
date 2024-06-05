@@ -11,7 +11,7 @@ export async function getWindows(
 
   const windowData = await Promise.all(
     years.map((year) =>
-      fetch(`data/${year}.json`, {
+      fetch(`data/${year}.json?v=0.1.0`, {
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
