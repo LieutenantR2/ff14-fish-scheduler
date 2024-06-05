@@ -108,6 +108,11 @@ const Styles = css({
     },
   },
 
+  '.copyright': {
+    padding: '0 20px',
+    fontSize: '0.8rem',
+  },
+
   [`@media (max-width: 600px)`]: {
     '.schedule-page': {
       padding: '10px',
@@ -307,6 +312,10 @@ function App() {
             <ScheduleTable schedule={[...completedScheduleHistory, ...schedule]} />
           </div>
         )}
+        <span className="copyright">
+          FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd. &copy; SQUARE
+          ENIX
+        </span>
       </div>
     </>
   );
