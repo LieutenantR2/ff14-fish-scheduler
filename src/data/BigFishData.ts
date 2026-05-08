@@ -703,7 +703,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
     },
     {
       id: BigFishType.THE_SINKER,
-      name: 'Floating Boulder',
+      name: 'The Sinker',
       patch: '2.3',
       baits: [BaitType.SINKING_MINNOW],
       fishSequence: [BaitType.SINKING_MINNOW],
