@@ -1421,7 +1421,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       patch: '3.3',
       baits: [BaitType.METAL_SPINNER],
       fishSequence: [BaitType.METAL_SPINNER, NormalFishType.GRANITE_CRAB],
-      location: FishingHoleType.WEST_MOURN,
+      location: FishingHoleType.MOURN,
       difficulty: 1,
     },
 
@@ -1581,7 +1581,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       patch: '3.4',
       baits: [BaitType.MAGMA_WORM],
       fishSequence: [BaitType.MAGMA_WORM],
-      location: FishingHoleType.THE_SMOLDERING_WASTES,
+      location: FishingHoleType.WEST_MOURN,
       difficulty: 1,
       times: [{ start: 2, end: 6 }],
     },
@@ -1762,7 +1762,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       patch: '3.5',
       baits: [BaitType.STONEFLY_NYMPH],
       fishSequence: [BaitType.STONEFLY_NYMPH, NormalFishType.BLUECLAW_SHRIMP],
-      location: FishingHoleType.MOURN,
+      location: FishingHoleType.THE_IRON_FEAST,
       difficulty: 1,
       times: [{ start: 6, end: 8 }],
       weatherTransitions: {
@@ -2071,7 +2071,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
     },
     {
       id: BigFishType.BLOODTAIL_ZOMBIE,
-      name: 'Watcher Catfish',
+      name: 'Bloodtail Zombie',
       patch: '4.4',
       baits: [BaitType.SALMON_ROE],
       fishSequence: [BaitType.SALMON_ROE, NormalFishType.BALLOON_FROG],

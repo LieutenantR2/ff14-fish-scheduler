@@ -65,4 +65,30 @@ export enum LocationType {
   YANXIA,
   THE_AZIM_STEPPE,
   THE_DOMAN_ENCLAVE,
+
+  // Norvrandt
+  THE_CRYSTARIUM,
+  EULMORE,
+  LAKELAND,
+  KHOLUSIA,
+  AMH_ARAENG,
+  IL_MHEG,
+  THE_RAKTIKA_GREATWOOD,
+  THE_TEMPEST,
+
+  // The Northern Empty
+  OLD_SHARLAYAN,
+  LABYRINTHOS,
+
+  // Ilsabard
+  RADZ_AT_HAND,
+  THAVNAIR,
+  GARLEMALD,
+
+  // The Sea of Stars
+  MARE_LAMENTORUM,
+  ULTIMA_THULE,
+
+  // The World Unsundered
+  ELPIS,
 }
