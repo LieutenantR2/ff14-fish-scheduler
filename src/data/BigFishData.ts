@@ -1663,7 +1663,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       baits: [BaitType.PURSE_WEB_SPIDER],
       fishSequence: [BaitType.PURSE_WEB_SPIDER, NormalFishType.ICE_FAERIE],
       location: FishingHoleType.CLEARPOOL,
-      difficulty: 8,
+      difficulty: 5,
       times: [{ start: 0, end: 3 }],
       weathers: [WeatherType.BLIZZARDS],
       prepType: ['stacks', 'intfish'],
@@ -1705,7 +1705,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       baits: [BaitType.GIANT_CRANE_FLY],
       fishSequence: [BaitType.GIANT_CRANE_FLY],
       location: FishingHoleType.MOK_OOGL_ISLAND,
-      difficulty: 8,
+      difficulty: 5,
       times: [{ start: 5, end: 7 }],
       weathers: [WeatherType.CLEARSKIES],
       prepType: ['stacks', 'intfish'],
@@ -1750,7 +1750,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       baits: [BaitType.FIEND_WORM],
       fishSequence: [BaitType.FIEND_WORM, NormalFishType.PLATINUM_FISH],
       location: FishingHoleType.THE_FLAGSHIP,
-      difficulty: 5,
+      difficulty: 3,
       weathers: [WeatherType.THUNDER],
       intuition: [{ fish: NormalFishType.FUNCTIONAL_PROTO_HROPKEN, quantity: 3 }],
     },
@@ -2498,6 +2498,648 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       },
     },
   ],
+
+  '5.1': [
+    // The Crystarium
+    {
+      id: BigFishType.LOOSE_PENDANT,
+      name: 'Loose Pendant',
+      patch: '5.1',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS],
+      location: FishingHoleType.CRYSTARIUM_PERSONAL_SUITES,
+      difficulty: 1,
+      times: [{ start: 18, end: 22 }],
+    },
+
+    // Eulmore
+    {
+      id: BigFishType.WINGED_DAME,
+      name: 'Winged Dame',
+      patch: '5.1',
+      baits: [BaitType.SQUID_STRIP],
+      fishSequence: [BaitType.SQUID_STRIP],
+      location: FishingHoleType.THE_DERELICTS,
+      difficulty: 1,
+      weathers: [WeatherType.CLEARSKIES],
+      times: [{ start: 12, end: 20 }],
+    },
+
+    // Lakeland
+    {
+      id: BigFishType.THE_UNFORGIVEN,
+      name: 'The Unforgiven',
+      patch: '5.1',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS],
+      location: FishingHoleType.THE_SOURCE,
+      difficulty: 1,
+      weathers: [WeatherType.FOG],
+    },
+
+    // Kholusia
+    {
+      id: BigFishType.BRONZE_SOLE,
+      name: 'Bronze Sole',
+      patch: '5.1',
+      baits: [BaitType.MARBLE_NYMPH],
+      fishSequence: [BaitType.MARBLE_NYMPH],
+      location: FishingHoleType.SHARPTONGUE_DRIP,
+      difficulty: 1,
+      weathers: [WeatherType.RAIN],
+    },
+
+    // Amh Araeng
+    {
+      id: BigFishType.THE_HORNED_KING,
+      name: 'The Horned King',
+      patch: '5.1',
+      baits: [BaitType.JERKED_OVIM],
+      fishSequence: [BaitType.JERKED_OVIM, NormalFishType.HORNHELM],
+      location: FishingHoleType.THE_RIVER_OF_SAND,
+      difficulty: 1,
+      weathers: [WeatherType.DUSTSTORMS],
+      times: [{ start: 0, end: 6 }],
+    },
+
+    // Il Mheg
+    {
+      id: BigFishType.THE_SOUND_OF_FURY,
+      name: 'The Sound of Fury',
+      patch: '5.1',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS],
+      location: FishingHoleType.LONGMIRROR_LAKE,
+      difficulty: 1,
+      weathers: [WeatherType.FAIRSKIES, WeatherType.CLEARSKIES],
+      times: [{ start: 20, end: 24 }],
+    },
+
+    // The Rak'tika Greatwood
+    {
+      id: BigFishType.PRIEST_OF_YXLOKWA,
+      name: "Priest of Yx'Lokwa",
+      patch: '5.1',
+      baits: [BaitType.ROBBER_BALL],
+      fishSequence: [BaitType.ROBBER_BALL, NormalFishType.CLOWN_TETRA, NormalFishType.ERYOPS],
+      location: FishingHoleType.LAKE_TUSI_MEKTA,
+      difficulty: 1,
+      times: [{ start: 10, end: 12 }],
+    },
+
+    // The Tempest
+    {
+      id: BigFishType.STARCHASER,
+      name: 'Starchaser',
+      patch: '5.1',
+      baits: [BaitType.SQUID_STRIP],
+      fishSequence: [BaitType.SQUID_STRIP],
+      location: FishingHoleType.PURPURE,
+      difficulty: 1,
+      weathers: [WeatherType.CLOUDS],
+      times: [{ start: 6, end: 10 }],
+    },
+  ],
+
+  '5.2': [
+    // Lakeland
+    {
+      id: BigFishType.THE_JAWS_OF_UNDEATH,
+      name: 'Starchaser',
+      patch: '5.2',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS],
+      location: FishingHoleType.THE_ISLE_OF_KEN,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLEARSKIES, WeatherType.FAIRSKIES],
+        to: [WeatherType.CLOUDS, WeatherType.FOG],
+      },
+      times: [{ start: 16, end: 24 }],
+    },
+
+    // Kholusia
+    {
+      id: BigFishType.WHITE_RONSO,
+      name: 'White Ronso',
+      patch: '5.2',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS],
+      location: FishingHoleType.LOWER_WATTS_RIVER,
+      difficulty: 1,
+      times: [{ start: 0, end: 2 }],
+    },
+
+    // Amh Araeng
+    {
+      id: BigFishType.AMBLING_CALTROP,
+      name: 'Ambling Caltrop',
+      patch: '5.2',
+      baits: [BaitType.DESERT_DESSERT_FROG],
+      fishSequence: [BaitType.DESERT_DESSERT_FROG, NormalFishType.WEB_FOOTED_SAND_GECKO],
+      location: FishingHoleType.THE_HILLS_OF_AMBER,
+      difficulty: 1,
+      weathers: [WeatherType.CLEARSKIES],
+      times: [{ start: 12, end: 16 }],
+    },
+
+    // Il Mheg
+    {
+      id: BigFishType.FAE_RAINBOW,
+      name: 'Fae Rainbow',
+      patch: '5.2',
+      baits: [BaitType.MARBLE_NYMPH],
+      fishSequence: [BaitType.MARBLE_NYMPH],
+      location: FishingHoleType.THE_JEALOUS_ONE,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLEARSKIES, WeatherType.FAIRSKIES],
+        to: [WeatherType.FOG],
+      },
+    },
+
+    // The Rak'tika Greatwood
+    {
+      id: BigFishType.BLACK_JET,
+      name: 'Black Jet',
+      patch: '5.2',
+      baits: [BaitType.ROBBER_BALL],
+      fishSequence: [BaitType.ROBBER_BALL],
+      location: FishingHoleType.THE_LOZATL,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLOUDS, WeatherType.FOG],
+        to: [WeatherType.CLEARSKIES, WeatherType.FAIRSKIES],
+      },
+      times: [{ start: 2, end: 12 }],
+    },
+
+    // The Tempest
+    {
+      id: BigFishType.ONDO_SIGH,
+      name: 'Ondo Sigh',
+      patch: '5.2',
+      baits: [BaitType.SQUID_STRIP],
+      fishSequence: [BaitType.SQUID_STRIP],
+      location: FishingHoleType.THE_FLOUNDERS_FLOOR,
+      difficulty: 1,
+      weathers: [WeatherType.FAIRSKIES, WeatherType.CLEARSKIES],
+      times: [{ start: 12, end: 14 }],
+    },
+  ],
+
+  '5.3': [
+    // The Crystarium
+    {
+      id: BigFishType.THE_SINSTEEPED,
+      name: 'The Sinsteeped',
+      patch: '5.3',
+      baits: [BaitType.FRUIT_WORM],
+      fishSequence: [BaitType.FRUIT_WORM],
+      location: FishingHoleType.THE_QUADRIVIUM,
+      difficulty: 1,
+      weathers: [WeatherType.FAIRSKIES, WeatherType.CLEARSKIES],
+      times: [{ start: 22.5, end: 23.5 }],
+    },
+
+    // Lakeland
+    {
+      id: BigFishType.SWEETHEART,
+      name: 'Sweetheart',
+      patch: '5.3',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS],
+      location: FishingHoleType.THE_RIFT_OF_SIGHS,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.FOG],
+        to: [WeatherType.CLEARSKIES, WeatherType.FAIRSKIES],
+      },
+    },
+
+    // Kholusia
+    {
+      id: BigFishType.GIANT_TAIMEN,
+      name: 'Giant Taimen',
+      patch: '5.3',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS],
+      location: FishingHoleType.UPPER_WATTS_RIVER,
+      difficulty: 1,
+    },
+
+    // Il Mheg
+    {
+      id: BigFishType.GOLD_HAMMER,
+      name: 'Gold Hammer',
+      patch: '5.3',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS],
+      location: FishingHoleType.SAINT_FATHRICS_TEMPLE,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLEARSKIES, WeatherType.FAIRSKIES],
+        to: [WeatherType.CLEARSKIES],
+      },
+    },
+    {
+      id: BigFishType.LEANNISG,
+      name: 'Leannisg',
+      patch: '5.3',
+      baits: [BaitType.MARBLE_NYMPH],
+      fishSequence: [BaitType.MARBLE_NYMPH],
+      location: FishingHoleType.HANDMIRROR_LAKE,
+      difficulty: 1,
+      weathers: [WeatherType.RAIN],
+      times: [{ start: 6, end: 8 }],
+    },
+
+    // The Rak'tika Greatwood
+    {
+      id: BigFishType.RECORDKILLER,
+      name: 'Recordkiller',
+      patch: '5.3',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS],
+      location: FishingHoleType.SOUTH_MJRLS_REGRET,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLEARSKIES, WeatherType.FAIRSKIES],
+        to: [WeatherType.FOG],
+      },
+      times: [{ start: 18, end: 24 }],
+    },
+
+    // The Tempest
+    {
+      id: BigFishType.OPAL_SHRIMP,
+      name: 'Opal Shrimp',
+      patch: '5.3',
+      baits: [BaitType.SQUID_STRIP],
+      fishSequence: [BaitType.SQUID_STRIP],
+      location: FishingHoleType.THE_NORVRANDT_SLOPE,
+      difficulty: 1,
+      weathers: [WeatherType.CLEARSKIES],
+      times: [{ start: 18, end: 20 }],
+    },
+    {
+      id: BigFishType.THE_MOTHER_OF_ALL_PANCAKES,
+      name: 'The Mother of All Pancakes',
+      patch: '5.3',
+      baits: [BaitType.SQUID_STRIP],
+      fishSequence: [BaitType.SQUID_STRIP],
+      location: FishingHoleType.EAST_CALIBAN_GAP,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLOUDS],
+        to: [WeatherType.CLEARSKIES],
+      },
+      times: [{ start: 0, end: 3 }],
+    },
+  ],
+
+  '5.4': [
+    // Lakeland
+    {
+      id: BigFishType.MOONLIGHT_GUPPY,
+      name: 'Moonlight Guppy',
+      patch: '5.4',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS],
+      location: FishingHoleType.THE_RUSTED_RESERVOIR,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLEARSKIES],
+        to: [WeatherType.FAIRSKIES],
+      },
+      times: [{ start: 6, end: 8 }],
+    },
+
+    // Kholusia
+    {
+      id: BigFishType.STEEL_FAN,
+      name: 'Steel Fan',
+      patch: '5.4',
+      baits: [BaitType.MARBLE_NYMPH],
+      fishSequence: [BaitType.MARBLE_NYMPH],
+      location: FishingHoleType.WHITE_OIL_FALLS,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLOUDS],
+        to: [WeatherType.FOG],
+      },
+    },
+    {
+      id: BigFishType.HENODUS_GRANDIS,
+      name: 'Henodus Grandis',
+      patch: '5.4',
+      baits: [BaitType.SHORT_BILL_MINNOW],
+      fishSequence: [BaitType.SHORT_BILL_MINNOW, NormalFishType.SPEARHEAD_SQUID],
+      location: FishingHoleType.THE_EASTERN_KHOLUSIAN_COAST,
+      difficulty: 1,
+      weathers: [WeatherType.CLOUDS],
+      times: [{ start: 22, end: 24 }],
+    },
+
+    // Il Mheg
+    {
+      id: BigFishType.SUNKEN_TOME,
+      name: 'Sunken Tome',
+      patch: '5.4',
+      baits: [BaitType.MARBLE_NYMPH],
+      fishSequence: [BaitType.MARBLE_NYMPH],
+      location: FishingHoleType.THE_HAUGHTY_ONE,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.FAIRSKIES],
+        to: [WeatherType.THUNDERSTORMS],
+      },
+      times: [{ start: 12, end: 16 }],
+    },
+
+    // The Rak'tika Greatwood
+    {
+      id: BigFishType.PEARL_PIPIRA,
+      name: 'Pearl Pipira',
+      patch: '5.4',
+      baits: [BaitType.ROBBER_BALL],
+      fishSequence: [BaitType.ROBBER_BALL, NormalFishType.DIAMOND_PIPIRA],
+      location: FishingHoleType.THE_RED_CHALICE,
+      difficulty: 1,
+      weathers: [WeatherType.FOG],
+      times: [{ start: 17, end: 20 }],
+    },
+
+    // The Tempest
+    {
+      id: BigFishType.THE_ONDOTAKER,
+      name: 'The Ondotaker',
+      patch: '5.4',
+      baits: [BaitType.SQUID_STRIP],
+      fishSequence: [BaitType.SQUID_STRIP],
+      location: FishingHoleType.WHERE_THE_DRY_RETURN,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLEARSKIES],
+        to: [WeatherType.CLOUDS],
+      },
+      times: [{ start: 8, end: 10 }],
+    },
+  ],
+
+  '5.5': [
+    // The Crystarium
+    {
+      id: BigFishType.ASTER_TRIVI,
+      name: 'Aster Trivi',
+      patch: '5.5',
+      baits: [BaitType.MARBLE_NYMPH],
+      fishSequence: [BaitType.MARBLE_NYMPH],
+      location: FishingHoleType.THE_TRIVIUM,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLEARSKIES],
+        to: [WeatherType.CLEARSKIES],
+      },
+      times: [{ start: 22, end: 24 }],
+    },
+
+    // Lakeland
+    {
+      id: BigFishType.PYTHON_DISCUS,
+      name: 'Python Discus',
+      patch: '5.5',
+      baits: [BaitType.FRUIT_WORM],
+      fishSequence: [BaitType.FRUIT_WORM],
+      location: FishingHoleType.SULLEN,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.RAIN],
+        to: [WeatherType.THUNDERSTORMS],
+      },
+    },
+
+    // Kholusia
+    {
+      id: BigFishType.STEEL_RAZOR,
+      name: 'Steel Razor',
+      patch: '5.5',
+      baits: [BaitType.MOYEBI_SHRIMP],
+      fishSequence: [BaitType.MOYEBI_SHRIMP],
+      location: FishingHoleType.THE_WESTERN_KHOLUSIAN_COAST,
+      difficulty: 1,
+      times: [{ start: 6, end: 8 }],
+    },
+    {
+      id: BigFishType.SHADESHIFTER,
+      name: 'Shadeshifter',
+      patch: '5.5',
+      baits: [BaitType.SQUID_STRIP],
+      fishSequence: [BaitType.SQUID_STRIP],
+      location: FishingHoleType.SEAGAZER_SHOALS,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLEARSKIES, WeatherType.FAIRSKIES],
+        to: [WeatherType.GALES],
+      },
+      times: [{ start: 10, end: 14 }],
+    },
+
+    // Amh Araeng
+    {
+      id: BigFishType.NABAATH_SAW,
+      name: 'Nabaath Saw',
+      patch: '5.5',
+      baits: [BaitType.JERKED_OVIM],
+      fishSequence: [BaitType.JERKED_OVIM, NormalFishType.DESERT_SAW],
+      location: FishingHoleType.THE_NABAATH_SEVERANCE,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLEARSKIES, WeatherType.FAIRSKIES, WeatherType.HEATWAVES],
+        to: [WeatherType.HEATWAVES],
+      },
+      times: [{ start: 6, end: 10 }],
+    },
+
+    // Il Mheg
+    {
+      id: BigFishType.DAMMROEN_HERRING,
+      name: 'Dammroen Herring',
+      patch: '5.5',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS],
+      location: FishingHoleType.THE_SPOILED_ONE,
+      difficulty: 1,
+    },
+    {
+      id: BigFishType.CELESTIAL,
+      name: 'Celestial',
+      patch: '5.5',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS],
+      location: FishingHoleType.FATHER_COLLARDS_FAILINGS,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.THUNDERSTORMS],
+        to: [WeatherType.CLEARSKIES],
+      },
+      times: [{ start: 7, end: 17 }],
+    },
+
+    // The Rak'tika Greatwood
+    {
+      id: BigFishType.GOLDEN_PIPIRA,
+      name: 'Golden Pipira',
+      patch: '5.5',
+      baits: [BaitType.ROBBER_BALL],
+      fishSequence: [BaitType.ROBBER_BALL],
+      location: FishingHoleType.MJRLS_TEARS,
+      difficulty: 1,
+      times: [{ start: 6, end: 7 }],
+    },
+    {
+      id: BigFishType.DEEPHAUNT,
+      name: 'Deephaunt',
+      patch: '5.5',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS],
+      location: FishingHoleType.WOVEN_OATH,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLOUDS],
+        to: [WeatherType.FOG],
+      },
+      times: [{ start: 2, end: 6 }],
+    },
+
+    // The Tempest
+    {
+      id: BigFishType.MORA_TECTA,
+      name: 'Mora Tecta',
+      patch: '5.5',
+      baits: [BaitType.SHORT_BILL_MINNOW],
+      fishSequence: [BaitType.SHORT_BILL_MINNOW],
+      location: FishingHoleType.NORTHWEST_CALIBAN_GORGE,
+      difficulty: 1,
+      weathers: [WeatherType.FAIRSKIES],
+      times: [{ start: 22, end: 24 }],
+    },
+    {
+      id: BigFishType.MARU_CRAB,
+      name: 'Maru Crab',
+      patch: '5.5',
+      baits: [BaitType.SHORT_BILL_MINNOW],
+      fishSequence: [BaitType.SHORT_BILL_MINNOW, NormalFishType.ANCIENT_SHRIMP],
+      location: FishingHoleType.WEST_CALIBAN_GAP,
+      difficulty: 1,
+      weathers: [WeatherType.CLOUDS],
+      times: [{ start: 16, end: 20 }],
+    },
+  ],
+
+  '5.55': [
+    // Lakeland
+    {
+      id: BigFishType.LISTRACANTHUS,
+      name: 'Listracanthus',
+      patch: '5.55',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS, BigFishType.THE_JAWS_OF_UNDEATH],
+      location: FishingHoleType.THE_ISLE_OF_KEN,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLEARSKIES, WeatherType.FAIRSKIES],
+        to: [WeatherType.FOG],
+      },
+      times: [{ start: 16, end: 24 }],
+    },
+
+    // Kholusia
+    {
+      id: BigFishType.AQUAMATON,
+      name: 'Aquamaton',
+      patch: '5.55',
+      baits: [BaitType.SHORT_BILL_MINNOW],
+      fishSequence: [BaitType.SHORT_BILL_MINNOW],
+      location: FishingHoleType.SEAGAZER_SHOALS,
+      difficulty: 5,
+      times: [{ start: 10, end: 16 }],
+      intuition: [
+        { fish: NormalFishType.SHAPESHIFTER, quantity: 5 },
+        { fish: BigFishType.SHADESHIFTER, quantity: 1 },
+      ],
+      prepType: ['intfish'],
+    },
+
+    // Amh Araeng
+    {
+      id: BigFishType.CINDER_SURPRISE,
+      name: 'Cinder Surprise',
+      patch: '5.55',
+      baits: [BaitType.DESERT_DESSERT_FROG],
+      fishSequence: [BaitType.DESERT_DESSERT_FROG],
+      location: FishingHoleType.THE_RIVER_OF_SAND,
+      difficulty: 10,
+      weatherTransitions: {
+        from: [WeatherType.DUSTSTORMS],
+        to: [WeatherType.HEATWAVES],
+      },
+      times: [{ start: 0, end: 2 }],
+      intuition: [{ fish: NormalFishType.SAND_EGG, quantity: 10 }],
+      prepType: ['intfish'],
+    },
+
+    // Il Mheg
+    {
+      id: BigFishType.EALAD_SKAAN,
+      name: 'Ealad Skaan',
+      patch: '5.55',
+      baits: [BaitType.BAITBUGS],
+      fishSequence: [BaitType.BAITBUGS],
+      location: FishingHoleType.LONGMIRROR_LAKE,
+      difficulty: 10,
+      weatherTransitions: {
+        from: [WeatherType.THUNDERSTORMS],
+        to: [WeatherType.CLEARSKIES],
+      },
+      times: [{ start: 23.5, end: 24 }],
+    },
+
+    // The Rak'tika Greatwood
+    {
+      id: BigFishType.GREATER_SERPENT_OF_RONKA,
+      name: 'Greater Serpent of Ronka',
+      patch: '5.55',
+      baits: [BaitType.ROBBER_BALL],
+      fishSequence: [
+        BaitType.ROBBER_BALL,
+        NormalFishType.CLOWN_TETRA,
+        NormalFishType.ERYOPS,
+        BigFishType.PRIEST_OF_YXLOKWA,
+      ],
+      location: FishingHoleType.LAKE_TUSI_MEKTA,
+      difficulty: 5,
+      times: [{ start: 10, end: 12 }],
+    },
+
+    // The Tempest
+    {
+      id: BigFishType.LANCETFISH,
+      name: 'Lanctefish',
+      patch: '5.55',
+      baits: [BaitType.SQUID_STRIP],
+      fishSequence: [BaitType.SQUID_STRIP],
+      location: FishingHoleType.NORTHWEST_CALIBAN_GORGE,
+      difficulty: 8,
+      weatherTransitions: {
+        from: [WeatherType.FAIRSKIES],
+        to: [WeatherType.CLOUDS],
+      },
+      times: [{ start: 0, end: 2 }],
+      intuition: [{ fish: BigFishType.MORA_TECTA, quantity: 2 }],
+      prepType: ['stay'],
+    },
+  ],
 };
 
 export const ARR_BIG_FISHES: Record<string, BigFish[]> = Object.keys(BIG_FISH_DATA)
@@ -2510,7 +3152,7 @@ export const ARR_BIG_FISHES: Record<string, BigFish[]> = Object.keys(BIG_FISH_DA
     {} as Record<string, BigFish[]>
   );
 export const ARR_BIG_FISH_IDS: BigFishType[] = Object.values(ARR_BIG_FISHES)
-  .reduce((a, b) => [...a, ...b])
+  .reduce((a, b) => [...a, ...b], [])
   .map((f) => f.id);
 
 export const HW_BIG_FISHES: Record<string, BigFish[]> = Object.keys(BIG_FISH_DATA)
@@ -2523,7 +3165,7 @@ export const HW_BIG_FISHES: Record<string, BigFish[]> = Object.keys(BIG_FISH_DAT
     {} as Record<string, BigFish[]>
   );
 export const HW_BIG_FISH_IDS: BigFishType[] = Object.values(HW_BIG_FISHES)
-  .reduce((a, b) => [...a, ...b])
+  .reduce((a, b) => [...a, ...b], [])
   .map((f) => f.id);
 
 export const STB_BIG_FISHES: Record<string, BigFish[]> = Object.keys(BIG_FISH_DATA)
@@ -2536,7 +3178,33 @@ export const STB_BIG_FISHES: Record<string, BigFish[]> = Object.keys(BIG_FISH_DA
     {} as Record<string, BigFish[]>
   );
 export const STB_BIG_FISH_IDS: BigFishType[] = Object.values(STB_BIG_FISHES)
-  .reduce((a, b) => [...a, ...b])
+  .reduce((a, b) => [...a, ...b], [])
+  .map((f) => f.id);
+
+export const SHB_BIG_FISHES: Record<string, BigFish[]> = Object.keys(BIG_FISH_DATA)
+  .filter((p) => p.startsWith('5.'))
+  .reduce(
+    (r, p) => {
+      r[p] = BIG_FISH_DATA[p];
+      return r;
+    },
+    {} as Record<string, BigFish[]>
+  );
+export const SHB_BIG_FISH_IDS: BigFishType[] = Object.values(SHB_BIG_FISHES)
+  .reduce((a, b) => [...a, ...b], [])
+  .map((f) => f.id);
+
+export const EW_BIG_FISHES: Record<string, BigFish[]> = Object.keys(BIG_FISH_DATA)
+  .filter((p) => p.startsWith('6.'))
+  .reduce(
+    (r, p) => {
+      r[p] = BIG_FISH_DATA[p];
+      return r;
+    },
+    {} as Record<string, BigFish[]>
+  );
+export const EW_BIG_FISH_IDS: BigFishType[] = Object.values(EW_BIG_FISHES)
+  .reduce((a, b) => [...a, ...b], [])
   .map((f) => f.id);
 
 export const ALL_BIG_FISHES = Object.values(BIG_FISH_DATA).reduce((a, b) => [...a, ...b]);

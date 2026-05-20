@@ -23,6 +23,7 @@ export const PATCH_DATA = [
   '5.3',
   '5.4',
   '5.5',
+  '5.55',
   '6.0',
   '6.1',
   '6.2',
@@ -35,3 +36,5 @@ export const PATCH_DATA = [
 export const ARR_PATCHES = PATCH_DATA.filter((p) => p.startsWith('2.')).sort();
 export const HW_PATCHES = PATCH_DATA.filter((p) => p.startsWith('3.')).sort();
 export const STB_PATCHES = PATCH_DATA.filter((p) => p.startsWith('4.')).sort();
+export const SHB_PATCHES = PATCH_DATA.filter((p) => p.startsWith('5.')).sort();
+export const EW_PATCHES = PATCH_DATA.filter((p) => p.startsWith('6.')).sort();

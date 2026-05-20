@@ -109,6 +109,7 @@ const Styles = css({
 
 type FishExpansionFilterProps = {
   heading: string;
+  abbreviatedHeading: string;
   patches: string[];
   baits: Record<string, Bait[]>;
   baitTypes: BaitType[];
@@ -118,6 +119,7 @@ type FishExpansionFilterProps = {
 
 const FishExpansionFilter = ({
   heading,
+  abbreviatedHeading,
   patches,
   baits,
   baitTypes,
@@ -138,7 +140,7 @@ const FishExpansionFilter = ({
   const allBaits = useMemo<Bait[]>(
     () =>
       Object.values(baits)
-        .reduce((a, b) => [...a, ...b])
+        .reduce((a, b) => [...a, ...b], [])
         .sort(alphabeticalSort),
     [baits]
   );
@@ -146,7 +148,7 @@ const FishExpansionFilter = ({
   const allFishes = useMemo(
     () =>
       Object.values(fishes)
-        .reduce((a, b) => [...a, ...b])
+        .reduce((a, b) => [...a, ...b], [])
         .sort(alphabeticalSort),
     [fishes]
   );
@@ -189,7 +191,7 @@ const FishExpansionFilter = ({
       <div className="heading" onClick={() => setExpansionCollapsed(!expansionCollapsed)}>
         {expansionCollapsed && <ExpandMoreIcon fontSize="medium" />}
         {!expansionCollapsed && <ExpandLessIcon fontSize="medium" />}
-        <span>{heading}</span>
+        <span>{expansionCollapsed ? abbreviatedHeading : heading}</span>
       </div>
       <div className={'content collapsible ' + (expansionCollapsed ? 'collapsed' : '')}>
         <div className="section-label">
