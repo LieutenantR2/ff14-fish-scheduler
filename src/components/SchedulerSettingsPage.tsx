@@ -194,7 +194,7 @@ const SchedulerSettingsPage = () => {
         />
         <BooleanConfigSetting
           settingLabel="Free Trial [Coming Soon]"
-          settingDescription="Free Trial players have limited access to certain baits and abilities. Enabling this will re-rank certain fishes to be higher difficulty as well has have bait options swapped.<br/><br/><em>All expansions after Stormblood will be hidden if this is enabled.</em>"
+          settingDescription="Free Trial players have limited access to certain baits and abilities. Enabling this will re-rank certain fishes to be higher difficulty as well has have bait options swapped.<br/><br/><em>All expansions after Shadowbringers will be hidden if this is enabled.</em>"
           checked={isFreeTrial}
           onChange={(v) => setIsFreeTrial(v)}
           isDisabled={true}

@@ -15,6 +15,9 @@ export type NormalFish = {
   patch: string;
   bait: BaitType;
   fishSequence: (BaitType | NormalFishType | BigFishType)[][];
+  /**
+   * Number of exclamations for the bite indicator (!, !!, !!!)
+   */
   bite: 1 | 2 | 3;
   hook: 'precision' | 'powerful';
   snagging?: boolean;

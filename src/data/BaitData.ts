@@ -435,11 +435,165 @@ export const BAIT_DATA: Record<string, Bait[]> = {
   ],
   '5.0': [
     {
+      id: BaitType.DESERT_DESSERT_FROG,
+      name: 'Desert Dessert Frog',
+      level: 70,
+      patch: '5.0',
+      obtainMethod: 'gil',
+      reusable: true,
+    },
+    {
+      id: BaitType.FRUIT_WORM,
+      name: 'Fruit Worm',
+      level: 70,
+      patch: '5.0',
+      obtainMethod: 'gil',
+      reusable: false,
+    },
+    {
+      id: BaitType.MOYEBI_SHRIMP,
+      name: 'Moyebi Shrimp',
+      level: 71,
+      patch: '5.0',
+      obtainMethod: 'gil',
+      reusable: false,
+    },
+    {
+      id: BaitType.MARBLE_NYMPH,
+      name: 'Marble Nymph',
+      level: 73,
+      patch: '5.0',
+      obtainMethod: 'gil',
+      reusable: false,
+    },
+    {
+      id: BaitType.ROBBER_BALL,
+      name: 'Robber Ball',
+      level: 75,
+      patch: '5.0',
+      obtainMethod: 'scrips',
+      reusable: false,
+    },
+    {
+      id: BaitType.JERKED_OVIM,
+      name: 'Jerked Ovim',
+      level: 77,
+      patch: '5.0',
+      obtainMethod: 'scrips',
+      reusable: false,
+    },
+    {
+      id: BaitType.SHORT_BILL_MINNOW,
+      name: 'Short Bill Minnow',
+      level: 78,
+      patch: '5.0',
+      obtainMethod: 'scrips',
+      reusable: true,
+    },
+    {
+      id: BaitType.BAITBUGS,
+      name: 'Baitbugs',
+      level: 80,
+      patch: '5.0',
+      obtainMethod: 'scrips',
+      reusable: false,
+    },
+    {
+      id: BaitType.SHRIMP_BALL,
+      name: 'Shrimp Ball',
+      level: 80,
+      patch: '5.0',
+      obtainMethod: 'gil',
+      reusable: false,
+    },
+    {
       id: BaitType.SIGNATURE_SKYBALL,
       name: 'Signature Skyball',
       level: 80,
       patch: '5.0',
       obtainMethod: 'gil',
+      reusable: false,
+    },
+    {
+      id: BaitType.SQUID_STRIP,
+      name: 'Squid Strip',
+      level: 80,
+      patch: '5.0',
+      obtainMethod: 'scrips',
+      reusable: false,
+    },
+  ],
+  '6.0': [
+    {
+      id: BaitType.GOLD_SALMON_ROE,
+      name: 'Gold Salmon Roe',
+      level: 80,
+      patch: '6.0',
+      obtainMethod: 'gil',
+      reusable: false,
+    },
+    {
+      id: BaitType.LEECH,
+      name: 'Leech',
+      level: 83,
+      patch: '6.0',
+      obtainMethod: 'gil',
+      reusable: false,
+    },
+    {
+      id: BaitType.GREY_WORM,
+      name: 'Grey Worm',
+      level: 84,
+      patch: '6.0',
+      obtainMethod: 'gil',
+      reusable: false,
+    },
+    {
+      id: BaitType.SKY_SPOON_LURE,
+      name: 'Sky Spoon Lure',
+      level: 86,
+      patch: '6.0',
+      obtainMethod: 'scrips',
+      reusable: true,
+    },
+    {
+      id: BaitType.PANIC_JIG,
+      name: 'Panic Jig',
+      level: 89,
+      patch: '6.0',
+      obtainMethod: 'scrips',
+      reusable: true,
+    },
+    {
+      id: BaitType.CHIMERA_WORM,
+      name: 'Chimera Worm',
+      level: 90,
+      patch: '6.0',
+      obtainMethod: 'scrips',
+      reusable: false,
+    },
+    {
+      id: BaitType.MACKEREL_STRIP,
+      name: 'Mackerel Strip',
+      level: 90,
+      patch: '6.0',
+      obtainMethod: 'scrips',
+      reusable: false,
+    },
+    {
+      id: BaitType.MAYFLY,
+      name: 'Mayfly',
+      level: 90,
+      patch: '6.0',
+      obtainMethod: 'scrips',
+      reusable: false,
+    },
+    {
+      id: BaitType.STARDUST,
+      name: 'Stardust',
+      level: 90,
+      patch: '6.0',
+      obtainMethod: 'scrips',
       reusable: false,
     },
   ],
@@ -481,6 +635,32 @@ export const StbBaits: Record<string, Bait[]> = Object.keys(BAIT_DATA)
     {} as Record<string, Bait[]>
   );
 export const STB_BAIT_IDS: BaitType[] = Object.values(StbBaits)
+  .reduce((a, b) => [...a, ...b])
+  .map((b) => b.id);
+
+export const ShbBaits: Record<string, Bait[]> = Object.keys(BAIT_DATA)
+  .filter((p) => p.startsWith('5.'))
+  .reduce(
+    (r, p) => {
+      r[p] = BAIT_DATA[p];
+      return r;
+    },
+    {} as Record<string, Bait[]>
+  );
+export const SHB_BAIT_IDS: BaitType[] = Object.values(ShbBaits)
+  .reduce((a, b) => [...a, ...b])
+  .map((b) => b.id);
+
+export const EwBaits: Record<string, Bait[]> = Object.keys(BAIT_DATA)
+  .filter((p) => p.startsWith('6.'))
+  .reduce(
+    (r, p) => {
+      r[p] = BAIT_DATA[p];
+      return r;
+    },
+    {} as Record<string, Bait[]>
+  );
+export const EW_BAIT_IDS: BaitType[] = Object.values(EwBaits)
   .reduce((a, b) => [...a, ...b])
   .map((b) => b.id);
 

@@ -1199,6 +1199,476 @@ export const FISHING_HOLE_DATA: FishingHole[] = [
     patch: '4.0',
     location: LocationType.THE_AZIM_STEPPE,
   },
+
+  // The Crystarium
+  {
+    id: FishingHoleType.THE_TRIVIUM,
+    name: 'The Trivium',
+    patch: '5.0',
+    location: LocationType.THE_CRYSTARIUM,
+  },
+  {
+    id: FishingHoleType.THE_QUADRIVIUM,
+    name: 'The Quadrivium',
+    patch: '5.0',
+    location: LocationType.THE_CRYSTARIUM,
+  },
+  {
+    id: FishingHoleType.CRYSTARIUM_PERSONAL_SUITES,
+    name: 'Crystarium Personal Suites',
+    patch: '5.0',
+    location: LocationType.THE_CRYSTARIUM,
+  },
+
+  // Eulmore
+  {
+    id: FishingHoleType.THE_DERELICTS,
+    name: 'The Derelicts',
+    patch: '5.0',
+    location: LocationType.EULMORE,
+  },
+
+  // Lakeland
+  {
+    id: FishingHoleType.THE_RIFT_OF_SIGHS,
+    name: 'The Rift of Sighs',
+    patch: '5.0',
+    location: LocationType.LAKELAND,
+  },
+  {
+    id: FishingHoleType.THE_RUSTED_RESERVOIR,
+    name: 'The Rusted Reservoir',
+    patch: '5.0',
+    location: LocationType.LAKELAND,
+  },
+  {
+    id: FishingHoleType.THE_SOURCE,
+    name: 'The Source',
+    patch: '5.0',
+    location: LocationType.LAKELAND,
+  },
+  {
+    id: FishingHoleType.SULLEN,
+    name: 'Sullen',
+    patch: '5.0',
+    location: LocationType.LAKELAND,
+  },
+  {
+    id: FishingHoleType.THE_ISLE_OF_KEN,
+    name: 'The Isle of Ken',
+    patch: '5.0',
+    location: LocationType.LAKELAND,
+  },
+
+  // Kholusia
+  {
+    id: FishingHoleType.UPPER_WATTS_RIVER,
+    name: 'Upper Watts River',
+    patch: '5.0',
+    location: LocationType.KHOLUSIA,
+  },
+  {
+    id: FishingHoleType.WHITE_OIL_FALLS,
+    name: 'White Oil Falls',
+    patch: '5.0',
+    location: LocationType.KHOLUSIA,
+  },
+  {
+    id: FishingHoleType.LOWER_WATTS_RIVER,
+    name: 'Lower Watts River',
+    patch: '5.0',
+    location: LocationType.KHOLUSIA,
+  },
+  {
+    id: FishingHoleType.SHARPTONGUE_DRIP,
+    name: 'Sharptongue Drip',
+    patch: '5.0',
+    location: LocationType.KHOLUSIA,
+  },
+  {
+    id: FishingHoleType.THE_WESTERN_KHOLUSIAN_COAST,
+    name: 'The Western Kholusian Coast',
+    patch: '5.0',
+    location: LocationType.KHOLUSIA,
+  },
+  {
+    id: FishingHoleType.SEAGAZER_SHOALS,
+    name: 'Seagazer Shoals',
+    patch: '5.0',
+    location: LocationType.KHOLUSIA,
+  },
+  {
+    id: FishingHoleType.THE_EASTERN_KHOLUSIAN_COAST,
+    name: 'The Eastern Kholusian Coast',
+    patch: '5.0',
+    location: LocationType.KHOLUSIA,
+  },
+
+  // Amh Araeng
+  {
+    id: FishingHoleType.THE_RIVER_OF_SAND,
+    name: 'The River of Sand',
+    patch: '5.0',
+    location: LocationType.AMH_ARAENG,
+  },
+  {
+    id: FishingHoleType.THE_NABAATH_SEVERANCE,
+    name: 'The Nabaath Severance',
+    patch: '5.0',
+    location: LocationType.AMH_ARAENG,
+  },
+  {
+    id: FishingHoleType.THE_HILLS_OF_AMBER,
+    name: 'The Hills of Amber',
+    patch: '5.0',
+    location: LocationType.AMH_ARAENG,
+  },
+
+  // Il Mheg
+  {
+    id: FishingHoleType.HANDMIRROR_LAKE,
+    name: 'Handmirror Lake',
+    patch: '5.0',
+    location: LocationType.IL_MHEG,
+  },
+  {
+    id: FishingHoleType.LONGMIRROR_LAKE,
+    name: 'Longmirror Lake',
+    patch: '5.0',
+    location: LocationType.IL_MHEG,
+  },
+  {
+    id: FishingHoleType.THE_HAUGHTY_ONE,
+    name: 'The Haughty One',
+    patch: '5.0',
+    location: LocationType.IL_MHEG,
+  },
+  {
+    id: FishingHoleType.THE_JEALOUS_ONE,
+    name: 'The Jealous One',
+    patch: '5.0',
+    location: LocationType.IL_MHEG,
+  },
+  {
+    id: FishingHoleType.THE_SPOILED_ONE,
+    name: 'The Spoiled One',
+    patch: '5.0',
+    location: LocationType.IL_MHEG,
+  },
+  {
+    id: FishingHoleType.SAINT_FATHRICS_TEMPLE,
+    name: "Saint Fathric's Temple",
+    patch: '5.0',
+    location: LocationType.IL_MHEG,
+  },
+  {
+    id: FishingHoleType.FATHER_COLLARDS_FAILINGS,
+    name: "Father Collard's Failings",
+    patch: '5.0',
+    location: LocationType.IL_MHEG,
+  },
+
+  // The Rak'tika Greatwood
+  {
+    id: FishingHoleType.LAKE_TUSI_MEKTA,
+    name: "Lake Tusi Mek'ta",
+    patch: '5.0',
+    location: LocationType.THE_RAKTIKA_GREATWOOD,
+  },
+  {
+    id: FishingHoleType.THE_RED_CHALICE,
+    name: 'The Red Chalice',
+    patch: '5.0',
+    location: LocationType.THE_RAKTIKA_GREATWOOD,
+  },
+  {
+    id: FishingHoleType.THE_LOZATL,
+    name: 'The Lozatl',
+    patch: '5.0',
+    location: LocationType.THE_RAKTIKA_GREATWOOD,
+  },
+  {
+    id: FishingHoleType.SOUTH_MJRLS_REGRET,
+    name: "South Mjrl's Regret",
+    patch: '5.0',
+    location: LocationType.THE_RAKTIKA_GREATWOOD,
+  },
+  {
+    id: FishingHoleType.WOVEN_OATH,
+    name: 'Woven Oath',
+    patch: '5.0',
+    location: LocationType.THE_RAKTIKA_GREATWOOD,
+  },
+  {
+    id: FishingHoleType.MJRLS_TEARS,
+    name: "Mjrl's Tears",
+    patch: '5.0',
+    location: LocationType.THE_RAKTIKA_GREATWOOD,
+  },
+
+  // The Tempest
+  {
+    id: FishingHoleType.THE_FLOUNDERS_FLOOR,
+    name: "The Flounders' Floor",
+    patch: '5.0',
+    location: LocationType.THE_TEMPEST,
+  },
+  {
+    id: FishingHoleType.WHERE_THE_DRY_RETURN,
+    name: 'Where the Dry Return',
+    patch: '5.0',
+    location: LocationType.THE_TEMPEST,
+  },
+  {
+    id: FishingHoleType.NORTHWEST_CALIBAN_GORGE,
+    name: 'Northwest Caliban Gorge',
+    patch: '5.0',
+    location: LocationType.THE_TEMPEST,
+  },
+  {
+    id: FishingHoleType.WEST_CALIBAN_GAP,
+    name: 'West Caliban Gap',
+    patch: '5.0',
+    location: LocationType.THE_TEMPEST,
+  },
+  {
+    id: FishingHoleType.EAST_CALIBAN_GAP,
+    name: 'East Caliban Gap',
+    patch: '5.0',
+    location: LocationType.THE_TEMPEST,
+  },
+  {
+    id: FishingHoleType.PURPURE,
+    name: 'Purpure',
+    patch: '5.0',
+    location: LocationType.THE_TEMPEST,
+  },
+  {
+    id: FishingHoleType.THE_NORVRANDT_SLOPE,
+    name: 'The Norvrandt Slope',
+    patch: '5.0',
+    location: LocationType.THE_TEMPEST,
+  },
+
+  // Old Sharlayan
+  {
+    id: FishingHoleType.SCHOLARS_HARBOR,
+    name: "Scholar's Harbor",
+    patch: '6.0',
+    location: LocationType.OLD_SHARLAYAN,
+  },
+  {
+    id: FishingHoleType.OINOPS,
+    name: 'Oinops',
+    patch: '6.0',
+    location: LocationType.OLD_SHARLAYAN,
+  },
+  {
+    id: FishingHoleType.REFLECTING_POOL,
+    name: 'Reflecting Pool',
+    patch: '6.0',
+    location: LocationType.OLD_SHARLAYAN,
+  },
+
+  // Labyrinthos
+  {
+    id: FishingHoleType.UNMOVED_SOURCE_ALPHA,
+    name: 'Unmoved Source Alpha',
+    patch: '6.0',
+    location: LocationType.LABYRINTHOS,
+  },
+  {
+    id: FishingHoleType.THE_MOVER_ALPHA,
+    name: 'The Mover Alpha',
+    patch: '6.0',
+    location: LocationType.LABYRINTHOS,
+  },
+  {
+    id: FishingHoleType.UNMOVED_SOURCE_BETA,
+    name: 'Unmoved Source Beta',
+    patch: '6.0',
+    location: LocationType.LABYRINTHOS,
+  },
+  {
+    id: FishingHoleType.THE_MOVER_BETA,
+    name: 'The Mover Beta',
+    patch: '6.0',
+    location: LocationType.LABYRINTHOS,
+  },
+  {
+    id: FishingHoleType.DEEPMOAT,
+    name: 'Deepmoat',
+    patch: '6.0',
+    location: LocationType.LABYRINTHOS,
+  },
+
+  // Radz-at-Han
+  {
+    id: FishingHoleType.MEGHADUTA,
+    name: 'Meghaduta',
+    patch: '6.0',
+    location: LocationType.RADZ_AT_HAND,
+  },
+
+  // Thavnair
+  {
+    id: FishingHoleType.YEDLIHMAD,
+    name: 'Yedlihmad',
+    patch: '6.0',
+    location: LocationType.THAVNAIR,
+  },
+  {
+    id: FishingHoleType.THE_THAVNAIRIAN_COAST,
+    name: 'The Thavnairian Coast',
+    patch: '6.0',
+    location: LocationType.THAVNAIR,
+  },
+  {
+    id: FishingHoleType.THE_GREAT_RUNOFF,
+    name: 'The Great Runoff',
+    patch: '6.0',
+    location: LocationType.THAVNAIR,
+  },
+  {
+    id: FishingHoleType.GIANTSGALL_GROUNDS,
+    name: 'Giantsgall Grounds',
+    patch: '6.0',
+    location: LocationType.THAVNAIR,
+  },
+  {
+    id: FishingHoleType.THE_WAKEFUL_TORANA,
+    name: 'The Wakeful Torana',
+    patch: '6.0',
+    location: LocationType.THAVNAIR,
+  },
+  {
+    id: FishingHoleType.KSIRODA,
+    name: 'Ksiroda',
+    patch: '6.0',
+    location: LocationType.THAVNAIR,
+  },
+  {
+    id: FishingHoleType.PAVANAS_REMORSE,
+    name: "Pavana's Remorse",
+    patch: '6.0',
+    location: LocationType.THAVNAIR,
+  },
+  {
+    id: FishingHoleType.THE_FONT_OF_MAYA,
+    name: 'The Font of Maya',
+    patch: '6.0',
+    location: LocationType.THAVNAIR,
+  },
+  {
+    id: FishingHoleType.THE_PERFUMED_TIDES,
+    name: 'The Perfumed Tides',
+    patch: '6.0',
+    location: LocationType.THAVNAIR,
+  },
+
+  // Garlemald
+  {
+    id: FishingHoleType.THE_EBLAN_THAW,
+    name: 'The Eblan Thaw',
+    patch: '6.0',
+    location: LocationType.GARLEMALD,
+  },
+  {
+    id: FishingHoleType.THE_STAINLESS_COURSE,
+    name: 'The Stainless Course',
+    patch: '6.0',
+    location: LocationType.GARLEMALD,
+  },
+
+  // Mare Lamentorum
+  {
+    id: FishingHoleType.GREATEST_ENDSVALE,
+    name: 'Greatest Endsvale',
+    patch: '6.0',
+    location: LocationType.MARE_LAMENTORUM,
+  },
+  {
+    id: FishingHoleType.THE_CHLOROPHOSPOND,
+    name: 'The Chlorophospond',
+    patch: '6.0',
+    location: LocationType.MARE_LAMENTORUM,
+  },
+  {
+    id: FishingHoleType.THE_FROZEN_FISSURE,
+    name: 'The Frozen Fissure',
+    patch: '6.0',
+    location: LocationType.MARE_LAMENTORUM,
+  },
+
+  // Ultima Thule
+  {
+    id: FishingHoleType.APOHELOS_18_ALPHA,
+    name: 'Apohelos 18-α',
+    patch: '6.0',
+    location: LocationType.ULTIMA_THULE,
+  },
+  {
+    id: FishingHoleType.APOHELOS_18_BETA,
+    name: 'Apohelos 18-β',
+    patch: '6.0',
+    location: LocationType.ULTIMA_THULE,
+  },
+  {
+    id: FishingHoleType.APOHELOS_18_GAMMA,
+    name: 'Apohelos 18-γ',
+    patch: '6.0',
+    location: LocationType.ULTIMA_THULE,
+  },
+  {
+    id: FishingHoleType.THE_WELLSPRING_OF_REGRET,
+    name: 'The Wellspring of Regret',
+    patch: '6.0',
+    location: LocationType.ULTIMA_THULE,
+  },
+  {
+    id: FishingHoleType.ABODE_OF_THE_EA,
+    name: 'Abode of the Ea',
+    patch: '6.0',
+    location: LocationType.ULTIMA_THULE,
+  },
+  {
+    id: FishingHoleType.LIMNE_18,
+    name: 'Limne 18',
+    patch: '6.0',
+    location: LocationType.ULTIMA_THULE,
+  },
+  {
+    id: FishingHoleType.LIMNE_3_ALPHA,
+    name: 'Limne 3-α',
+    patch: '6.0',
+    location: LocationType.ULTIMA_THULE,
+  },
+  {
+    id: FishingHoleType.LIMNE_3_BETA,
+    name: 'Limne 3-β',
+    patch: '6.0',
+    location: LocationType.ULTIMA_THULE,
+  },
+
+  // Elpis
+  {
+    id: FishingHoleType.RUMINATIONS_RAMBLE,
+    name: "Rumination's Ramble",
+    patch: '6.0',
+    location: LocationType.ELPIS,
+  },
+  {
+    id: FishingHoleType.THE_LOWER_HUNGERING_GARDENS,
+    name: 'The Lower Hungering Gardens',
+    patch: '6.0',
+    location: LocationType.ELPIS,
+  },
+  {
+    id: FishingHoleType.LETHE,
+    name: 'Lethe',
+    patch: '6.0',
+    location: LocationType.ELPIS,
+  },
 ];
 
 export const FISHING_HOLE_BY_ID = FISHING_HOLE_DATA.reduce(

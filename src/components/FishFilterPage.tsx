@@ -2,7 +2,13 @@
 import { css } from '@emotion/react';
 import { LARGE_SCREEN_SIZE } from '../constants/UI.ts';
 import FishExpansionFilter from './Filter/FishExpansionFilter.tsx';
-import { ARR_PATCHES, HW_PATCHES, STB_PATCHES } from '../data/PatchData.ts';
+import {
+  ARR_PATCHES,
+  EW_PATCHES,
+  HW_PATCHES,
+  SHB_PATCHES,
+  STB_PATCHES,
+} from '../data/PatchData.ts';
 import {
   ARR_BAITS,
   ARR_BAIT_IDS,
@@ -10,6 +16,10 @@ import {
   HW_BAIT_IDS,
   StbBaits,
   STB_BAIT_IDS,
+  EW_BAIT_IDS,
+  ShbBaits,
+  SHB_BAIT_IDS,
+  EwBaits,
 } from '../data/BaitData.ts';
 import {
   ARR_BIG_FISHES,
@@ -19,6 +29,10 @@ import {
   HW_BIG_FISH_IDS,
   STB_BIG_FISHES,
   STB_BIG_FISH_IDS,
+  SHB_BIG_FISHES,
+  SHB_BIG_FISH_IDS,
+  EW_BIG_FISHES,
+  EW_BIG_FISH_IDS,
 } from '../data/BigFishData.ts';
 import TextButton from './GenericUI/TextButton.tsx';
 import { useCallback, useContext } from 'react';
@@ -67,6 +81,13 @@ const Styles = css({
       flexBasis: '400px',
       display: 'flex',
       flexDirection: 'column',
+
+      '&.collapsed': {
+        flexBasis: '100px',
+        minWidth: '100px',
+        width: '100px',
+        flexGrow: 0,
+      },
     },
   },
 
@@ -96,7 +117,7 @@ const FishFilterPage = () => {
 
   const handleResetAllIncomplete = useCallback(() => {
     onCompleteFish([...Object.keys(BIG_FISH_BY_ID).map((f) => parseInt(f) as BigFishType)], false);
-  }, [fishes, onCompleteFish]);
+  }, [onCompleteFish]);
 
   return (
     <div css={Styles}>
@@ -117,6 +138,7 @@ const FishFilterPage = () => {
       <div className="filters-container">
         <FishExpansionFilter
           heading="ARR"
+          abbreviatedHeading="ARR"
           patches={ARR_PATCHES}
           baits={ARR_BAITS}
           baitTypes={ARR_BAIT_IDS}
@@ -125,6 +147,7 @@ const FishFilterPage = () => {
         />
         <FishExpansionFilter
           heading="Heavensward"
+          abbreviatedHeading="HW"
           patches={HW_PATCHES}
           baitTypes={HW_BAIT_IDS}
           baits={HW_BAITS}
@@ -133,12 +156,33 @@ const FishFilterPage = () => {
         />
         <FishExpansionFilter
           heading="Stormblood"
+          abbreviatedHeading="STB"
           patches={STB_PATCHES}
           baitTypes={STB_BAIT_IDS}
           baits={StbBaits}
           fishes={STB_BIG_FISHES}
           fishTypes={STB_BIG_FISH_IDS}
         />
+        <FishExpansionFilter
+          heading="Shadowbringers"
+          abbreviatedHeading="SHB"
+          patches={SHB_PATCHES}
+          baitTypes={SHB_BAIT_IDS}
+          baits={ShbBaits}
+          fishes={SHB_BIG_FISHES}
+          fishTypes={SHB_BIG_FISH_IDS}
+        />
+        {false && (
+          <FishExpansionFilter
+            heading="Endwalker"
+            abbreviatedHeading="EW"
+            patches={EW_PATCHES}
+            baitTypes={EW_BAIT_IDS}
+            baits={EwBaits}
+            fishes={EW_BIG_FISHES}
+            fishTypes={EW_BIG_FISH_IDS}
+          />
+        )}
       </div>
     </div>
   );
