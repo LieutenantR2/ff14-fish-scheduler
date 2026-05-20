@@ -2605,7 +2605,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
     // Lakeland
     {
       id: BigFishType.THE_JAWS_OF_UNDEATH,
-      name: 'Starchaser',
+      name: 'The Jaws of Undeath',
       patch: '5.2',
       baits: [BaitType.BAITBUGS],
       fishSequence: [BaitType.BAITBUGS],
