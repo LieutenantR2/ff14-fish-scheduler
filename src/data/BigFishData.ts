@@ -3125,7 +3125,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
     // The Tempest
     {
       id: BigFishType.LANCETFISH,
-      name: 'Lanctefish',
+      name: 'Lancetfish',
       patch: '5.55',
       baits: [BaitType.SQUID_STRIP],
       fishSequence: [BaitType.SQUID_STRIP],
