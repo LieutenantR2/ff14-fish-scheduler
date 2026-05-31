@@ -2807,7 +2807,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       baits: [BaitType.BAITBUGS],
       fishSequence: [BaitType.BAITBUGS],
       location: FishingHoleType.THE_RUSTED_RESERVOIR,
-      difficulty: 1,
+      difficulty: 3,
       weatherTransitions: {
         from: [WeatherType.CLEARSKIES],
         to: [WeatherType.FAIRSKIES],
@@ -2896,7 +2896,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       baits: [BaitType.MARBLE_NYMPH],
       fishSequence: [BaitType.MARBLE_NYMPH],
       location: FishingHoleType.THE_TRIVIUM,
-      difficulty: 1,
+      difficulty: 3,
       weatherTransitions: {
         from: [WeatherType.CLEARSKIES],
         to: [WeatherType.CLEARSKIES],
@@ -2978,7 +2978,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       baits: [BaitType.BAITBUGS],
       fishSequence: [BaitType.BAITBUGS],
       location: FishingHoleType.FATHER_COLLARDS_FAILINGS,
-      difficulty: 1,
+      difficulty: 3,
       weatherTransitions: {
         from: [WeatherType.THUNDERSTORMS],
         to: [WeatherType.CLEARSKIES],
@@ -2994,7 +2994,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       baits: [BaitType.ROBBER_BALL],
       fishSequence: [BaitType.ROBBER_BALL],
       location: FishingHoleType.MJRLS_TEARS,
-      difficulty: 1,
+      difficulty: 3,
       times: [{ start: 6, end: 7 }],
     },
     {
@@ -3031,7 +3031,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       baits: [BaitType.SQUID_STRIP],
       fishSequence: [BaitType.SQUID_STRIP, NormalFishType.ANCIENT_SHRIMP],
       location: FishingHoleType.WEST_CALIBAN_GAP,
-      difficulty: 1,
+      difficulty: 3,
       weathers: [WeatherType.CLOUDS],
       times: [{ start: 16, end: 20 }],
     },
@@ -3118,7 +3118,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
         BigFishType.PRIEST_OF_YXLOKWA,
       ],
       location: FishingHoleType.LAKE_TUSI_MEKTA,
-      difficulty: 5,
+      difficulty: 3,
       times: [{ start: 10, end: 12 }],
     },
 
