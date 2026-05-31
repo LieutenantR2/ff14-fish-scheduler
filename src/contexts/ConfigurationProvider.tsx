@@ -84,6 +84,14 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
   }, [travelTimeSeconds]);
 
   useEffect(() => {
+    localStorage.setItem('autoGenerateOnCompletion', autoGenerateOnCompletion.toString());
+  }, [autoGenerateOnCompletion]);
+
+  useEffect(() => {
+    localStorage.setItem('isFreeTrial', isFreeTrial.toString());
+  }, [isFreeTrial]);
+
+  useEffect(() => {
     localStorage.setItem('excludeRequiredBigFish', excludeRequiredBigFish.toString());
   }, [excludeRequiredBigFish]);
 

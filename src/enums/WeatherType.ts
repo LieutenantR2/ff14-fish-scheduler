@@ -14,4 +14,7 @@ export enum WeatherType {
   SNOW = 15,
   BLIZZARDS = 16,
   GLOOM = 17,
+  UMBRALWIND = 49,
+  MOONDUST = 148,
+  ASTROMAGNETICSTORM = 149,
 }

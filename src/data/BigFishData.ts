@@ -3062,7 +3062,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       baits: [BaitType.SHORT_BILL_MINNOW],
       fishSequence: [BaitType.SHORT_BILL_MINNOW],
       location: FishingHoleType.SEAGAZER_SHOALS,
-      difficulty: 5,
+      difficulty: 8,
       times: [{ start: 10, end: 16 }],
       intuition: [
         { fish: NormalFishType.SHAPESHIFTER, quantity: 5 },
@@ -3140,6 +3140,598 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       prepType: ['stay'],
     },
   ],
+
+  '6.1': [
+    // Old Sharlayan
+    {
+      id: BigFishType.AETHEROLECTRIC_GUITARFISH,
+      name: 'Aetherolectric Guitarfish',
+      patch: '6.1',
+      baits: [BaitType.MACKEREL_STRIP],
+      fishSequence: [BaitType.MACKEREL_STRIP],
+      location: FishingHoleType.SCHOLARS_HARBOR,
+      difficulty: 1,
+      times: [{ start: 20, end: 24 }],
+    },
+
+    // Radz-at-Han
+    {
+      id: BigFishType.EARFUL,
+      name: 'Earful',
+      patch: '6.1',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY],
+      location: FishingHoleType.MEGHADUTA,
+      difficulty: 1,
+      times: [{ start: 4, end: 8 }],
+    },
+
+    // Labyrinthos
+    {
+      id: BigFishType.JUMBO_SNOOK,
+      name: 'Jumbo Snook',
+      patch: '6.1',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY],
+      location: FishingHoleType.UNMOVED_SOURCE_ALPHA,
+      difficulty: 1,
+      weathers: [WeatherType.CLOUDS],
+      times: [{ start: 18, end: 22 }],
+    },
+
+    // Thavnair
+    {
+      id: BigFishType.HIPPO_FROG,
+      name: 'Hippo Frog',
+      patch: '6.1',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY],
+      location: FishingHoleType.GIANTSGALL_GROUNDS,
+      difficulty: 1,
+      weathers: [WeatherType.SHOWERS],
+    },
+
+    // Garlemald
+    {
+      id: BigFishType.RIMEPIKE,
+      name: 'Rimepike',
+      patch: '6.1',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY, NormalFishType.CERULE_CORE],
+      location: FishingHoleType.THE_EBLAN_THAW,
+      difficulty: 1,
+      weathers: [WeatherType.SNOW],
+    },
+
+    // Ultima Thule
+    {
+      id: BigFishType.FOUN_AHLM,
+      name: 'Found Ahlm',
+      patch: '6.1',
+      baits: [BaitType.CHIMERA_WORM],
+      fishSequence: [BaitType.CHIMERA_WORM],
+      location: FishingHoleType.APOHELOS_18_BETA,
+      difficulty: 1,
+      weathers: [WeatherType.UMBRALWIND],
+      times: [{ start: 10, end: 14 }],
+    },
+    {
+      id: BigFishType.FORBIDDINGWAY,
+      name: 'Forbiddingway',
+      patch: '6.1',
+      baits: [BaitType.STARDUST],
+      fishSequence: [BaitType.STARDUST],
+      location: FishingHoleType.LIMNE_18,
+      difficulty: 1,
+      weathers: [WeatherType.ASTROMAGNETICSTORM],
+      times: [{ start: 8, end: 12 }],
+    },
+  ],
+
+  '6.2': [
+    // Old Sharlayan
+    {
+      id: BigFishType.GREATSWORD_SNOOK,
+      name: 'Greatsword Snook',
+      patch: '6.2',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY],
+      location: FishingHoleType.OINOPS,
+      difficulty: 1,
+      weathers: [WeatherType.SNOW],
+      times: [{ start: 16, end: 20 }],
+    },
+
+    // Labyrinthos
+    {
+      id: BigFishType.SWAMPSUCKER_BOWFIN,
+      name: 'Swamp Sucker Bowfin',
+      patch: '6.2',
+      baits: [BaitType.SKY_SPOON_LURE],
+      fishSequence: [BaitType.SKY_SPOON_LURE],
+      location: FishingHoleType.UNMOVED_SOURCE_BETA,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.FAIRSKIES, WeatherType.CLEARSKIES],
+        to: [WeatherType.CLOUDS],
+      },
+      times: [{ start: 8, end: 16 }],
+    },
+
+    // Thavnair
+    {
+      id: BigFishType.BIGCUDA,
+      name: 'Bigcuda',
+      patch: '6.2',
+      baits: [BaitType.SKY_SPOON_LURE],
+      fishSequence: [BaitType.SKY_SPOON_LURE],
+      location: FishingHoleType.KSIRODA,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.FAIRSKIES, WeatherType.CLEARSKIES],
+        to: [WeatherType.RAIN, WeatherType.SHOWERS],
+      },
+      times: [{ start: 8, end: 16 }],
+    },
+    {
+      id: BigFishType.LALE_CRAB,
+      name: 'Lale Crab',
+      patch: '6.2',
+      baits: [BaitType.SHRIMP_BALL],
+      fishSequence: [BaitType.SHRIMP_BALL],
+      location: FishingHoleType.KSIRODA,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.FAIRSKIES, WeatherType.CLEARSKIES],
+        to: [WeatherType.FOG],
+      },
+    },
+
+    // Garlemald
+    {
+      id: BigFishType.SOVEREIGN_SHADOW,
+      name: 'Sovereign Shadow',
+      patch: '6.2',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY],
+      location: FishingHoleType.THE_STAINLESS_COURSE,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLOUDS, WeatherType.FOG],
+        to: [WeatherType.SNOW],
+      },
+      times: [{ start: 2, end: 8 }],
+    },
+
+    // Mare Lamentorum
+    {
+      id: BigFishType.DISAPPIRARUCU,
+      name: 'Disappirarucu',
+      patch: '6.2',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY],
+      location: FishingHoleType.GREATEST_ENDSVALE,
+      difficulty: 1,
+      times: [{ start: 0, end: 2 }],
+    },
+
+    // Ultima Thule
+    {
+      id: BigFishType.ARGONAUTA_ARGO,
+      name: 'Argonauta Argo',
+      patch: '6.2',
+      baits: [BaitType.STARDUST],
+      fishSequence: [BaitType.STARDUST],
+      location: FishingHoleType.LIMNE_3_ALPHA,
+      difficulty: 1,
+      weathers: [WeatherType.UMBRALWIND],
+      times: [{ start: 2, end: 4 }],
+    },
+    {
+      id: BigFishType.STARSCRYER,
+      name: 'Starscryer',
+      patch: '6.2',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY],
+      location: FishingHoleType.THE_WELLSPRING_OF_REGRET,
+      difficulty: 1,
+      weathers: [WeatherType.ASTROMAGNETICSTORM],
+      times: [{ start: 2, end: 4 }],
+    },
+
+    // Elpis
+    {
+      id: BigFishType.PLANETES,
+      name: 'Planetes',
+      patch: '6.2',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY, NormalFishType.ALBINO_LOACH],
+      location: FishingHoleType.RUMINATIONS_RAMBLE,
+      difficulty: 1,
+      weathers: [WeatherType.UMBRALWIND],
+    },
+  ],
+
+  '6.3': [
+    // Old Sharlayan
+    {
+      id: BigFishType.CATASTROPHIZER,
+      name: 'Catastrophizer',
+      patch: '6.3',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY],
+      location: FishingHoleType.REFLECTING_POOL,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.FAIRSKIES],
+        to: [WeatherType.CLEARSKIES],
+      },
+      times: [{ start: 8, end: 14 }],
+    },
+
+    // Labyrinthos
+    {
+      id: BigFishType.MOSSGILL_SALMON,
+      name: 'Mossgill Salmon',
+      patch: '6.3',
+      baits: [BaitType.SKY_SPOON_LURE],
+      fishSequence: [BaitType.SKY_SPOON_LURE],
+      location: FishingHoleType.THE_MOVER_ALPHA,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLOUDS],
+        to: [WeatherType.RAIN],
+      },
+    },
+
+    // Thavnair
+    {
+      id: BigFishType.BROWNED_BANANA_EEL,
+      name: 'Browned Banana Eel',
+      patch: '6.3',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY],
+      location: FishingHoleType.PAVANAS_REMORSE,
+      difficulty: 1,
+      weathers: [WeatherType.RAIN],
+      times: [{ start: 22, end: 2 }],
+    },
+    {
+      id: BigFishType.VIDYUTVAT_WRASSE,
+      name: 'Vidyutvat Wrasse',
+      patch: '6.3',
+      baits: [BaitType.SHRIMP_BALL],
+      fishSequence: [BaitType.SHRIMP_BALL],
+      location: FishingHoleType.THE_GREAT_RUNOFF,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLOUDS],
+        to: [WeatherType.CLEARSKIES],
+      },
+      times: [{ start: 20, end: 24 }],
+    },
+
+    // Mare Lamentorum
+    {
+      id: BigFishType.FROZEN_REGOTOISE,
+      name: 'Frozen Regotoise',
+      patch: '6.3',
+      baits: [BaitType.CHIMERA_WORM],
+      fishSequence: [BaitType.CHIMERA_WORM],
+      location: FishingHoleType.THE_FROZEN_FISSURE,
+      difficulty: 1,
+      weathers: [WeatherType.UMBRALWIND],
+      times: [{ start: 10, end: 13 }],
+    },
+
+    // Ultima Thule
+    {
+      id: BigFishType.COSMIC_HAZE,
+      name: 'Cosmic Haze',
+      patch: '6.3',
+      baits: [BaitType.CHIMERA_WORM],
+      fishSequence: [BaitType.CHIMERA_WORM, NormalFishType.VACUUM_SHRIMP],
+      location: FishingHoleType.APOHELOS_18_GAMMA,
+      difficulty: 1,
+      weathers: [WeatherType.ASTROMAGNETICSTORM],
+      times: [{ start: 20, end: 4 }],
+    },
+
+    // Elpis
+    {
+      id: BigFishType.ANTHEIAN_DAHLIA,
+      name: 'Anthelian Dahlia',
+      patch: '6.3',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY],
+      location: FishingHoleType.LETHE,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.CLOUDS],
+        to: [WeatherType.CLEARSKIES],
+      },
+      times: [{ start: 4, end: 10 }],
+    },
+  ],
+
+  '6.4': [
+    // Labyrinthos
+    {
+      id: BigFishType.ONYX_KNIFEFISH,
+      name: 'Onyx Knifefish',
+      patch: '6.4',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY],
+      location: FishingHoleType.THE_MOVER_BETA,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.RAIN],
+        to: [WeatherType.FAIRSKIES],
+      },
+      times: [{ start: 22, end: 2 }],
+    },
+
+    // Thavnair
+    {
+      id: BigFishType.WAKEFUL_WARDEN,
+      name: 'Wakeful Warden',
+      patch: '6.4',
+      baits: [BaitType.LEECH],
+      fishSequence: [BaitType.LEECH],
+      location: FishingHoleType.THE_WAKEFUL_TORANA,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.FOG],
+        to: [WeatherType.CLOUDS],
+      },
+    },
+    {
+      id: BigFishType.BASILOSAURUS_REX,
+      name: 'Basilosaurus Rex',
+      patch: '6.4',
+      baits: [BaitType.MACKEREL_STRIP],
+      fishSequence: [
+        BaitType.MACKEREL_STRIP,
+        NormalFishType.PUFF_PAYA,
+        NormalFishType.BASILOSAURUS,
+      ],
+      location: FishingHoleType.THE_PERFUMED_TIDES,
+      difficulty: 1,
+      weathers: [WeatherType.FAIRSKIES],
+    },
+
+    // Ultima Thule
+    {
+      id: BigFishType.EEHS_FAN,
+      name: 'Eehs Fan',
+      patch: '6.4',
+      baits: [BaitType.CHIMERA_WORM],
+      fishSequence: [BaitType.CHIMERA_WORM],
+      location: FishingHoleType.APOHELOS_18_ALPHA,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.ASTROMAGNETICSTORM],
+        to: [WeatherType.UMBRALWIND],
+      },
+      times: [{ start: 12, end: 20 }],
+    },
+
+    // Elpis
+    {
+      id: BigFishType.GILT_DERMOGENYS,
+      name: 'Gilt Dergogenys',
+      patch: '6.4',
+      baits: [BaitType.SKY_SPOON_LURE],
+      fishSequence: [BaitType.SKY_SPOON_LURE],
+      location: FishingHoleType.THE_LOWER_HUNGERING_GARDENS,
+      difficulty: 1,
+      weatherTransitions: {
+        from: [WeatherType.UMBRALWIND],
+        to: [WeatherType.CLEARSKIES, WeatherType.FAIRSKIES],
+      },
+      times: [{ start: 20, end: 22 }],
+    },
+  ],
+
+  '6.5': [
+    // Labyrinthos
+    {
+      id: BigFishType.CIRCUIT_TILAPIA,
+      name: 'Circuit Tilapia',
+      patch: '6.5',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY, NormalFishType.ASTACUS_AETHERIUS],
+      location: FishingHoleType.DEEPMOAT,
+      difficulty: 3,
+      weatherTransitions: {
+        from: [WeatherType.CLOUDS],
+        to: [WeatherType.FAIRSKIES],
+      },
+      times: [{ start: 8, end: 12 }],
+    },
+
+    // Thavnair
+    {
+      id: BigFishType.DURDINA_FISH,
+      name: 'Durdina Fish',
+      patch: '6.5',
+      baits: [BaitType.SHRIMP_BALL],
+      fishSequence: [BaitType.SHRIMP_BALL, NormalFishType.SHADOWDART_SARDINE],
+      location: FishingHoleType.THE_THAVNAIRIAN_COAST,
+      difficulty: 3,
+      weatherTransitions: {
+        from: [WeatherType.FAIRSKIES],
+        to: [WeatherType.CLEARSKIES],
+      },
+      times: [{ start: 0, end: 4 }],
+    },
+    {
+      id: BigFishType.MAYAMAN,
+      name: 'Mayaman',
+      patch: '6.5',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY],
+      location: FishingHoleType.THE_FONT_OF_MAYA,
+      difficulty: 3,
+      weatherTransitions: {
+        from: [WeatherType.CLOUDS],
+        to: [WeatherType.FAIRSKIES],
+      },
+      times: [{ start: 4, end: 8 }],
+    },
+
+    // Mare Lamentorum
+    {
+      id: BigFishType.CHLOROPHOS_DEATHWORM,
+      name: 'Chlorophos Deathworm',
+      patch: '6.5',
+      baits: [BaitType.CHIMERA_WORM],
+      fishSequence: [BaitType.CHIMERA_WORM, NormalFishType.CALICIA],
+      location: FishingHoleType.THE_CHLOROPHOSPOND,
+      difficulty: 3,
+      weatherTransitions: {
+        from: [WeatherType.FAIRSKIES],
+        to: [WeatherType.MOONDUST],
+      },
+      times: [{ start: 2, end: 8 }],
+    },
+
+    // Ultima Thule
+    {
+      id: BigFishType.EBE_852738,
+      name: 'E.B.E.-852738',
+      patch: '6.5',
+      baits: [BaitType.STARDUST],
+      fishSequence: [BaitType.STARDUST],
+      location: FishingHoleType.LIMNE_3_BETA,
+      difficulty: 3,
+      weatherTransitions: {
+        from: [WeatherType.FAIRSKIES],
+        to: [WeatherType.UMBRALWIND],
+      },
+      times: [{ start: 12, end: 16 }],
+    },
+    {
+      id: BigFishType.STARSCALE_EPHEMERIS,
+      name: 'Starscale Ephemeris',
+      patch: '6.5',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY],
+      location: FishingHoleType.ABODE_OF_THE_EA,
+      difficulty: 3,
+      weatherTransitions: {
+        from: [WeatherType.ASTROMAGNETICSTORM],
+        to: [WeatherType.FAIRSKIES],
+      },
+      times: [{ start: 18, end: 22 }],
+    },
+  ],
+
+  '6.55': [
+    // Labyrinthos
+    {
+      id: BigFishType.HYPHALOSAURUS,
+      name: 'Hyphalosaurus',
+      patch: '6.55',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY, NormalFishType.ASTACUS_AETHERIUS],
+      location: FishingHoleType.DEEPMOAT,
+      difficulty: 5,
+      weatherTransitions: {
+        from: [WeatherType.CLEARSKIES],
+        to: [WeatherType.FAIRSKIES],
+      },
+      times: [{ start: 9, end: 12 }],
+      intuition: [{ fish: NormalFishType.ASTACUS_AETHERIUS, quantity: 3 }],
+    },
+
+    // Thavnair
+    {
+      id: BigFishType.GHARLICHTHYS,
+      name: 'Gharlichthys',
+      patch: '6.55',
+      baits: [BaitType.MACKEREL_STRIP],
+      fishSequence: [BaitType.MACKEREL_STRIP],
+      location: FishingHoleType.THE_PERFUMED_TIDES,
+      difficulty: 8,
+      weatherTransitions: {
+        from: [WeatherType.SHOWERS],
+        to: [WeatherType.FAIRSKIES],
+      },
+      times: [{ start: 14, end: 16 }],
+      intuition: [{ fish: NormalFishType.BASILOSAURUS, quantity: 12 }],
+    },
+
+    // Garlemald
+    {
+      id: BigFishType.SNOWY_PAREXUS,
+      name: 'Snowy Parexus',
+      patch: '6.55',
+      baits: [BaitType.MAYFLY],
+      fishSequence: [BaitType.MAYFLY],
+      location: FishingHoleType.THE_EBLAN_THAW,
+      difficulty: 5,
+      weatherTransitions: {
+        from: [WeatherType.FAIRSKIES],
+        to: [WeatherType.SNOW],
+      },
+      times: [{ start: 16, end: 24 }],
+      intuition: [{ fish: NormalFishType.CERULE_CORE, quantity: 3 }],
+    },
+
+    // Mare Lamentorum
+    {
+      id: BigFishType.LOPOCERAS_ELEGANS,
+      name: 'Lopoceras Elegans',
+      patch: '6.55',
+      baits: [BaitType.CHIMERA_WORM],
+      fishSequence: [BaitType.CHIMERA_WORM],
+      location: FishingHoleType.THE_CHLOROPHOSPOND,
+      difficulty: 5,
+      weatherTransitions: {
+        from: [WeatherType.MOONDUST],
+        to: [WeatherType.FAIRSKIES],
+      },
+      times: [{ start: 8, end: 10 }],
+    },
+
+    // Ultima Thule
+    {
+      id: BigFishType.SIDEREAL_WHALE,
+      name: 'Sidereal Whale',
+      patch: '6.55',
+      baits: [BaitType.STARDUST],
+      fishSequence: [BaitType.STARDUST, NormalFishType.HORIZON_EVENT],
+      location: FishingHoleType.LIMNE_3_BETA,
+      difficulty: 8,
+      weatherTransitions: {
+        from: [WeatherType.UMBRALWIND],
+        to: [WeatherType.ASTROMAGNETICSTORM],
+      },
+      times: [{ start: 0, end: 8 }],
+      intuition: [
+        { fish: NormalFishType.PHALLAINA, quantity: 1 },
+        { fish: NormalFishType.UNBEGOTTEN, quantity: 2 },
+        { fish: NormalFishType.EBE_9318, quantity: 3 },
+      ],
+    },
+
+    // Elpis
+    {
+      id: BigFishType.FURCACAUDA,
+      name: 'Furcacauda',
+      patch: '6.55',
+      baits: [BaitType.SKY_SPOON_LURE],
+      fishSequence: [BaitType.SKY_SPOON_LURE],
+      location: FishingHoleType.LETHE,
+      difficulty: 5,
+      weatherTransitions: {
+        from: [WeatherType.FAIRSKIES],
+        to: [WeatherType.UMBRALWIND],
+      },
+      times: [{ start: 15.5, end: 16.5 }],
+    },
+  ],
 };
 
 export const ARR_BIG_FISHES: Record<string, BigFish[]> = Object.keys(BIG_FISH_DATA)
@@ -3206,6 +3798,17 @@ export const EW_BIG_FISHES: Record<string, BigFish[]> = Object.keys(BIG_FISH_DAT
 export const EW_BIG_FISH_IDS: BigFishType[] = Object.values(EW_BIG_FISHES)
   .reduce((a, b) => [...a, ...b], [])
   .map((f) => f.id);
+
+export const FREE_TRIAL_BIG_FISHES = {
+  ...ARR_BIG_FISHES,
+  ...HW_BIG_FISHES,
+  ...STB_BIG_FISHES,
+  ...SHB_BIG_FISHES,
+};
+export const FREE_TRIAL_BIG_FISH_IDS: BigFishType[] = Object.values(FREE_TRIAL_BIG_FISHES)
+  .reduce((a, b) => [...a, ...b], [])
+  .map((f) => f.id);
+export const FREE_TRIAL_BIG_FISH_ID_SET = new Set([...FREE_TRIAL_BIG_FISH_IDS]);
 
 export const ALL_BIG_FISHES = Object.values(BIG_FISH_DATA).reduce((a, b) => [...a, ...b]);
 export const BIG_FISH_BY_ID = Object.values(BIG_FISH_DATA).reduce(

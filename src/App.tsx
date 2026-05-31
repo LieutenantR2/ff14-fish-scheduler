@@ -13,6 +13,7 @@ import { ConfigurationContext } from './contexts/ConfigurationContext.tsx';
 import TextCheckboxButton from './components/GenericUI/TextCheckboxButton.tsx';
 import ScheduleTable from './components/Schedule/ScheduleTable.tsx';
 import SchedulerSettingsPage from './components/SchedulerSettingsPage.tsx';
+import { FREE_TRIAL_BIG_FISH_ID_SET } from './data/BigFishData.ts';
 
 const Styles = css({
   boxSizing: 'border-box',
@@ -164,6 +165,7 @@ function App() {
     fishes,
     completed,
     autoGenerateOnCompletion,
+    isFreeTrial,
   } = useContext(ConfigurationContext);
 
   const [completedScheduleHistory, setCompletedScheduleHistory] = useState<Interval[]>([]);
@@ -179,7 +181,9 @@ function App() {
         scheduledHours: scheduleDurationHours,
         minimumRemainingWindowSeconds: minimumRemainingWindowSeconds,
         travelTimeSeconds: travelTimeSeconds,
-        includedFishes: fishes,
+        includedFishes: isFreeTrial
+          ? new Set([...fishes].filter((f) => FREE_TRIAL_BIG_FISH_ID_SET.has(f)))
+          : fishes,
         startTime: startTime,
       });
       return await weightedIntervalScheduling(intervals);
@@ -190,6 +194,7 @@ function App() {
       scheduleLookaheadMonths,
       minimumRemainingWindowSeconds,
       travelTimeSeconds,
+      isFreeTrial,
     ]
   );
 

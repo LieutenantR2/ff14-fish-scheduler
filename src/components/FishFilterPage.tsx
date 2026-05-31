@@ -109,7 +109,7 @@ const Styles = css({
 });
 
 const FishFilterPage = () => {
-  const { fishes, onCompleteFish } = useContext(ConfigurationContext);
+  const { fishes, onCompleteFish, isFreeTrial } = useContext(ConfigurationContext);
 
   const handleSelectedToComplete = useCallback(() => {
     onCompleteFish([...fishes], true);
@@ -172,7 +172,7 @@ const FishFilterPage = () => {
           fishes={SHB_BIG_FISHES}
           fishTypes={SHB_BIG_FISH_IDS}
         />
-        {false && (
+        {!isFreeTrial && (
           <FishExpansionFilter
             heading="Endwalker"
             abbreviatedHeading="EW"

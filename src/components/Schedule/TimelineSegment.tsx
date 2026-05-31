@@ -95,13 +95,14 @@ const TimelineSegment = ({
     )
   );
   const [isActive, setIsActive] = useState(
-    interval.fishStartTimestamp <= new Date().getTime() && interval.fishEndTimestamp > new Date().getTime()
+    interval.fishStartTimestamp <= new Date().getTime() &&
+      interval.fishEndTimestamp > new Date().getTime()
   );
   const [isDisabled, setisDisabled] = useState(interval.fishEndTimestamp <= new Date().getTime());
 
   useEffect(() => {
     if (isActive && ref.current) {
-      ref.current.scrollIntoView({block: "center", inline: "nearest"});
+      ref.current.scrollIntoView({ block: 'center', inline: 'nearest' });
     }
   }, [isActive, ref]);
 
