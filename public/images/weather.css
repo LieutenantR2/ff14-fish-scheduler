@@ -1,5 +1,5 @@
 .weather-icon {
-  background-image: url('weather.png?1715521110');
+  background-image: url('weather.png?1780273991');
 }
 .weather-icon-1 {
   background-position: -0px -0px;
@@ -17,17 +17,27 @@
   height: 36px;
 }
 .weather-icon-14 {
+  background-position: -0px -108px;
+  width: 36px;
+  height: 36px;
+}
+.weather-icon-148 {
   background-position: -36px -0px;
   width: 36px;
   height: 36px;
 }
-.weather-icon-15 {
+.weather-icon-149 {
   background-position: -36px -36px;
   width: 36px;
   height: 36px;
 }
-.weather-icon-16 {
+.weather-icon-15 {
   background-position: -36px -72px;
+  width: 36px;
+  height: 36px;
+}
+.weather-icon-16 {
+  background-position: -36px -108px;
   width: 36px;
   height: 36px;
 }
@@ -47,6 +57,11 @@
   height: 36px;
 }
 .weather-icon-4 {
+  background-position: -72px -108px;
+  width: 36px;
+  height: 36px;
+}
+.weather-icon-49 {
   background-position: -108px -0px;
   width: 36px;
   height: 36px;
@@ -62,17 +77,17 @@
   height: 36px;
 }
 .weather-icon-7 {
-  background-position: -144px -0px;
+  background-position: -108px -108px;
   width: 36px;
   height: 36px;
 }
 .weather-icon-8 {
-  background-position: -144px -36px;
+  background-position: -144px -0px;
   width: 36px;
   height: 36px;
 }
 .weather-icon-9 {
-  background-position: -144px -72px;
+  background-position: -144px -36px;
   width: 36px;
   height: 36px;
 }

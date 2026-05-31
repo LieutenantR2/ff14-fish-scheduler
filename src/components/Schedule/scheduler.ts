@@ -68,6 +68,10 @@ export async function createIntervals({
   includedFishes?: Set<BigFishType>;
   startTime?: Date;
 }): Promise<Interval[]> {
+  if (includedFishes && includedFishes.size === 0) {
+    return Promise.resolve([]);
+  }
+
   const dataStartDate = startTime ?? new Date();
   const scheduleStartTimestamp = dataStartDate.getTime();
   const dataEndDate = new Date(
