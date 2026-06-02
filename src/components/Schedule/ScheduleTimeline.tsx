@@ -64,14 +64,10 @@ const maxRows = 20;
 const ScheduleTimeline = ({ schedule, timelineDurationMs }: ScheduleTimelineProps) => {
   const [computeSchedule, setComputeSchedule] = useState(false);
   const [visibleSegments, setVisibleSegments] = useState<Interval[]>([]);
-  const [timelineBufferMs, setTimelineBufferMs] = useState(timelineDurationMs / 2);
+  const timelineBufferMs = timelineDurationMs / 2;
 
   useEffect(() => {
-    setTimelineBufferMs(timelineDurationMs / 2);
-  }, [timelineDurationMs]);
-
-  useEffect(() => {
-    const now = new Date().getTime();
+    const now = new Date().valueOf();
     let s = -1,
       e = -1;
     for (const segment of schedule) {
@@ -119,7 +115,7 @@ const ScheduleTimeline = ({ schedule, timelineDurationMs }: ScheduleTimelineProp
       }, nextUpdateTime);
       return () => clearTimeout(timeout);
     }
-  }, [timelineDurationMs, schedule, computeSchedule, timelineBufferMs]);
+  }, [schedule, computeSchedule, timelineBufferMs]);
 
   return (
     <div css={Styles}>

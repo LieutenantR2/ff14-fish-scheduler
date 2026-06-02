@@ -282,38 +282,44 @@ function App() {
               <TextCheckboxButton
                 buttonText="15m"
                 buttonValue="15"
-                isSelected={timelineDurationMinutes === 15}
-                onClick={() => handleTimeframeChange(15)}
-              />
-              <TextCheckboxButton
-                buttonText="30m"
-                buttonValue="30"
                 isSelected={timelineDurationMinutes === 30}
                 onClick={() => handleTimeframeChange(30)}
               />
               <TextCheckboxButton
-                buttonText="1h"
-                buttonValue="60"
+                buttonText="30m"
+                buttonValue="30"
                 isSelected={timelineDurationMinutes === 60}
                 onClick={() => handleTimeframeChange(60)}
               />
               <TextCheckboxButton
-                buttonText="3h"
-                buttonValue="180"
-                isSelected={timelineDurationMinutes === 180}
-                onClick={() => handleTimeframeChange(180)}
+                buttonText="1h"
+                buttonValue="60"
+                isSelected={timelineDurationMinutes === 120}
+                onClick={() => handleTimeframeChange(120)}
               />
               <TextCheckboxButton
-                buttonText="6h"
-                buttonValue="360"
+                buttonText="3h"
+                buttonValue="180"
                 isSelected={timelineDurationMinutes === 360}
                 onClick={() => handleTimeframeChange(360)}
               />
               <TextCheckboxButton
-                buttonText="12h"
-                buttonValue="720"
+                buttonText="6h"
+                buttonValue="360"
                 isSelected={timelineDurationMinutes === 720}
                 onClick={() => handleTimeframeChange(720)}
+              />
+              <TextCheckboxButton
+                buttonText="12h"
+                buttonValue="720"
+                isSelected={timelineDurationMinutes === 1440}
+                onClick={() => handleTimeframeChange(1440)}
+              />
+              <TextCheckboxButton
+                buttonText="24h"
+                buttonValue="1440"
+                isSelected={timelineDurationMinutes === 2880}
+                onClick={() => handleTimeframeChange(2880)}
               />
             </div>
             <ScheduleTimeline
