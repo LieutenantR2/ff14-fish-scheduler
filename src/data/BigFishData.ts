@@ -993,6 +993,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       difficulty: 3,
       weathers: [WeatherType.RAIN, WeatherType.SHOWERS],
       intuition: [{ fish: NormalFishType.LITTLE_THALAOS, quantity: 3 }],
+      intuitionBaits: [BaitType.NORTHERN_KRILL],
     },
     {
       id: BigFishType.IMPERIAL_GOLDFISH,
@@ -1003,6 +1004,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       location: FishingHoleType.RED_MANTIS_FALLS,
       difficulty: 1,
       intuition: [{ fish: NormalFishType.JUNGLE_CATFISH, quantity: 3 }],
+      intuitionBaits: [BaitType.HONEY_WORM],
     },
     // Western La Noscea
     {
@@ -1083,6 +1085,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
           quantity: 1,
         },
       ],
+      intuitionBaits: [BaitType.GLOWWORM],
     },
 
     // North Shroud
@@ -1100,6 +1103,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
           quantity: 5,
         },
       ],
+      intuitionBaits: [BaitType.GLOWWORM],
     },
 
     // Western Thanalan
@@ -1117,6 +1121,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
           quantity: 6,
         },
       ],
+      intuitionBaits: [BaitType.LUGWORM],
     },
     {
       id: BigFishType.NDENDECKI,
@@ -1192,6 +1197,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
           quantity: 5,
         },
       ],
+      intuitionBaits: [BaitType.CHOCOBO_FLY],
     },
     {
       id: BigFishType.BLUE_CORPSE,
@@ -1316,6 +1322,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
           quantity: 1,
         },
       ],
+      intuitionBaits: [BaitType.HONEY_WORM],
     },
   ],
 
@@ -1668,6 +1675,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       weathers: [WeatherType.BLIZZARDS],
       prepType: ['stacks', 'intfish'],
       intuition: [{ fish: NormalFishType.ICE_FAERIE, quantity: 5 }],
+      intuitionBaits: [BaitType.CADDISFLY_LARVA],
     },
     {
       id: BigFishType.CAPTAIN_NEMO,
@@ -1713,6 +1721,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
         { fish: NormalFishType.SKY_FAERIE, quantity: 3 },
         { fish: NormalFishType.SCORPIONFLY, quantity: 3 },
       ],
+      intuitionBaits: [BaitType.METAL_SPINNER],
     },
 
     // Azys Lla
@@ -1753,6 +1762,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       difficulty: 3,
       weathers: [WeatherType.THUNDER],
       intuition: [{ fish: NormalFishType.FUNCTIONAL_PROTO_HROPKEN, quantity: 3 }],
+      intuitionBaits: [BaitType.FIEND_WORM],
     },
 
     // The Dravanian Forelands
@@ -1813,6 +1823,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
         { fish: NormalFishType.FOSSILTONGUE, quantity: 3 },
         { fish: NormalFishType.GRANITE_CRAB, quantity: 5 },
       ],
+      intuitionBaits: [BaitType.MAGMA_WORM],
     },
 
     // The Dravanian Hinterlands
@@ -1842,6 +1853,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       weathers: [WeatherType.CLEARSKIES],
       prepType: ['stacks', 'intfish'],
       intuition: [{ fish: NormalFishType.HEDGEMOLE_CRICKET, quantity: 6 }],
+      intuitionBaits: [BaitType.PURSE_WEB_SPIDER],
     },
 
     // The Churning Mists
@@ -1883,6 +1895,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       weathers: [WeatherType.GALES],
       prepType: ['stacks', 'intfish'],
       intuition: [{ fish: NormalFishType.RUDDERFISH, quantity: 5 }],
+      intuitionBaits: [BaitType.GIANT_CRANE_FLY],
     },
   ],
 
@@ -2261,6 +2274,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       difficulty: 5,
       weathers: [WeatherType.DUSTSTORMS],
       intuition: [{ fish: BigFishType.BONDSPLITTER, quantity: 2 }],
+      intuitionBaits: [BaitType.SUSPENDING_MINNOW],
     },
     {
       id: BigFishType.LILY_OF_THE_VEIL,
@@ -2289,6 +2303,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       weathers: [WeatherType.THUNDERSTORMS],
       prepType: ['stay', 'stacks'],
       intuition: [{ fish: NormalFishType.SCULPTOR, quantity: 2 }],
+      intuitionBaits: [BaitType.SILKWORM],
     },
 
     // The Ruby Sea
@@ -2424,6 +2439,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
         { fish: NormalFishType.FIRELIGHT_GOLDFISH, quantity: 3 },
         { fish: NormalFishType.GREEN_PRISMFISH, quantity: 5 },
       ],
+      intuitionBaits: [BaitType.STONEFLY_LARVA],
     },
     {
       id: BigFishType.SUITEN_IPPEKI,
@@ -3068,6 +3084,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
         { fish: NormalFishType.SHAPESHIFTER, quantity: 5 },
         { fish: BigFishType.SHADESHIFTER, quantity: 1 },
       ],
+      intuitionBaits: [BaitType.MOYEBI_SHRIMP, BaitType.SQUID_STRIP],
       prepType: ['intfish'],
     },
 
@@ -3086,6 +3103,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       },
       times: [{ start: 0, end: 2 }],
       intuition: [{ fish: NormalFishType.SAND_EGG, quantity: 10 }],
+      intuitionBaits: [BaitType.DESERT_DESSERT_FROG],
       prepType: ['intfish'],
     },
 
@@ -3137,6 +3155,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       },
       times: [{ start: 0, end: 2 }],
       intuition: [{ fish: BigFishType.MORA_TECTA, quantity: 2 }],
+      intuitionBaits: [BaitType.SHORT_BILL_MINNOW],
       prepType: ['stay'],
     },
   ],
@@ -3643,6 +3662,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       },
       times: [{ start: 9, end: 12 }],
       intuition: [{ fish: NormalFishType.ASTACUS_AETHERIUS, quantity: 3 }],
+      intuitionBaits: [BaitType.MAYFLY],
     },
 
     // Thavnair
@@ -3660,6 +3680,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       },
       times: [{ start: 14, end: 16 }],
       intuition: [{ fish: NormalFishType.BASILOSAURUS, quantity: 12 }],
+      intuitionBaits: [BaitType.MACKEREL_STRIP],
     },
 
     // Garlemald
@@ -3677,6 +3698,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
       },
       times: [{ start: 16, end: 24 }],
       intuition: [{ fish: NormalFishType.CERULE_CORE, quantity: 3 }],
+      intuitionBaits: [BaitType.LEECH],
     },
 
     // Mare Lamentorum
@@ -3714,6 +3736,7 @@ export const BIG_FISH_DATA: Record<string, BigFish[]> = {
         { fish: NormalFishType.UNBEGOTTEN, quantity: 2 },
         { fish: NormalFishType.EBE_9318, quantity: 3 },
       ],
+      intuitionBaits: [BaitType.STARDUST],
     },
 
     // Elpis

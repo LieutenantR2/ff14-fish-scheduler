@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PhishingIcon from '@mui/icons-material/Phishing';
@@ -15,6 +15,7 @@ import { BigFish } from '../../types/BigFish.ts';
 import { BaitType } from '../../enums/BaitType.ts';
 import { BigFishType } from '../../enums/BigFishType.ts';
 import { BAIT_BY_ID, BAIT_OBTAIN_METHOD_NAMES } from '../../data/BaitData.ts';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const Styles = css({
   boxShadow: '0 0 3px 3px rgba(0, 0, 0, 0.1)',
@@ -33,6 +34,7 @@ const Styles = css({
   '.heading': {
     display: 'flex',
     justifyItems: 'center',
+    alignItems: 'center',
     cursor: 'pointer',
     backgroundColor: '#222',
     padding: '10px',
@@ -153,38 +155,34 @@ const FishExpansionFilter = ({
     [fishes]
   );
 
-  const [expansionCollapsed, setExpansionCollapsed] = useState(false);
+  const availableBaits = useMemo(
+    () => allBaits.filter((b) => configPatches.has(b.patch)),
+    [allBaits, configPatches]
+  );
+
+  const availableFishes = useMemo(
+    () =>
+      allFishes.filter(
+        (f) =>
+          configPatches.has(f.patch) &&
+          setIntersect(configBaits, f.baits).size === f.baits.length &&
+          !completedFishes.has(f.id)
+      ),
+    [allFishes, completedFishes, configBaits, configPatches]
+  );
+
+  const missingFishes = useMemo(
+    () => allFishes.filter((f) => !completedFishes.has(f.id)),
+    [allFishes, completedFishes]
+  );
+  const isExpansionComplete = missingFishes.length === 0;
+
+  const [expansionCollapsed, setExpansionCollapsed] = useState(isExpansionComplete);
   const [baitCollapsed, setBaitCollapsed] = useState(true);
   const [fishCollapsed, setFishCollapsed] = useState(false);
-  const [baitCount, setBaitCount] = useState(configBaits.size);
-  const [fishCount, setFishCount] = useState(configFishes.size);
-  const [availableBaits, setAvailableBaits] = useState(
-    allBaits.filter((b) => configPatches.has(b.patch))
-  );
-  const [availableFishes, setAvailableFishes] = useState(allFishes);
 
-  useEffect(() => {
-    setBaitCount(setIntersect(configBaits, baitTypes).size);
-  }, [baitTypes, configBaits]);
-
-  useEffect(() => {
-    setFishCount(setIntersect(configFishes, fishTypes).size);
-  }, [fishTypes, configFishes]);
-
-  useEffect(() => {
-    const baits = allBaits.filter((b) => configPatches.has(b.patch));
-    setAvailableBaits(baits);
-  }, [allBaits, configPatches]);
-
-  useEffect(() => {
-    const fishes = allFishes.filter(
-      (f) =>
-        configPatches.has(f.patch) &&
-        setIntersect(configBaits, f.baits).size === f.baits.length &&
-        !completedFishes.has(f.id)
-    );
-    setAvailableFishes(fishes);
-  }, [allFishes, completedFishes, configBaits, configPatches]);
+  const baitCount = setIntersect(configBaits, baitTypes).size;
+  const fishCount = setIntersect(configFishes, fishTypes).size;
 
   return (
     <div css={Styles} className={expansionCollapsed ? 'collapsed' : ''}>
@@ -192,6 +190,7 @@ const FishExpansionFilter = ({
         {expansionCollapsed && <ExpandMoreIcon fontSize="medium" />}
         {!expansionCollapsed && <ExpandLessIcon fontSize="medium" />}
         <span>{expansionCollapsed ? abbreviatedHeading : heading}</span>
+        {isExpansionComplete && <CheckCircleIcon fontSize="small" />}
       </div>
       <div className={'content collapsible ' + (expansionCollapsed ? 'collapsed' : '')}>
         <div className="section-label">
@@ -236,7 +235,13 @@ const FishExpansionFilter = ({
                 key={b.id}
                 isIncluded={configBaits.has(b.id)}
                 isDisabled={!configPatches.has(b.patch)}
-                isCompleted={false}
+                isCompleted={
+                  !missingFishes.some(
+                    (f) =>
+                      f.baits.some((ba) => ba === b.id) ||
+                      f.intuitionBaits?.some((ba) => ba === b.id)
+                  )
+                }
                 label={b.name}
                 iconClass={`bait-icon bait-icon-${b.id}`}
                 additionalIconClass={{

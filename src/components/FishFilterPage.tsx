@@ -83,9 +83,9 @@ const Styles = css({
       flexDirection: 'column',
 
       '&.collapsed': {
-        flexBasis: '100px',
-        minWidth: '100px',
-        width: '100px',
+        flexBasis: '110px',
+        minWidth: '110px',
+        width: '110px',
         flexGrow: 0,
       },
     },

@@ -7,6 +7,8 @@ export type CarbunclePlushyFilterSettings = {
 
 export type CarbunclePlushySettings = {
   filters: CarbunclePlushyFilterSettings;
+  upcomingWindowFormat: string;
+  sortingType: string;
   theme: string;
   completed: number[];
   pinned: number[];

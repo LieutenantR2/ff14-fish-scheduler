@@ -19,8 +19,18 @@ export function parseCarbunclePlushySettings(settings: string): CarbunclePlushyS
 }
 
 export function getCarbunclePlushyPatches(settings: CarbunclePlushySettings): Set<string> {
-  return new Set([
+  const patches = new Set([
     // Converts numerical 4 to a 4.0 string
     ...settings.filters.patch.map((p) => p.toLocaleString('en-US', { minimumFractionDigits: 1 })),
   ]);
+
+  // x.5 is split into x.5 and x.55 here for SHB/EW
+  if (settings.filters.patch.includes(5.5)) {
+    patches.add('5.55');
+  }
+  if (settings.filters.patch.includes(6.5)) {
+    patches.add('6.55');
+  }
+
+  return patches;
 }

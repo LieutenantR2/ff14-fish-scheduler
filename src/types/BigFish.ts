@@ -16,6 +16,7 @@ export type BigFish = {
   prepTime?: number;
   prepType?: ('stacks' | 'mooch' | 'intfish' | 'stay')[];
   intuition?: IntuitionRequirement[];
+  intuitionBaits?: BaitType[];
   times?: { start: number; end: number }[];
   weathers?: WeatherType[];
   weatherTransitions?: { from: WeatherType[]; to: WeatherType[] };

@@ -35,6 +35,28 @@ const Styles = css({
     width: '100%',
     display: 'flex',
 
+    '&.filter > div.fish-filters, &.import > div.import-configuration, &.settings > div.settings-page':
+      {
+        zIndex: 2,
+      },
+
+    '&.filter > div:not(.fish-filters), &.import > div:not(.import-configuration), &.settings > div:not(.settings-page)':
+      {
+        zIndex: 1,
+      },
+
+    '> div': {
+      position: 'absolute',
+      left: 0,
+      bottom: 0,
+      right: 0,
+      height: '100%',
+      width: '100%',
+      backgroundColor: '#444',
+      overflowY: 'auto',
+      overflowX: 'hidden',
+    },
+
     '&.hidden': {
       left: '-100vw',
     },
@@ -248,10 +270,16 @@ function App() {
     <>
       <NavigationMenu onPageChange={handleOverlayChange} />
       <div className="content-container" css={Styles}>
-        <div className={'overlay ' + (!activeOverlay ? 'hidden' : '')}>
-          {activeOverlay === 'filter' && <FishFilterPage />}
-          {activeOverlay === 'import' && <ImportConfigurationPage />}
-          {activeOverlay === 'settings' && <SchedulerSettingsPage />}
+        <div className={'overlay ' + (!activeOverlay ? 'hidden' : activeOverlay)}>
+          <div className="fish-filters">
+            <FishFilterPage />
+          </div>
+          <div className="import-configuration">
+            <ImportConfigurationPage />
+          </div>
+          <div className="settings-page">
+            <SchedulerSettingsPage />
+          </div>
         </div>
         {!schedule && (
           <div className="landing-page">

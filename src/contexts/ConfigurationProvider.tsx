@@ -61,7 +61,7 @@ const ConfigurationProvider: FC<ConfigurationProviderProps> = ({ children }) => 
   const [autoGenerateOnCompletion, setAutoGenerateOnCompletion] = useState(
     getStoredBooleanConfig('autoGenerateOnCompletion', true)
   );
-  const [isFreeTrial, setIsFreeTrial] = useState(getStoredBooleanConfig('isFreeTrial', true));
+  const [isFreeTrial, setIsFreeTrial] = useState(getStoredBooleanConfig('isFreeTrial', false));
   const [excludeRequiredBigFish, setExcludeRequiredBigFish] = useState(
     getStoredBooleanConfig('excludeRequiredBigFish', true)
   );
