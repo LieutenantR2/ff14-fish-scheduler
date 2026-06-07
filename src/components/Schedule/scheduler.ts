@@ -2,6 +2,15 @@ import { Interval } from './Interval.ts';
 import { BigFishType } from '../../enums/BigFishType.ts';
 import { BIG_FISH_BY_ID } from '../../data/BigFishData.ts';
 
+// Fishes that have intuition requirements catching another big fish in the same pool
+const SPECIAL_NO_TRAVEL_TIME_FISHES = new Set([
+  BigFishType.NAMITARO,
+  BigFishType.KUNO_THE_KILLER,
+  BigFishType.DREPANASPIS,
+  BigFishType.AQUAMATON,
+  BigFishType.LANCETFISH,
+]);
+
 export async function getWindows(
   startDate: Date,
   endDate: Date,
@@ -18,7 +27,7 @@ export async function getWindows(
         },
       })
         .then((res) => res.json())
-        .then((json) => json as Record<string, number[][]>)
+        .then((json) => json as Record<string, [number, number][]>)
     )
   );
 
@@ -89,6 +98,11 @@ export async function createIntervals({
     const fishType = parseInt(f) as BigFishType;
     const fishWindow = allWindows[fishType];
     const weight = (lookaheadDays / fishWindow.length) ** 2 * BIG_FISH_BY_ID[fishType].difficulty;
+
+    const travelTimeBuffer = !SPECIAL_NO_TRAVEL_TIME_FISHES.has(fishType)
+      ? travelTimeSeconds * 1000
+      : 0;
+
     return [
       ...r,
       ...fishWindow
@@ -105,9 +119,9 @@ export async function createIntervals({
             ({
               fish: fishType,
               weight: weight,
-              startTimestamp: w.startMs - travelTimeSeconds * 1000,
+              startTimestamp: w.startMs - travelTimeBuffer,
               endTimestamp: w.endMs,
-              travelStartTimestamp: w.startMs - travelTimeSeconds * 1000,
+              travelStartTimestamp: w.startMs - travelTimeBuffer,
               travelEndTimestamp: w.startMs,
               fishStartTimestamp: w.startMs,
               fishEndTimestamp: w.endMs,
